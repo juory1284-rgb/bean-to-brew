@@ -100,7 +100,7 @@ p{
 }
 
 .mode-btn{
-  background:transparent;
+background:transparent;
   border:none;
   color:#7A4D2C;
   font-size:22px;
@@ -2789,8 +2789,7 @@ label.option:hover{
 
 .submit-btn,
 .next-btn,
-.quiz-btn,
-button{
+.quiz-btn{
   background:#7A4D2C !important;
   color:white !important;
   border:none !important;
@@ -2798,8 +2797,7 @@ button{
 
 .submit-btn:hover,
 .next-btn:hover,
-.quiz-btn:hover,
-button:hover{
+.quiz-btn:hover{
   background:#3A2F2B !important;
 }
 
@@ -2962,3 +2960,21 @@ body{
 #live-clock{
   color:#3A2F2B !important;
 }
+
+/* ===== Remove Moon Button Box ===== */
+
+.mode-btn{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+}
+
+.mode-btn:hover,
+.mode-btn:focus,
+.mode-btn:active{
+  background:transparent !important;
+  box-shadow:none !important;
+  outline:none !important;
+}
+
