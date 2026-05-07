@@ -8,16 +8,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+      *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+      }
+
+      html{
+        scroll-behavior:smooth;
+      }
+
+      body{
+        overflow-x:hidden;
+      }
+
       .lesson5-page{
         font-family:Arial, sans-serif;
         color:#EDE8DC;
         padding-top:110px;
         background:
-  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
-  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
-  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
-  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
-  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+          radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+          radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+          radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+          radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+          linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
         overflow:hidden;
       }
 
@@ -57,100 +71,104 @@
         color:#FDE9C7;
       }
 
-      .lesson5-hero{
-        position:relative;
-        min-height:470px;
-        border-radius:34px;
-        overflow:hidden;
-        display:flex;
-        align-items:flex-end;
-        padding:42px;
-        background:
-          linear-gradient(rgba(16,12,10,0.20), rgba(16,12,10,0.55)),
-          url("images/lesson5.jpg");
-        background-size:cover;
-        background-position:center;
-        border:1px solid rgba(255,255,255,0.08);
-        box-shadow:0 28px 65px rgba(0,0,0,0.35);
-      }
+    .lesson5-hero{
+      position:relative;
+      width:min(1150px, 92%);
+      height:420px;
+      margin:0 auto;
+      border-radius:34px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:42px;
+      background:
+        linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)),
+        url("images/lesson5.jpg");
+      background-size:cover;
+      background-position:center;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 28px 65px rgba(0,0,0,0.35);
+    }
 
-      .lesson5-hero::before{
-        content:"";
-        position:absolute;
-        inset:0;
-        background:
-          linear-gradient(90deg, rgba(20,15,12,0.72) 0%, rgba(20,15,12,0.35) 38%, rgba(20,15,12,0.18) 100%);
-      }
+    .lesson5-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:transparent;
+    }
 
-      .lesson5-hero::after{
-        content:"";
-        position:absolute;
-        width:360px;
-        height:360px;
-        right:-80px;
-        top:-60px;
-        border-radius:50%;
-        background:radial-gradient(circle, rgba(253,233,199,0.16), transparent 65%);
-        filter:blur(4px);
-      }
+    .lesson5-hero::after{
+      content:"";
+      position:absolute;
+      width:360px;
+      height:360px;
+      right:-80px;
+      top:-60px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(253,233,199,0.10), transparent 65%);
+      filter:blur(4px);
+    }
 
-      .lesson5-hero-content{
-        position:relative;
-        z-index:2;
-        max-width:680px;
-        animation:fadeUp 0.9s ease;
-      }
+    .lesson5-hero-content{
+      position:absolute;
+      left:65px;
+      bottom:45px;
+      z-index:2;
+      max-width:680px;
+      color:#EDE8DC;
+    }
 
-      .lesson5-tag{
-        display:inline-block;
-        margin-bottom:16px;
-        padding:10px 18px;
-        border-radius:999px;
-        background:rgba(255,255,255,0.10);
-        border:1px solid rgba(255,255,255,0.18);
-        backdrop-filter:blur(6px);
-        color:#FFF4DF;
-        font-size:14px;
-        letter-spacing:1px;
-      }
+    .lesson5-tag{
+      display:inline-block;
+      margin-bottom:14px;
+      padding:7px 16px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.20);
+      border:1px solid rgba(255,255,255,0.35);
+      color:#FFF4DF;
+      font-size:14px;
+    }
 
-      .lesson5-hero h1{
-        margin:0 0 16px;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(46px, 8vw, 92px);
-        line-height:0.95;
-        color:#fff7ef;
-        text-shadow:0 8px 24px rgba(0,0,0,0.28);
-      }
+    .lesson5-hero h1{
+      margin:0 0 10px;
+      font-family:'Playfair Display', serif;
+      font-size:44px;
+      line-height:1.1;
+      color:#fff7ef;
+      text-shadow:0 8px 24px rgba(0,0,0,0.28);
+    }
 
-      .lesson5-hero p{
-        margin:0;
-        font-size:19px;
-        line-height:1.9;
-        color:#F5ECE2;
-        max-width:600px;
-      }
+    .lesson5-hero p{
+      margin:0;
+      font-size:16px;
+      line-height:1.8;
+      color:#F5ECE2;
+      max-width:540px;
+    }
 
       .lesson5-intro{
         max-width:950px;
         margin:54px auto 76px;
         text-align:center;
+        padding:0 20px;
       }
-.lesson5-intro p{
-  margin:0;
-  padding:34px 30px;
-  border-radius:28px;
-  line-height:1.95;
-  font-size:20px;
-  color:#3A2F2B;
-  background:
-    linear-gradient(135deg, rgba(235,216,183,0.85), rgba(193,179,147,0.60), rgba(255,244,223,0.70));
-  border:1px solid rgba(253,233,199,0.20);
-  box-shadow:0 18px 38px rgba(0,0,0,0.12);
-}
+
+      .lesson5-intro p{
+        margin:0;
+        padding:34px 30px;
+        border-radius:28px;
+        line-height:1.95;
+        font-size:20px;
+        color:#3A2F2B;
+        background:
+          linear-gradient(135deg, rgba(235,216,183,0.85), rgba(193,179,147,0.60), rgba(255,244,223,0.70));
+        border:1px solid rgba(253,233,199,0.20);
+        box-shadow:0 18px 38px rgba(0,0,0,0.12);
+      }
 
       .lesson5-styles{
-        margin-bottom:76px;
+        width:min(92%, 1280px);
+        margin:0 auto 76px;
         text-align:center;
       }
 
@@ -184,20 +202,14 @@
 
       .lesson5-card:hover{
         transform:translateY(-10px);
-      }.lesson5-card.one{
-  background:#6B7557; /* زيتي */
-  border:1px solid rgba(253,233,199,0.22);
-}
+      }
 
-.lesson5-card.two{
-  background:#6B7557; /* زيتي */
-  border:1px solid rgba(193,179,147,0.14);
-}
-
-.lesson5-card.three{
-  background:#6B7557; /* زيتي */
-  border:1px solid rgba(193,179,147,0.14);
-}
+      .lesson5-card.one,
+      .lesson5-card.two,
+      .lesson5-card.three{
+        background:#6B7557;
+        border:1px solid rgba(193,179,147,0.14);
+      }
 
       .lesson5-icon-shell{
         width:150px;
@@ -269,8 +281,9 @@
       }
 
       .lesson5-quote-wrap{
+        width:min(92%, 1280px);
+        margin:0 auto 76px;
         text-align:center;
-        margin-bottom:76px;
       }
 
       .lesson5-quote{
@@ -287,97 +300,225 @@
         box-shadow:0 16px 36px rgba(0,0,0,0.22);
       }
 
-      .lesson5-video-section{
-        display:grid;
-        grid-template-columns:0.9fr 1.1fr;
-        gap:32px;
+    .lesson5-video-section{
+      display:grid;
+      grid-template-columns:0.9fr 1.1fr;
+      gap:32px;
+      align-items:center;
+      margin-bottom:70px;
+    }
+
+    .lesson5-video-text{
+      padding:34px;
+      border-radius:28px;
+      background:
+        linear-gradient(135deg, rgba(75,79,62,0.28), rgba(58,47,43,0.88), rgba(193,179,147,0.10));
+      border:1px solid rgba(253,233,199,0.10);
+      box-shadow:0 16px 35px rgba(0,0,0,0.20);
+    }
+
+    .lesson5-video-text span{
+      display:inline-block;
+      margin-bottom:14px;
+      color:#FDE9C7;
+      letter-spacing:2px;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+
+    .lesson5-video-text h2{
+      margin:0 0 14px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(32px, 4vw, 54px);
+      color:#FFF0DC;
+      line-height:1.05;
+    }
+
+    .lesson5-video-text p{
+      margin:0;
+      font-size:17px;
+      line-height:1.9;
+      color:#E5D9CC;
+    }
+
+    /* VIDEO بنفس النظام */
+    .lesson5-video-box{
+      background:#4B4F3E;
+      padding:20px;
+      border-radius:14px;
+      box-shadow:0 16px 32px rgba(0,0,0,0.16);
+      border:1px solid rgba(122,77,44,0.08);
+    }
+
+    .video-poster{
+      position:relative;
+      width:100%;
+      margin:0 auto;
+      cursor:pointer;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .video-poster img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      display:block;
+      border-radius:10px;
+    }
+
+    .play-btn{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      background:rgba(0,0,0,0.65);
+      color:#fff;
+      font-size:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    #videoFrame{
+      display:none;
+      width:100%;
+      height:420px;
+      border:none;
+      border-radius:10px;
+    }
+
+    .youtube-btn{
+      display:inline-block;
+      margin-top:18px;
+      text-decoration:none;
+      color:#2f241d;
+      font-weight:700;
+      transition:0.3s;
+      background:#C1B393;
+      padding:10px 20px;
+      border-radius:20px;
+    }
+
+    .youtube-btn:hover{
+      color:#2f241d;
+      background:#e3d3b7;
+      transform:translateY(-2px);
+    }
+
+
+      .lesson-buttons {
+        width:min(1150px, 92%);
+        margin:30px auto 80px;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
         align-items:center;
-        margin-bottom:70px;
+        gap:10px;
+        flex-wrap:nowrap;
       }
 
-      .lesson5-video-text{
-        padding:34px;
-        border-radius:28px;
-        background:
-          linear-gradient(135deg, rgba(75,79,62,0.28), rgba(58,47,43,0.88), rgba(193,179,147,0.10));
-        border:1px solid rgba(253,233,199,0.10);
-        box-shadow:0 16px 35px rgba(0,0,0,0.20);
+      .lesson-buttons a {
+        text-decoration:none;
+        font-size:1.5rem;
+        font-weight:600;
+        color:#C1B393;
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        transition:all 0.3s ease;
+        white-space:nowrap;
       }
 
-      .lesson5-video-text span{
-        display:inline-block;
-        margin-bottom:14px;
+      .lesson-buttons a:hover{
         color:#FDE9C7;
-        letter-spacing:2px;
-        font-size:13px;
-        text-transform:uppercase;
+        transform:translateY(-3px);
       }
 
-      .lesson5-video-text h2{
-        margin:0 0 14px;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(32px, 4vw, 54px);
-        color:#FFF0DC;
-        line-height:1.05;
+      .btn-back,
+      .btn-next {
+        background:#C1B393;
+        color:#2f241d;
+        border:1px solid #b9997d;
       }
 
-      .lesson5-video-text p{
-        margin:0;
-        font-size:17px;
-        line-height:1.9;
-        color:#E5D9CC;
+      .btn-back:hover,
+      .btn-next:hover {
+        background:#7a4d2c;
+        color:#EDE8DC;
+        transform:translateY(-3px);
       }
 
-      .lesson5-video-box{
-        padding:14px;
-        border-radius:30px;
-        background:linear-gradient(135deg, rgba(253,233,199,0.10), rgba(75,79,62,0.14), rgba(122,77,44,0.18));
-        border:1px solid rgba(253,233,199,0.10);
-        box-shadow:0 22px 48px rgba(0,0,0,0.24);
+      .footer-clock{
+        margin-top:18px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
       }
 
-      .lesson5-video-box iframe{
-        width:100%;
-        height:420px;
+      .clock-box{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding:10px 18px;
+        border:1px solid rgba(253, 233, 199, 0.28);
+        border-radius:14px;
+        background:rgba(255,255,255,0.06);
+        backdrop-filter:blur(4px);
+        color:#F5F1E8;
+        box-shadow:0 6px 18px rgba(0,0,0,0.18);
+      }
+
+      .clock-label{
+        font-size:14px;
+        font-weight:600;
+        color:#EDE8DC;
+        letter-spacing:0.4px;
+      }
+
+      #live-clock{
+        font-size:15px;
+        font-weight:700;
+        color:#F5F1E8;
+        letter-spacing:1px;
+        min-width:105px;
+        text-align:center;
+      }
+
+      #backToTop{
+        position:fixed;
+        right:22px;
+        bottom:22px;
+        width:50px;
+        height:50px;
         border:none;
-        display:block;
-        border-radius:20px;
+        border-radius:50%;
+        background-color:#C1B393;
+        color:#26231F;
+        font-size:22px;
+        font-weight:bold;
+        cursor:pointer;
+        box-shadow:0 8px 20px rgba(0,0,0,0.25);
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(12px);
+        transition:all 0.3s ease;
+        z-index:9999;
       }
 
-    /* =============================== */
-    /* Lesson Navigation Buttons */
-    /* =============================== */
-    .lesson-buttons {
-      width: min(1150px, 92%);
-      margin: 30px auto 80px;
-      display: flex;
-      justify-content: space-between;
-    }
+      #backToTop:hover{
+        background-color:#FDE9C7;
+        transform:translateY(0) scale(1.06);
+      }
 
-    .lesson-buttons a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 600;
-	  color:   #C1B393;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-back,
-    .btn-next {
-      background: #C1B393;
-      color: #2f241d;
-      border: 1px solid #b9997d;
-    }
-
-    .btn-back:hover,
-    .btn-next:hover {
-      background: #7a4d2c;
-      color: #EDE8DC;
-      transform: translateY(-3px);
-    }
+      #backToTop.show{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+      }
 
       @keyframes fadeUp{
         from{
@@ -396,21 +537,145 @@
         100%{ background-position:0% 50%; }
       }
 
-      @media (max-width: 1100px){
+      @media (max-width:1100px){
         .lesson5-grid,
         .lesson5-video-section{
           grid-template-columns:1fr;
         }
       }
 
-      @media (max-width: 700px){
-        .lesson5-wrap{
-          padding:24px 0 60px;
+
+    /* POPUP */
+    .lesson-message{
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#E6D5B8;
+      color:#3A2F2B;
+      padding:20px;
+      width:320px;
+      border-radius:16px;
+      text-align:center;
+      z-index:9999;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .lesson-message h3{
+      margin-bottom:10px;
+      color:#3A2F2B;
+      font-family:'Playfair Display', serif;
+    }
+
+    .lesson-message p{
+      font-size:14px;
+      line-height:1.6;
+      color:#3A2F2B;
+    }
+
+    .lesson-message hr{
+      margin:15px 0;
+      border:none;
+      border-top:1px solid #3A2F2B;
+    }
+
+    .quiz-reminder{
+      font-weight:bold;
+      color:#4B4F3E;
+    }
+
+    .ok-btn{
+      margin-top:10px;
+      padding:8px 20px;
+      border:none;
+      border-radius:10px;
+      background:#4B4F3E;
+      color:white;
+      cursor:pointer;
+    }
+
+    .ok-btn:hover{
+      background:#3A2F2B;
+    }
+
+      @media (max-width:768px){
+        .navbar{
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center;
+          padding:15px 10px;
+          gap:10px;
+          height:auto;
         }
 
+        .logo{
+          order:1;
+        }
+
+        .nav-right{
+          order:2;
+          display:flex;
+          justify-content:center;
+          width:100%;
+        }
+
+        .nav-links{
+          order:3;
+          display:flex;
+          flex-wrap:wrap;
+          justify-content:center;
+          gap:12px;
+          width:100%;
+          margin-top:5px;
+        }
+
+        .nav-links li{
+          list-style:none;
+        }
+
+        .nav-links a{
+          font-size:14px;
+        }
+
+        .search-box{
+          max-width:200px;
+        }
+
+        .path-wrap{
+          display:none;
+        }
+
+        .lesson5-page{
+          padding-top:240px;
+        }
+
+        .lesson-buttons{
+          flex-direction:row;
+          align-items:center;
+          justify-content:space-between;
+          gap:10px;
+          flex-wrap:nowrap;
+        }
+
+        .lesson-buttons a{
+          font-size:1.15rem;
+          white-space:nowrap;
+        }
+      }
+
+      @media (max-width:700px){
         .lesson5-hero{
           min-height:380px;
           padding:26px;
+          border-radius:28px;
+          width:min(92%, 1280px);
+          margin:0 auto;
+        }
+
+        .lesson5-intro{
+          margin:44px auto 58px;
         }
 
         .lesson5-intro p,
@@ -423,13 +688,80 @@
         .lesson5-video-box iframe{
           height:240px;
         }
+      }
 
-        .lesson5-buttons{
-          flex-direction:column;
+      @media (max-width:600px){
+        .lesson5-hero p{
+          font-size:16px;
+          line-height:1.7;
         }
 
-        .lesson5-btn{
-          width:100%;
+        .lesson5-intro p{
+          font-size:17px;
+          padding:26px 20px;
+        }
+
+        .lesson5-icon-shell{
+          width:125px;
+          height:125px;
+        }
+
+        .lesson5-icon{
+          width:80px;
+          height:80px;
+        }
+
+        .lesson-buttons a{
+          font-size:1rem;
+        }
+
+        .clock-box{
+          padding:9px 14px;
+          gap:8px;
+        }
+
+        .clock-label{
+          font-size:13px;
+        }
+
+        #live-clock{
+          font-size:14px;
+          min-width:95px;
+        }
+
+        #backToTop{
+          right:16px;
+          bottom:16px;
+          width:46px;
+          height:46px;
+          font-size:20px;
+        }
+      }
+
+      @media (max-width:480px){
+        .lesson5-page{
+          padding-top:260px;
+        }
+
+        .nav-links{
+          gap:8px;
+        }
+
+        .nav-links a{
+          font-size:13px;
+        }
+
+        .search-box{
+          max-width:160px;
+          font-size:12px;
+        }
+
+        .mode-btn{
+          font-size:18px;
+        }
+
+        .lesson-buttons a{
+          font-size:0.95rem;
         }
       }
     </style>
@@ -439,8 +771,8 @@
 <header>
   <nav class="navbar">
 
-    <div class="logo">
-      <img src="logo.png" alt="Bean to Brew Logo">
+   <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
     </div>
 
     <ul class="nav-links">
@@ -554,25 +886,39 @@
         <div class="lesson5-quote">“Different styles extract flavor in different ways.”</div>
       </section>
 
-      <section class="lesson5-video-section">
-        <div class="lesson5-video-text">
-          <span>Watch & Learn</span>
-          <h2>See brewing methods in action</h2>
-          <p>
-            Watch how each method changes extraction and discover why brewing technique
-            has such a strong effect on the final cup.
-          </p>
-        </div>
+    <section class="lesson5-video-section">
+      <div class="lesson5-video-text">
+        <span>Watch & Learn</span>
+        <h2>See brewing methods in action</h2>
+        <p>
+          Watch how each method changes extraction and discover why brewing technique
+          has such a strong effect on the final cup.
+        </p>
+      </div>
 
+      <div>
         <div class="lesson5-video-box">
+          <div class="video-poster" id="videoPoster" onclick="playVideo()">
+            <img src="images/lesson5.jpg" alt="Brewing Methods Video Poster">
+            <div class="play-btn">▶</div>
+          </div>
+
           <iframe
-            src="https://www.youtube.com/embed/QVTNscQY0c?si=baK_VSn5QIHja7ak"
+            id="videoFrame"
             title="Brewing Methods Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
-      </section>
+
+        <div style="text-align:center;">
+          <a class="youtube-btn" href="https://www.youtube.com/watch?v=QVTNscQY0c" target="_blank">
+            Watch on YouTube
+          </a>
+        </div>
+      </div>
+    </section>
+
  <div class="lesson-buttons">
       <a href="BrewSchool.html" >← Back</a>
       <a href="lesson5.2.html" >Next →</a>
@@ -607,34 +953,133 @@
       </div>
 
       <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+      <div class="footer-clock">
+        <div class="clock-box">
+          <span class="clock-label">Current Time</span>
+          <span id="live-clock">00:00:00</span>
+        </div>
+      </div>
+
       <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
     </footer>
 
- <script>
-  const themeStyle = document.getElementById("theme-style");
+<button id="backToTop" title="Back to Top">↑</button>
+
+  <div id="lessonMessage" class="lesson-message">
+    <h3>Lesson Goal</h3>
+
+    <p>
+      In this lesson, you will learn how different brewing methods shape coffee’s flavor, body,
+            and strength — and why the same beans can create completely different experiences.
+          </p>
+    <hr>
+
+    <p class="quiz-reminder">
+      Don't forget to take the quiz after finishing the lesson!
+    </p>
+
+    <button onclick="closeMessage()" class="ok-btn">OK</button>
+	        </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    setTimeout(function () {
+      document.getElementById("lessonMessage").style.display = "block";
+    }, 3000);
+
+    document.getElementById("videoPoster").addEventListener("click", function () {
+      document.getElementById("videoPoster").style.display = "none";
+
+      const videoFrame = document.getElementById("videoFrame");
+      videoFrame.style.display = "block";
+      videoFrame.src = "https://www.youtube.com/embed/yagagM7SlWs?autoplay=1";
+    });
+
+  });
+
+  function closeMessage() {
+    document.getElementById("lessonMessage").style.display = "none";
+  }
+
+  const liveClock = document.getElementById("live-clock");
+  const backToTopBtn = document.getElementById("backToTop");
+
+  function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    if (liveClock) {
+      liveClock.textContent = time;
+    }
+  }
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTop);
+
+  updateClock();
+  setInterval(updateClock, 1000);
+  
+   const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "light") {
     themeStyle.href = "styleLigth.css";
-    if (themeToggle) themeToggle.textContent = "🌙";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
   } else {
     themeStyle.href = "style.css";
-    if (themeToggle) themeToggle.textContent = "☀️";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
   }
 
   if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
       if (themeStyle.getAttribute("href") === "style.css") {
+
         themeStyle.href = "styleLigth.css";
         themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light");
+
       } else {
+
         themeStyle.href = "style.css";
         themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark");
       }
+
     });
   }
 </script>

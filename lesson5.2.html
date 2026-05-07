@@ -6,18 +6,32 @@
   <title>Lesson 5 - Brewing Methods</title>
 <link rel="stylesheet" href="style.css" id="theme-style">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
+
   <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      overflow-x:hidden;
+    }
+
     .lesson5-page{
       font-family:Arial, sans-serif;
       color:#EDE8DC;
       padding-top:110px;
       background:
-  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
-  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
-  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
-  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
-  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
       overflow:hidden;
     }
 
@@ -87,19 +101,6 @@
       animation:fadeUp 1s ease;
     }
 
-    .lesson5-pill{
-      display:inline-block;
-      margin-bottom:16px;
-      padding:10px 18px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.09);
-      border:1px solid rgba(255,255,255,0.14);
-      color:#fff3de;
-      font-size:14px;
-      letter-spacing:1px;
-      backdrop-filter:blur(8px);
-    }
-
     .lesson5-hero h1{
       margin:0 0 14px;
       font-family:'Playfair Display', serif;
@@ -121,7 +122,7 @@
       margin:58px 0 62px;
       padding:38px 28px 34px;
       border-radius:34px;
-      background:#ُُُُEBD8B7
+      background:#EBD8B7;
       position:relative;
     }
 
@@ -163,7 +164,7 @@
 
     .lesson5-map-card{
       position:relative;
-      padding:26px 22px 24px;
+      padding:26px 20px 24px;
       border-radius:28px;
       min-height:320px;
       transition:0.35s ease;
@@ -183,21 +184,22 @@
       border-radius:50%;
       background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
     }
-.lesson5-map-card.cold{
-  background:linear-gradient(180deg, rgba(185,208,223,0.35), rgba(58,47,43,0.70));
-}
 
-.lesson5-map-card.press{
-  background:linear-gradient(180deg, rgba(235,216,183,0.45), rgba(58,47,43,0.70));
-}
+    .lesson5-map-card.cold{
+      background:linear-gradient(180deg, rgba(185,208,223,0.35), rgba(58,47,43,0.70));
+    }
 
-.lesson5-map-card.v60{
-  background:linear-gradient(180deg, rgba(120,130,95,0.40), rgba(58,47,43,0.70));
-}
+    .lesson5-map-card.press{
+      background:linear-gradient(180deg, rgba(235,216,183,0.45), rgba(58,47,43,0.70));
+    }
 
-.lesson5-map-card.espresso{
-  background:linear-gradient(180deg, rgba(210,160,120,0.40), rgba(58,47,43,0.70));
-}
+    .lesson5-map-card.v60{
+      background:linear-gradient(180deg, rgba(120,130,95,0.40), rgba(58,47,43,0.70));
+    }
+
+    .lesson5-map-card.espresso{
+      background:linear-gradient(180deg, rgba(210,160,120,0.40), rgba(58,47,43,0.70));
+    }
 
     .lesson5-card-top{
       display:flex;
@@ -267,29 +269,6 @@
       font-size:15px;
     }
 
-    .bar{
-      height:10px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.10);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .fill{
-      height:100%;
-      border-radius:999px;
-      background:linear-gradient(90deg, #FDE9C7, #C1B393, #7A4D2C);
-    }
-
-    .w20{ width:20%; }
-    .w35{ width:35%; }
-    .w40{ width:40%; }
-    .w50{ width:50%; }
-    .w60{ width:60%; }
-    .w70{ width:70%; }
-    .w80{ width:80%; }
-    .w90{ width:90%; }
-
     .brew-note{
       margin-top:18px;
       padding-top:16px;
@@ -299,6 +278,58 @@
       color:#E7DBCF;
       position:relative;
       z-index:1;
+    }
+
+    .brew-temperature{
+      width:90%;
+      margin:70px auto;
+      text-align:center;
+    }
+
+    .brew-temperature h2{
+      font-family:'Playfair Display', serif;
+      font-size:42px;
+      color:#FDE9C7;
+      margin-bottom:40px;
+    }
+
+    .temp-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:30px;
+    }
+
+    .temp-card{
+      background:#3A2F2B;
+      padding:30px;
+      border-radius:20px;
+      color:#EDE8DC;
+      transition:0.3s;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .temp-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .temp-card.hot{
+      background:linear-gradient(135deg,#7A4D2C,#3A2F2B);
+    }
+
+    .temp-card.cold{
+      background:linear-gradient(135deg,#4B4F3E,#26231F);
+    }
+
+    .temp-card h3{
+      font-family:'Playfair Display', serif;
+      font-size:28px;
+      margin-bottom:15px;
+    }
+
+    .temp-card ul{
+      text-align:left;
+      line-height:1.8;
+      padding-left:20px;
     }
 
     .lesson5-summary{
@@ -320,56 +351,308 @@
       box-shadow:0 16px 34px rgba(0,0,0,0.18);
     }
 
-    /* =============================== */
-    /* Lesson Navigation Buttons */
-    /* =============================== */
     .lesson-buttons {
-      width: min(1150px, 92%);
-      margin: 30px auto 80px;
-      display: flex;
-      justify-content: space-between;
+      width:min(1150px, 92%);
+      margin:30px auto 80px;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
     }
 
     .lesson-buttons a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 600;
-	  color:   #C1B393;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
+      text-decoration:none;
+      font-size:1.5rem;
+      font-weight:600;
+      color:#C1B393;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+      white-space:nowrap;
     }
 
-    .btn-back,
-    .btn-next {
-      background: #C1B393;
-      color: #2f241d;
-      border: 1px solid #b9997d;
+    .lesson-buttons a:hover{
+      color:#FDE9C7;
+      transform:translateY(-3px);
     }
 
-    .btn-back:hover,
-    .btn-next:hover {
-      background: #7a4d2c;
-      color: #EDE8DC;
-      transform: translateY(-3px);
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
-      .lesson5-summary p,
-      .lesson5-map-card,
-      .brew-card{
-        padding-left:20px;
-        padding-right:20px;
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:1100px){
+      .lesson5-map-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px){
+      .navbar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:15px 10px;
+        gap:10px;
+        height:auto;
+      }
+
+      .logo{
+        order:1;
+      }
+
+      .nav-right{
+        order:2;
+        display:flex;
+        justify-content:center;
+        width:100%;
+      }
+
+      .nav-links{
+        order:3;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        width:100%;
+        margin-top:5px;
+      }
+
+      .nav-links li{
+        list-style:none;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .search-box{
+        max-width:200px;
+      }
+
+      .path-wrap{
+        display:none;
+      }
+
+      .lesson5-page{
+        padding-top:240px;
+      }
+
+      .lesson5-hero{
+        align-items:center;
+        text-align:center;
+        padding:40px 22px;
+      }
+
+      .lesson5-hero-content{
+        max-width:100%;
+      }
+
+      .lesson-buttons{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .lesson-buttons a{
+        font-size:1.15rem;
+        white-space:nowrap;
+      }
+    }
+
+    @media(max-width:700px){
+      .lesson5-wrap{
+        width:min(92%, 1320px);
+        padding:24px 0 60px;
+      }
+
+      .lesson5-hero{
+        min-height:380px;
+        padding:30px 20px;
+      }
+
+      .lesson5-map-section{
+        padding:30px 18px;
+      }
+
+      .lesson5-map-grid{
+        grid-template-columns:1fr;
+      }
+
+      .lesson5-map-line{
+        display:none;
+      }
+
+      .temp-grid{
+        grid-template-columns:1fr;
+      }
+
+      .brew-temperature{
+        width:100%;
+        margin:55px auto;
+      }
+
+      .brew-temperature h2{
+        font-size:34px;
+      }
+    }
+
+    @media(max-width:480px){
+      .lesson5-page{
+        padding-top:260px;
+      }
+
+      .nav-links{
+        gap:8px;
+      }
+
+      .nav-links a{
+        font-size:13px;
+      }
+
+      .search-box{
+        max-width:160px;
+        font-size:12px;
+      }
+
+      .mode-btn{
+        font-size:18px;
+      }
+
+      .lesson5-hero h1{
+        font-size:36px;
+        line-height:1.1;
+      }
+
+      .lesson5-hero p{
+        font-size:15px;
+      }
+
+      .lesson5-map-card h3{
+        font-size:24px;
+      }
+
+      .lesson5-summary p{
+        font-size:17px;
+        padding:24px 20px;
+      }
+
+      .lesson-buttons a{
+        font-size:1rem;
+        white-space:nowrap;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
       }
     }
   </style>
+</head>
 
 <body>
 <header>
   <nav class="navbar">
 
     <div class="logo">
-      <img src="logo.png" alt="Bean to Brew Logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
     </div>
 
     <ul class="nav-links">
@@ -392,11 +675,10 @@
 <main class="lesson5-page">
 
     <div class="path-wrap">
-
       <div class="path-breadcrumb">
         <a href="index.html">Home</a>
         <span>›</span>
-        <a href="BrewSchool">Brew School</a>
+        <a href="BrewSchool.html">Brew School</a>
         <span>›</span>
         <a href="lesson5.1.html">lesson5.1</a>
         <span>›</span>
@@ -514,69 +796,6 @@
 
 <section class="brew-temperature">
 
-<style>
-
-.brew-temperature{
-width:90%;
-margin:70px auto;
-text-align:center;
-}
-
-.brew-temperature h2{
-font-family:'Playfair Display', serif;
-font-size:42px;
-color:#FDE9C7;
-margin-bottom:40px;
-}
-
-.temp-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:30px;
-}
-
-.temp-card{
-background:#3A2F2B;
-padding:30px;
-border-radius:20px;
-color:#EDE8DC;
-transition:0.3s;
-border:1px solid rgba(255,255,255,0.1);
-}
-
-.temp-card:hover{
-transform:translateY(-8px);
-}
-
-.temp-card.hot{
-background:linear-gradient(135deg,#7A4D2C,#3A2F2B);
-}
-
-.temp-card.cold{
-background:linear-gradient(135deg,#4B4F3E,#26231F);
-}
-
-.temp-card h3{
-font-family:'Playfair Display', serif;
-font-size:28px;
-margin-bottom:15px;
-}
-
-.temp-card ul{
-text-align:left;
-line-height:1.8;
-}
-
-@media(max-width:800px){
-
-.temp-grid{
-grid-template-columns:1fr;
-}
-
-}
-
-</style>
-
 <h2>Hot Brew vs Cold Brew</h2>
 
 <div class="temp-grid">
@@ -610,6 +829,7 @@ grid-template-columns:1fr;
 </div>
 
 </section>
+
     <section class="lesson5-summary">
       <p>
         Each brewing method creates a unique coffee experience. By understanding the differences in
@@ -617,6 +837,7 @@ grid-template-columns:1fr;
         suits your taste.
       </p>
     </section>
+
  <div class="lesson-buttons">
     <a href="lesson5.1.html" >← Back</a>
     <a href="quiz5.html" >Start Quiz →</a>
@@ -652,38 +873,100 @@ grid-template-columns:1fr;
       </div>
 
       <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+      <div class="footer-clock">
+        <div class="clock-box">
+          <span class="clock-label">Current Time</span>
+          <span id="live-clock">00:00:00</span>
+        </div>
+      </div>
+
       <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
     </footer>
-	
-	 <script>
-  const themeStyle = document.getElementById("theme-style");
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+  const liveClock = document.getElementById("live-clock");
+  const backToTopBtn = document.getElementById("backToTop");
+
+  function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    if (liveClock) {
+      liveClock.textContent = time;
+    }
+  }
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTop);
+
+  updateClock();
+  setInterval(updateClock, 1000);
+  
+   const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "light") {
     themeStyle.href = "styleLigth.css";
-    if (themeToggle) themeToggle.textContent = "🌙";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
   } else {
     themeStyle.href = "style.css";
-    if (themeToggle) themeToggle.textContent = "☀️";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
   }
 
   if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
       if (themeStyle.getAttribute("href") === "style.css") {
+
         themeStyle.href = "styleLigth.css";
         themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light");
+
       } else {
+
         themeStyle.href = "style.css";
         themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark");
       }
+
     });
   }
 </script>
-
 
 </body>
 </html>

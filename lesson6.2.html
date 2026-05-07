@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 6 - Coffee Characteristics Comparison</title>
- <link rel="stylesheet" href="style.css" id="theme-style">
+<link rel="stylesheet" href="style.css" id="theme-style">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,8 +26,8 @@
       </ul>
 
 
-     <div class="nav-right">
-<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+    <div class="nav-right">
+ <button type="button" id="themeToggle" class="mode-btn">☀️</button>
       <input type="text" placeholder="Search" class="search-box">
     </div>
 
@@ -1061,6 +1061,7 @@
 
   updateClock();
   setInterval(updateClock, 1000);
+  
    const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
@@ -1068,23 +1069,36 @@
 
   if (savedTheme === "light") {
     themeStyle.href = "styleLigth.css";
-    if (themeToggle) themeToggle.textContent = "🌙";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
   } else {
     themeStyle.href = "style.css";
-    if (themeToggle) themeToggle.textContent = "☀️";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
   }
 
   if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
       if (themeStyle.getAttribute("href") === "style.css") {
+
         themeStyle.href = "styleLigth.css";
         themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light");
+
       } else {
+
         themeStyle.href = "style.css";
         themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark");
       }
+
     });
   }
 </script>

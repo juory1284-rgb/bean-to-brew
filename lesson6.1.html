@@ -6,16 +6,880 @@
   <title>Lesson 6 - Find Your Coffee Match</title>
 <link rel="stylesheet" href="style.css" id="theme-style">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+    }
+
+    .lesson6-page{
+      font-family:Arial, sans-serif;
+      color:#EDE8DC;
+      padding-top:110px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      overflow:hidden;
+      min-height:100vh;
+    }
+
+    .path-wrap{
+      position:static;
+      top:auto;
+      left:auto;
+      width:min(92%, 1320px);
+      margin:0 auto 30px;
+      padding:0;
+      z-index:auto;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#cab8a1;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .path-breadcrumb a{
+      color:#EBD8B7;
+      text-decoration:none;
+      transition:0.3s ease;
+    }
+
+    .path-breadcrumb a:hover{
+      color:#FDE9C7;
+    }
+
+    .lesson6-hero{
+      position:relative;
+      width:min(1150px, 92%);
+      height:420px;
+      margin:0 auto;
+      border-radius:34px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:42px;
+      background:
+        linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)),
+        url("images/lesson6.jpg") center/cover no-repeat;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 28px 65px rgba(0,0,0,0.35);
+    }
+
+    .lesson6-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:transparent;
+    }
+
+    .lesson6-hero::after{
+      content:"";
+      position:absolute;
+      top:-80px;
+      right:-40px;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(253,233,199,0.10), transparent 65%);
+    }
+
+    .lesson6-hero-content{
+      position:absolute;
+      left:65px;
+      bottom:45px;
+      z-index:2;
+      max-width:760px;
+      color:#EDE8DC;
+    }
+
+    .lesson6-pill{
+      display:inline-block;
+      margin-bottom:14px;
+      padding:7px 16px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.20);
+      border:1px solid rgba(255,255,255,0.35);
+      color:#fff3de;
+      font-size:14px;
+    }
+
+    .lesson6-hero h1{
+      margin:0 0 10px;
+      font-family:'Playfair Display', serif;
+      font-size:44px;
+      line-height:1.1;
+      color:#fff7ef;
+      text-shadow:0 8px 24px rgba(0,0,0,0.30);
+    }
+
+    .lesson6-hero p{
+      margin:0;
+      color:#f3e8db;
+      font-size:16px;
+      line-height:1.8;
+      max-width:540px;
+    }
+
+    .lesson6-intro{
+      max-width:980px;
+      margin:54px auto 70px;
+      text-align:center;
+      padding:0 20px;
+    }
+
+    .lesson6-intro p{
+      margin:0;
+      padding:34px 30px;
+      border-radius:28px;
+      line-height:1.95;
+      font-size:20px;
+      color:#3A2F2B;
+      background:#EBD8B7;
+      border:1px solid rgba(193,179,147,0.35);
+      box-shadow:0 18px 38px rgba(0,0,0,0.10);
+    }
+
+    .lesson6-bag-guide,
+    .lesson6-find-style,
+    .lesson6-video-section{
+      width:min(1150px, 92%);
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .lesson6-bag-guide{
+      margin-bottom:76px;
+    }
+
+    .lesson6-bag-head{
+      text-align:center;
+      margin-bottom:32px;
+    }
+
+    .lesson6-bag-head h2{
+      margin:0;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(32px, 5vw, 58px);
+      color:#FFF2DF;
+    }
+
+    .lesson6-bag-stage{
+      position:relative;
+      border-radius:34px;
+      overflow:hidden;
+      padding:36px 28px;
+      background:#5A463C;
+      border:1px solid rgba(253,233,199,0.08);
+      box-shadow:0 18px 44px rgba(0,0,0,0.22);
+    }
+
+    .lesson6-bag-grid{
+      display:grid;
+      grid-template-columns:1fr 360px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .lesson6-info-column{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .lesson6-info-card{
+      position:relative;
+      padding:18px 18px 18px 20px;
+      border-radius:22px;
+      background:#6B7557;
+      border:1px solid rgba(193,179,147,0.30);
+      color:#F5ECE2;
+      text-align:left;
+      transition:0.35s ease;
+    }
+
+    .lesson6-info-card:hover{
+      transform:translateX(8px);
+      background:rgba(255,255,255,0.06);
+    }
+
+    .lesson6-info-card h3{
+      margin:0 0 8px;
+      font-family:'Playfair Display', serif;
+      font-size:23px;
+      color:#FDE9C7;
+    }
+
+    .lesson6-info-card p{
+      margin:0;
+      line-height:1.75;
+      font-size:15px;
+      color:#E9DED2;
+    }
+
+    .lesson6-bag-image{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .lesson6-bag-image::before{
+      content:"";
+      position:absolute;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(253,233,199,0.13), transparent 68%);
+      z-index:0;
+    }
+
+    .lesson6-bag-image img{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:320px;
+      filter:drop-shadow(0 22px 34px rgba(0,0,0,0.32));
+      transition:0.35s ease;
+    }
+
+    .lesson6-bag-image img:hover{
+      transform:scale(1.04) rotate(-1deg);
+    }
+
+    .lesson6-find-style{
+      margin-bottom:76px;
+      padding:38px 26px 34px;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at top left, rgba(253,233,199,0.10), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(75,79,62,0.16), transparent 22%),
+        linear-gradient(135deg, rgba(58,47,43,0.92), rgba(38,35,31,0.96));
+      border:1px solid rgba(253,233,199,0.10);
+      box-shadow:0 18px 45px rgba(0,0,0,0.20);
+    }
+
+    .lesson6-find-style-head{
+      text-align:center;
+      margin-bottom:34px;
+    }
+
+    .lesson6-find-style-head span{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:8px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#FDE9C7;
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .lesson6-find-style-head h2{
+      margin:0 0 10px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(32px, 4vw, 54px);
+      color:#FFF1DD;
+    }
+
+    .lesson6-find-style-head p{
+      margin:0;
+      font-size:17px;
+      color:#D8C7B2;
+    }
+
+    .lesson6-style-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:22px;
+    }
+
+    .lesson6-style-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      padding:24px 20px;
+      transition:0.35s ease;
+      box-shadow:0 14px 30px rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .lesson6-style-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .lesson6-style-card::before{
+      content:"";
+      position:absolute;
+      top:-40px;
+      right:-40px;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.16), transparent 68%);
+    }
+
+    .lesson6-style-card.fruity{
+      background:#8B5A4A;
+    }
+
+    .lesson6-style-card.nutty{
+      background:#BFAE8C;
+    }
+
+    .lesson6-style-card.chocolatey{
+      background:#9C6A4A;
+    }
+
+    .lesson6-style-card.bright{
+      background:#6F7A58;
+    }
+
+    .lesson6-style-card h3{
+      margin:0 0 8px;
+      font-family:'Playfair Display', serif;
+      font-size:28px;
+      color:#FFF3E3;
+      position:relative;
+      z-index:1;
+    }
+
+    .lesson6-style-tag{
+      display:inline-block;
+      margin-bottom:18px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color:#FFF8EF;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      position:relative;
+      z-index:1;
+    }
+
+    .lesson6-style-card p{
+      position:relative;
+      z-index:1;
+      margin:0 0 16px;
+      line-height:1.8;
+      font-size:15px;
+      color:#E7DBCF;
+    }
+
+    .lesson6-style-card ul{
+      position:relative;
+      z-index:1;
+      margin:0;
+      padding-left:18px;
+    }
+
+    .lesson6-style-card li{
+      margin-bottom:8px;
+      color:#EFE4D8;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .lesson6-video-section{
+      display:grid;
+      grid-template-columns:0.9fr 1.1fr;
+      gap:32px;
+      align-items:center;
+      margin-bottom:70px;
+    }
+
+    .lesson6-video-text{
+      padding:34px;
+      border-radius:28px;
+      background:
+        linear-gradient(135deg, rgba(75,79,62,0.28), rgba(58,47,43,0.88), rgba(193,179,147,0.10));
+      border:1px solid rgba(253,233,199,0.10);
+      box-shadow:0 16px 35px rgba(0,0,0,0.20);
+    }
+
+    .lesson6-video-text span{
+      display:inline-block;
+      margin-bottom:14px;
+      color:#FDE9C7;
+      letter-spacing:2px;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+
+    .lesson6-video-text h2{
+      margin:0 0 14px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(32px, 4vw, 54px);
+      color:#FFF0DC;
+      line-height:1.05;
+    }
+
+    .lesson6-video-text p{
+      margin:0;
+      font-size:17px;
+      line-height:1.9;
+      color:#E5D9CC;
+    }
+
+    .lesson6-video-box{
+      background:#4B4F3E;
+      padding:20px;
+      border-radius:14px;
+      box-shadow:0 22px 48px rgba(0,0,0,0.24);
+      border:1px solid rgba(253,233,199,0.10);
+    }
+
+    .video-poster{
+      position:relative;
+      width:100%;
+      margin:0 auto;
+      cursor:pointer;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .video-poster img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      display:block;
+      border-radius:10px;
+    }
+
+    .play-btn{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      background:rgba(0,0,0,0.65);
+      color:#fff;
+      font-size:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    #videoFrame{
+      display:none;
+      width:100%;
+      height:420px;
+      border:none;
+      border-radius:10px;
+    }
+
+    .youtube-btn{
+      display:inline-block;
+      margin-top:18px;
+      text-decoration:none;
+      color:#2f241d;
+      font-weight:700;
+      transition:0.3s;
+      background:#C1B393;
+      padding:10px 20px;
+      border-radius:20px;
+    }
+
+    .youtube-btn:hover{
+      color:#2f241d;
+      background:#e3d3b7;
+      transform:translateY(-2px);
+    }
+
+    .lesson-buttons {
+      width:min(1150px, 92%);
+      margin:30px auto 80px;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
+    }
+
+    .lesson-buttons a {
+      text-decoration:none;
+      font-size:1.5rem;
+      font-weight:600;
+      color:#C1B393;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+      white-space:nowrap;
+    }
+
+    .lesson-buttons a:hover {
+      color:#FDE9C7;
+      transform:translateY(-3px);
+    }
+
+    .btn-back,
+    .btn-next {
+      background:#C1B393;
+      color:#2f241d;
+      border:1px solid #b9997d;
+    }
+
+    .btn-back:hover,
+    .btn-next:hover{
+      background:#7a4d2c;
+      color:#EDE8DC;
+      transform:translateY(-3px);
+    }
+
+    .lesson-message{
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#E6D5B8;
+      color:#3A2F2B;
+      padding:20px;
+      width:320px;
+      max-width:90%;
+      border-radius:16px;
+      text-align:center;
+      z-index:9999;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .lesson-message h3{
+      margin-bottom:10px;
+      color:#3A2F2B;
+      font-family:'Playfair Display', serif;
+    }
+
+    .lesson-message p{
+      font-size:14px;
+      line-height:1.6;
+      color:#3A2F2B;
+    }
+
+    .lesson-message hr{
+      margin:15px 0;
+      border:none;
+      border-top:1px solid #3A2F2B;
+    }
+
+    .quiz-reminder{
+      font-weight:bold;
+      color:#4B4F3E;
+    }
+
+    .ok-btn{
+      margin-top:10px;
+      padding:8px 20px;
+      border:none;
+      border-radius:10px;
+      background:#4B4F3E;
+      color:white;
+      cursor:pointer;
+    }
+
+    .ok-btn:hover{
+      background:#3A2F2B;
+    }
+
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    @media (max-width:1000px){
+      .lesson6-bag-grid,
+      .lesson6-style-grid,
+      .lesson6-video-section{
+        grid-template-columns:1fr;
+      }
+
+      .lesson6-bag-image{
+        order:-1;
+      }
+
+      .lesson6-bag-image img{
+        max-width:260px;
+      }
+    }
+
+    @media (max-width:768px){
+      .navbar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:15px 10px;
+        gap:10px;
+        height:auto;
+      }
+
+      .logo{
+        order:1;
+      }
+
+      .nav-right{
+        order:2;
+        display:flex;
+        justify-content:center;
+        width:100%;
+      }
+
+      .nav-links{
+        order:3;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        width:100%;
+        margin-top:5px;
+      }
+
+      .nav-links li{
+        list-style:none;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .search-box{
+        max-width:200px;
+      }
+
+      .path-wrap{
+        display:none;
+      }
+
+      .lesson6-page{
+        padding-top:240px;
+      }
+
+      .lesson-buttons{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .lesson-buttons a{
+        font-size:1.15rem;
+        white-space:nowrap;
+      }
+    }
+
+    @media (max-width:700px){
+      .lesson6-hero{
+        height:320px;
+        padding:28px 24px 30px;
+      }
+
+      .lesson6-hero-content{
+        left:25px;
+        right:25px;
+        bottom:30px;
+      }
+
+      .lesson6-hero h1{
+        font-size:28px;
+      }
+
+      .lesson6-hero p{
+        font-size:16px;
+      }
+
+      .lesson6-intro p,
+      .lesson6-video-text,
+      .lesson6-style-card,
+      .lesson6-info-card{
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .lesson6-bag-stage{
+        padding:28px 18px;
+      }
+
+      .lesson6-find-style{
+        padding:30px 18px;
+      }
+
+      .video-poster img,
+      #videoFrame{
+        height:240px;
+      }
+    }
+
+    @media (max-width:600px){
+      .lesson6-intro p{
+        font-size:17px;
+        padding:26px 20px;
+      }
+
+      .lesson6-bag-head h2{
+        font-size:32px;
+      }
+
+      .lesson6-style-card h3{
+        font-size:24px;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
+      }
+    }
+
+    @media (max-width:480px){
+      .lesson6-page{
+        padding-top:260px;
+      }
+
+      .nav-links{
+        gap:8px;
+      }
+
+      .nav-links a{
+        font-size:13px;
+      }
+
+      .search-box{
+        max-width:160px;
+        font-size:12px;
+      }
+
+      .mode-btn{
+        font-size:18px;
+      }
+
+      .lesson6-hero h1{
+        font-size:26px;
+      }
+
+      .lesson6-hero p{
+        font-size:14px;
+      }
+
+      .lesson-buttons a{
+        font-size:0.95rem;
+      }
+    }
+  </style>
 </head>
-<body><header>
+<body>
+<header>
   <nav class="navbar">
 
     <div class="logo">
-      <img src="logo.png" alt="Bean to Brew Logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
     </div>
 
     <ul class="nav-links">
-      <li><a href="index.html"class="active">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="BrewSchool.html">Brew School</a></li>
       <li><a href="CoffeLab.html">Coffee Lab</a></li>
       <li><a href="student-dashboard.html">Student Dashboard</a></li>
@@ -32,466 +896,6 @@
 </header>
 
   <main class="lesson6-page">
-    <style>
-      .lesson6-page{
-        font-family:Arial, sans-serif;
-        color:#EDE8DC;
-        padding-top:110px;
-      background:
-  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
-  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
-  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
-  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
-  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
-        overflow:hidden;
-      }
-	     
-      .path-wrap{
-        position:static;
-        top:auto;
-        left:auto;
-        width:min(92%, 1320px);
-        margin:0 auto 30px;
-        padding:0;
-        z-index:auto;
-      }
-
-      .lesson6-hero{
-        position:relative;
-        min-height:420px;
-        border-radius:34px;
-        overflow:hidden;
-        display:flex;
-        align-items:flex-end;
-        padding:42px;
-        background:
-          linear-gradient(135deg, rgba(58,47,43,0.94), rgba(75,79,62,0.72), rgba(122,77,44,0.36)),
-          url("images/lesson6.jpg") center/cover no-repeat;
-        border:1px solid rgba(255,255,255,0.08);
-        box-shadow:0 28px 65px rgba(0,0,0,0.35);
-      }
-
-      .lesson6-hero::before{
-        content:"";
-        position:absolute;
-        inset:0;
-        background:linear-gradient(90deg, rgba(16,12,10,0.78) 0%, rgba(16,12,10,0.38) 42%, rgba(16,12,10,0.16) 100%);
-      }
-
-      .lesson6-hero::after{
-        content:"";
-        position:absolute;
-        top:-80px;
-        right:-40px;
-        width:260px;
-        height:260px;
-        border-radius:50%;
-        background:radial-gradient(circle, rgba(253,233,199,0.18), transparent 65%);
-      }
-
-      .lesson6-hero-content{
-        position:relative;
-        z-index:2;
-        max-width:760px;
-        animation:fadeUp 1s ease;
-      }
-
-      .lesson6-pill{
-        display:inline-block;
-        margin-bottom:16px;
-        padding:10px 18px;
-        border-radius:999px;
-        background:rgba(255,255,255,0.09);
-        border:1px solid rgba(255,255,255,0.14);
-        color:#fff3de;
-        font-size:14px;
-        letter-spacing:1px;
-        backdrop-filter:blur(8px);
-      }
-
-      .lesson6-hero h1{
-        margin:0 0 14px;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(40px, 7vw, 82px);
-        line-height:0.95;
-        color:#fff7ef;
-        text-shadow:0 8px 24px rgba(0,0,0,0.30);
-      }
-
-      .lesson6-hero p{
-        margin:0;
-        color:#f3e8db;
-        font-size:18px;
-        line-height:1.9;
-        max-width:620px;
-      }
-
-      .lesson6-intro{
-        max-width:980px;
-        margin:54px auto 70px;
-        text-align:center;
-      }
-.lesson6-intro p{
-  margin:0;
-  padding:34px 30px;
-  border-radius:28px;
-  line-height:1.95;
-  font-size:20px;
-  color:#3A2F2B;
-  background:#EBD8B7;
-  border:1px solid rgba(193,179,147,0.35);
-  box-shadow:0 18px 38px rgba(0,0,0,0.10);
-}
-      .lesson6-bag-guide{
-        margin:0 0 76px;
-      }
-
-      .lesson6-bag-head{
-        text-align:center;
-        margin-bottom:32px;
-      }
-
-      .lesson6-bag-head h2{
-        margin:0;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(32px, 5vw, 58px);
-        color:#FFF2DF;
-      }
-
-      .lesson6-bag-stage{
-        position:relative;
-        border-radius:34px;
-        overflow:hidden;
-        padding:36px 28px; background:#5A463C; /* بني أفتح */
-  border:1px solid rgba(253,233,199,0.08);
-  box-shadow:0 18px 44px rgba(0,0,0,0.22);
-      }
-
-      .lesson6-bag-grid{
-        display:grid;
-        grid-template-columns:1fr 360px 1fr;
-        gap:28px;
-        align-items:center;
-      }
-
-      .lesson6-info-column{
-        display:flex;
-        flex-direction:column;
-        gap:18px;
-      }
-
-      .lesson6-info-card{
-        position:relative;
-        padding:18px 18px 18px 20px;
-        border-radius:22px;
-  background:#6B7557; /* زيتي ساده */
-  border:1px solid rgba(193,179,147,0.30);
-  color:#F5ECE2;
-        text-align:left;
-        transition:0.35s ease;
-      }
-
-      .lesson6-info-card:hover{
-        transform:translateX(8px);
-        background:rgba(255,255,255,0.06);
-      }
-
-      .lesson6-info-card h3{
-        margin:0 0 8px;
-        font-family:'Playfair Display', serif;
-        font-size:23px;
-        color:#FDE9C7;
-      }
-
-      .lesson6-info-card p{
-        margin:0;
-        line-height:1.75;
-        font-size:15px;
-        color:#E9DED2;
-      }
-
-      .lesson6-bag-image{
-        position:relative;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-      }
-
-      .lesson6-bag-image::before{
-        content:"";
-        position:absolute;
-        width:360px;
-        height:360px;
-        border-radius:50%;
-        background:radial-gradient(circle, rgba(253,233,199,0.13), transparent 68%);
-        z-index:0;
-      }
-
-      .lesson6-bag-image img{
-        position:relative;
-        z-index:1;
-        width:100%;
-        max-width:320px;
-        filter:drop-shadow(0 22px 34px rgba(0,0,0,0.32));
-        transition:0.35s ease;
-      }
-
-      .lesson6-bag-image img:hover{
-        transform:scale(1.04) rotate(-1deg);
-      }
-
-      .lesson6-find-style{
-        margin:0 0 76px;
-        padding:38px 26px 34px;
-        border-radius:34px;
-        background:
-          radial-gradient(circle at top left, rgba(253,233,199,0.10), transparent 20%),
-          radial-gradient(circle at bottom right, rgba(75,79,62,0.16), transparent 22%),
-          linear-gradient(135deg, rgba(58,47,43,0.92), rgba(38,35,31,0.96));
-        border:1px solid rgba(253,233,199,0.10);
-        box-shadow:0 18px 45px rgba(0,0,0,0.20);
-      }
-
-      .lesson6-find-style-head{
-        text-align:center;
-        margin-bottom:34px;
-      }
-
-      .lesson6-find-style-head span{
-        display:inline-block;
-        margin-bottom:12px;
-        padding:8px 16px;
-        border-radius:999px;
-        background:rgba(255,255,255,0.06);
-        border:1px solid rgba(255,255,255,0.08);
-        color:#FDE9C7;
-        font-size:13px;
-        letter-spacing:1px;
-        text-transform:uppercase;
-      }
-
-      .lesson6-find-style-head h2{
-        margin:0 0 10px;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(32px, 4vw, 54px);
-        color:#FFF1DD;
-      }
-
-      .lesson6-find-style-head p{
-        margin:0;
-        font-size:17px;
-        color:#D8C7B2;
-      }
-
-      .lesson6-style-grid{
-        display:grid;
-        grid-template-columns:repeat(4, 1fr);
-        gap:22px;
-      }
-
-      .lesson6-style-card{
-        position:relative;
-        overflow:hidden;
-        border-radius:26px;
-        padding:24px 20px;
-        transition:0.35s ease;
-        box-shadow:0 14px 30px rgba(0,0,0,0.18);
-        border:1px solid rgba(255,255,255,0.08);
-      }
-
-      .lesson6-style-card:hover{
-        transform:translateY(-10px);
-      }
-
-      .lesson6-style-card::before{
-        content:"";
-        position:absolute;
-        top:-40px;
-        right:-40px;
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        background:radial-gradient(circle, rgba(255,255,255,0.16), transparent 68%);
-      }
-.lesson6-style-card.fruity{
-  background:#8B5A4A; /* بني مائل للفروتي */
-}
-
-.lesson6-style-card.nutty{
-  background:#BFAE8C; /* بيج واضح */
-}
-
-.lesson6-style-card.chocolatey{
-  background:#9C6A4A; /* شوكولاتي */
-}
-
-.lesson6-style-card.bright{
-  background:#6F7A58; /* زيتي */
-}
-      .lesson6-style-card h3{
-        margin:0 0 8px;
-        font-family:'Playfair Display', serif;
-        font-size:28px;
-        color:#FFF3E3;
-        position:relative;
-        z-index:1;
-      }
-
-      .lesson6-style-tag{
-        display:inline-block;
-        margin-bottom:18px;
-        padding:7px 12px;
-        border-radius:999px;
-        font-size:13px;
-        color:#FFF8EF;
-        background:rgba(255,255,255,0.08);
-        border:1px solid rgba(255,255,255,0.10);
-        position:relative;
-        z-index:1;
-      }
-
-      .lesson6-style-card p{
-        position:relative;
-        z-index:1;
-        margin:0 0 16px;
-        line-height:1.8;
-        font-size:15px;
-        color:#E7DBCF;
-      }
-
-      .lesson6-style-card ul{
-        position:relative;
-        z-index:1;
-        margin:0;
-        padding-left:18px;
-      }
-
-      .lesson6-style-card li{
-        margin-bottom:8px;
-        color:#EFE4D8;
-        font-size:14px;
-        line-height:1.7;
-      }
-
-      .lesson6-video-section{
-        display:grid;
-        grid-template-columns:0.9fr 1.1fr;
-        gap:32px;
-        align-items:center;
-        margin-bottom:70px;
-      }
-
-      .lesson6-video-text{
-        padding:34px;
-        border-radius:28px;
-        background:
-          linear-gradient(135deg, rgba(75,79,62,0.28), rgba(58,47,43,0.88), rgba(193,179,147,0.10));
-        border:1px solid rgba(253,233,199,0.10);
-        box-shadow:0 16px 35px rgba(0,0,0,0.20);
-      }
-
-      .lesson6-video-text span{
-        display:inline-block;
-        margin-bottom:14px;
-        color:#FDE9C7;
-        letter-spacing:2px;
-        font-size:13px;
-        text-transform:uppercase;
-      }
-
-      .lesson6-video-text h2{
-        margin:0 0 14px;
-        font-family:'Playfair Display', serif;
-        font-size:clamp(32px, 4vw, 54px);
-        color:#FFF0DC;
-        line-height:1.05;
-      }
-
-      .lesson6-video-text p{
-        margin:0;
-        font-size:17px;
-        line-height:1.9;
-        color:#E5D9CC;
-      }
-
-      .lesson6-video-box{
-        padding:14px;
-        border-radius:30px;
-        background:linear-gradient(135deg, rgba(253,233,199,0.10), rgba(75,79,62,0.14), rgba(122,77,44,0.18));
-        border:1px solid rgba(253,233,199,0.10);
-        box-shadow:0 22px 48px rgba(0,0,0,0.24);
-      }
-
-      .lesson6-video-box iframe{
-        width:100%;
-        height:420px;
-        border:none;
-        display:block;
-        border-radius:20px;
-      }
-
-    /* =============================== */
-    /* Lesson Navigation Buttons */
-    /* =============================== */
-    .lesson-buttons {
-      width: min(1150px, 92%);
-      margin: 30px auto 80px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .lesson-buttons a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 600;
-	  color:   #C1B393;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-back,
-    .btn-next {
-      background: #C1B393;
-      color: #2f241d;
-      border: 1px solid #b9997d;
-    }
-
-    .btn-back:hover,
-    .btn-next:hover {
-      background: #7a4d2c;
-      color: #EDE8DC;
-      transform: translateY(-3px);
-    }
-
-        .lesson6-hero{
-          min-height:360px;
-          padding:28px 24px 30px;
-        }
-
-        .lesson6-intro p,
-        .lesson6-video-text,
-        .lesson6-style-card,
-        .lesson6-info-card{
-          padding-left:20px;
-          padding-right:20px;
-        }
-
-        .lesson6-video-box iframe{
-          height:240px;
-        }
-
-        .lesson6-actions{
-          flex-direction:column;
-        }
-
-        .lesson6-btn{
-          width:100%;
-        }
-      }
-    </style>
-
     <div class="path-wrap">
 
       <div class="path-breadcrumb">
@@ -499,221 +903,330 @@
         <span>›</span>
         <a href="BrewSchool.html">Brew School</a>
         <span>›</span>
-         <a href="lesson6.1.html">lesson6.1</a>
+        <a href="lesson6.1.html">lesson6.1</a>
       </div>
     </div>
 
-      <section class="lesson6-hero">
-        <div class="lesson6-hero-content">
-          <span class="lesson6-pill">Lesson 6</span>
-          <h1>Find Your Coffee Match</h1>
-          <p>
-            You’ve explored coffee from bean to brew. Now it’s time to discover the type of coffee
-            that truly matches your taste, mood, and daily routine.
-          </p>
-        </div>
-      </section>
-
-      <section class="lesson6-intro">
+    <section class="lesson6-hero">
+      <div class="lesson6-hero-content">
+        <span class="lesson6-pill">Lesson 6</span>
+        <h1>Find Your Coffee Match</h1>
         <p>
-          You’ve explored coffee from bean to brew — learning about origins, roasting, grinding,
-          and brewing. Now comes the final step of the journey: choosing the coffee that truly matches
-          your taste. Understanding how to select coffee will help you turn knowledge into experience
-          and make every cup more enjoyable.
+          You’ve explored coffee from bean to brew. Now it’s time to discover the type of coffee
+          that truly matches your taste, mood, and daily routine.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <section class="lesson6-bag-guide">
-        <div class="lesson6-bag-head">
-          <h2>A coffee bag is a guide to your cup</h2>
-        </div>
+    <section class="lesson6-intro">
+      <p>
+        You’ve explored coffee from bean to brew — learning about origins, roasting, grinding,
+        and brewing. Now comes the final step of the journey: choosing the coffee that truly matches
+        your taste. Understanding how to select coffee will help you turn knowledge into experience
+        and make every cup more enjoyable.
+      </p>
+    </section>
 
-        <div class="lesson6-bag-stage">
-          <div class="lesson6-bag-grid">
+    <section class="lesson6-bag-guide">
+      <div class="lesson6-bag-head">
+        <h2>A coffee bag is a guide to your cup</h2>
+      </div>
 
-            <div class="lesson6-info-column">
-              <article class="lesson6-info-card">
-                <h3>Origin</h3>
-                <p>Shows where the coffee comes from and whether it is single origin or a blend.</p>
-              </article>
+      <div class="lesson6-bag-stage">
+        <div class="lesson6-bag-grid">
 
-              <article class="lesson6-info-card">
-                <h3>Traceability</h3>
-                <p>Information about the farm, cooperative, or region where the coffee was produced.</p>
-              </article>
+          <div class="lesson6-info-column">
+            <article class="lesson6-info-card">
+              <h3>Origin</h3>
+              <p>Shows where the coffee comes from and whether it is single origin or a blend.</p>
+            </article>
 
-              <article class="lesson6-info-card">
-                <h3>Date</h3>
-                <p>The roasting date helps you know how fresh the coffee is and when it tastes best.</p>
-              </article>
-            </div>
+            <article class="lesson6-info-card">
+              <h3>Traceability</h3>
+              <p>Information about the farm, cooperative, or region where the coffee was produced.</p>
+            </article>
 
-            <div class="lesson6-bag-image">
-              <img src="images/coffee-bag-guide.png" alt="Coffee Bag Guide">
-            </div>
-
-            <div class="lesson6-info-column">
-              <article class="lesson6-info-card">
-                <h3>CO₂ Valve</h3>
-                <p>Lets carbon dioxide out while protecting the coffee from oxygen that harms aroma.</p>
-              </article>
-
-              <article class="lesson6-info-card">
-                <h3>Roast Level</h3>
-                <p>Light, medium, or dark roast changes the flavor style and how the coffee feels in the cup.</p>
-              </article>
-
-              <article class="lesson6-info-card">
-                <h3>Expected Taste</h3>
-                <p>Tasting notes describe what flavors you may notice, like chocolate, citrus, nuts, or berries.</p>
-              </article>
-            </div>
-
+            <article class="lesson6-info-card">
+              <h3>Date</h3>
+              <p>The roasting date helps you know how fresh the coffee is and when it tastes best.</p>
+            </article>
           </div>
-        </div>
-      </section>
 
-      <section class="lesson6-find-style">
-        <div class="lesson6-find-style-head">
-          <span>Find Your Style</span>
-          <h2>Choose Your Coffee Personality</h2>
-          <p>Different flavor profiles match different moods, preferences, and moments.</p>
-        </div>
+          <div class="lesson6-bag-image">
+            <img src="images/coffee-bag-guide.png" alt="Coffee Bag Guide">
+          </div>
 
-        <div class="lesson6-style-grid">
+          <div class="lesson6-info-column">
+            <article class="lesson6-info-card">
+              <h3>CO₂ Valve</h3>
+              <p>Lets carbon dioxide out while protecting the coffee from oxygen that harms aroma.</p>
+            </article>
 
-          <article class="lesson6-style-card fruity">
-            <h3>Fruity</h3>
-            <div class="lesson6-style-tag">Bright & lively</div>
-            <p>Perfect for people who enjoy vibrant coffee with playful, juicy flavor notes.</p>
-            <ul>
-              <li>Berry and citrus notes</li>
-              <li>Often lighter roasted</li>
-              <li>Best for curious tasters</li>
-            </ul>
-          </article>
+            <article class="lesson6-info-card">
+              <h3>Roast Level</h3>
+              <p>Light, medium, or dark roast changes the flavor style and how the coffee feels in the cup.</p>
+            </article>
 
-          <article class="lesson6-style-card nutty">
-            <h3>Nutty</h3>
-            <div class="lesson6-style-tag">Comforting & soft</div>
-            <p>A cozy flavor profile for those who prefer gentle sweetness and smooth balance.</p>
-            <ul>
-              <li>Almond, hazelnut, peanut hints</li>
-              <li>Balanced and familiar</li>
-              <li>Great everyday choice</li>
-            </ul>
-          </article>
-
-          <article class="lesson6-style-card chocolatey">
-            <h3>Chocolatey</h3>
-            <div class="lesson6-style-tag">Rich & warm</div>
-            <p>Ideal if you enjoy deeper sweetness, smooth body, and dessert-like flavor.</p>
-            <ul>
-              <li>Cocoa and caramel notes</li>
-              <li>Fuller body</li>
-              <li>Popular with milk drinks</li>
-            </ul>
-          </article>
-
-          <article class="lesson6-style-card bright">
-            <h3>Bright</h3>
-            <div class="lesson6-style-tag">Clean & elegant</div>
-            <p>Great for people who love clarity, crispness, and a fresh finish in the cup.</p>
-            <ul>
-              <li>Clean and delicate feel</li>
-              <li>Often floral or tea-like</li>
-              <li>Excellent with pour-over</li>
-            </ul>
-          </article>
+            <article class="lesson6-info-card">
+              <h3>Expected Taste</h3>
+              <p>Tasting notes describe what flavors you may notice, like chocolate, citrus, nuts, or berries.</p>
+            </article>
+          </div>
 
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="lesson6-video-section">
-        <div class="lesson6-video-text">
-          <span>Watch & Learn</span>
-          <h2>How to read a coffee bag</h2>
-          <p>
-            Watch this short video to understand what coffee labels really mean and how they can help
-            you choose beans that suit your personal taste.
-          </p>
-        </div>
+    <section class="lesson6-find-style">
+      <div class="lesson6-find-style-head">
+        <span>Find Your Style</span>
+        <h2>Choose Your Coffee Personality</h2>
+        <p>Different flavor profiles match different moods, preferences, and moments.</p>
+      </div>
 
+      <div class="lesson6-style-grid">
+
+        <article class="lesson6-style-card fruity">
+          <h3>Fruity</h3>
+          <div class="lesson6-style-tag">Bright & lively</div>
+          <p>Perfect for people who enjoy vibrant coffee with playful, juicy flavor notes.</p>
+          <ul>
+            <li>Berry and citrus notes</li>
+            <li>Often lighter roasted</li>
+            <li>Best for curious tasters</li>
+          </ul>
+        </article>
+
+        <article class="lesson6-style-card nutty">
+          <h3>Nutty</h3>
+          <div class="lesson6-style-tag">Comforting & soft</div>
+          <p>A cozy flavor profile for those who prefer gentle sweetness and smooth balance.</p>
+          <ul>
+            <li>Almond, hazelnut, peanut hints</li>
+            <li>Balanced and familiar</li>
+            <li>Great everyday choice</li>
+          </ul>
+        </article>
+
+        <article class="lesson6-style-card chocolatey">
+          <h3>Chocolatey</h3>
+          <div class="lesson6-style-tag">Rich & warm</div>
+          <p>Ideal if you enjoy deeper sweetness, smooth body, and dessert-like flavor.</p>
+          <ul>
+            <li>Cocoa and caramel notes</li>
+            <li>Fuller body</li>
+            <li>Popular with milk drinks</li>
+          </ul>
+        </article>
+
+        <article class="lesson6-style-card bright">
+          <h3>Bright</h3>
+          <div class="lesson6-style-tag">Clean & elegant</div>
+          <p>Great for people who love clarity, crispness, and a fresh finish in the cup.</p>
+          <ul>
+            <li>Clean and delicate feel</li>
+            <li>Often floral or tea-like</li>
+            <li>Excellent with pour-over</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="lesson6-video-section">
+      <div class="lesson6-video-text">
+        <span>Watch & Learn</span>
+        <h2>How to read a coffee bag</h2>
+        <p>
+          Watch this short video to understand what coffee labels really mean and how they can help
+          you choose beans that suit your personal taste.
+        </p>
+      </div>
+
+      <div>
         <div class="lesson6-video-box">
+          <div class="video-poster" id="videoPoster" onclick="playVideo()">
+            <img src="images/lesson6.jpg" alt="Coffee Bag Guide Video Poster">
+            <div class="play-btn">▶</div>
+          </div>
+
           <iframe
-            src="https://www.youtube.com/embed/QVTNscQY0c?si=baK_VSn5QIHja7ak"
+            id="videoFrame"
             title="Coffee Bag Guide Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
-      </section>
- <div class="lesson-buttons">
-      <a href="BrewSchool.html" >← Back</a>
-      <a href="lesson6.2.html" >Next →</a>
+
+        <div style="text-align:center;">
+          <a class="youtube-btn" href="https://www.youtube.com/watch?v=QVTNscQY0c" target="_blank">
+            Watch on YouTube
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="lesson-buttons">
+      <a href="BrewSchool.html">← Back</a>
+      <a href="lesson6.2.html">Next →</a>
     </div>
 
   </main>
 
- <footer class="site-footer">
-      <div class="footer-top">
-        <div class="footer-logo">
-          <img src="logo.png" alt="Bean to Brew Logo">
-        </div>
-
-        <div class="footer-contact">
-          <h3>Contact us</h3>
-          <p>+966504256847</p>
-          <p>BeantoBrew@gmail.com</p>
-        </div>
-
-        <div class="footer-social">
-          <h3>Follow us</h3>
-          <div class="social-icons">
-            <a href="https://instagram.com">
-              <img src="instagramicon.png" alt="Instagram">
-            </a>
-            <span class="social-divider"></span>
-            <a href="https://instagram.com">
-              <img src="Xicon.png" alt="X">
-            </a>
-          </div>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Bean to Brew Logo">
       </div>
 
-      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
-      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
-    </footer>
+      <div class="footer-contact">
+        <h3>Contact us</h3>
+        <p>+966504256847</p>
+        <p>BeantoBrew@gmail.com</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow us</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com">
+            <img src="instagramicon.png" alt="Instagram">
+          </a>
+          <span class="social-divider"></span>
+          <a href="https://instagram.com">
+            <img src="Xicon.png" alt="X">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+    <div class="footer-clock">
+      <div class="clock-box">
+        <span class="clock-label">Current Time</span>
+        <span id="live-clock">00:00:00</span>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <div id="lessonMessage" class="lesson-message">
+    <h3>Lesson Goal</h3>
+
+    <p>
+      In this lesson, you will learn how to choose coffee that matches your taste, mood, and daily preferences by understanding coffee bag information, roast level, tasting notes, and personal flavor style.
+    </p>
+
+    <hr>
+
+    <p class="quiz-reminder">
+      Don't forget to take the quiz after finishing the lesson!
+    </p>
+
+    <button onclick="closeMessage()" class="ok-btn">OK</button>
+  </div>
+
+  <script>
+    function playVideo(){
+      document.getElementById("videoPoster").style.display = "none";
+      let v = document.getElementById("videoFrame");
+      v.style.display = "block";
+      v.src = "https://www.youtube.com/embed/QVTNscQY0c?autoplay=1";
+    }
+
+    function closeMessage(){
+      document.getElementById("lessonMessage").style.display = "none";
+    }
+
+    window.onload = function(){
+      setTimeout(function(){
+        document.getElementById("lessonMessage").style.display = "block";
+      }, 3000);
+    }
+
+    const liveClock = document.getElementById("live-clock");
+    const backToTopBtn = document.getElementById("backToTop");
+
+    function updateClock() {
+      const now = new Date();
+
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      if (liveClock) {
+        liveClock.textContent = time;
+      }
+    }
+
+    function toggleBackToTop() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    }
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
+
+    window.addEventListener("scroll", toggleBackToTop);
+
+    updateClock();
+    setInterval(updateClock, 1000);
 	
-	 <script>
-  const themeStyle = document.getElementById("theme-style");
+	 const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "light") {
     themeStyle.href = "styleLigth.css";
-    if (themeToggle) themeToggle.textContent = "🌙";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
   } else {
     themeStyle.href = "style.css";
-    if (themeToggle) themeToggle.textContent = "☀️";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
   }
 
   if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
       if (themeStyle.getAttribute("href") === "style.css") {
+
         themeStyle.href = "styleLigth.css";
         themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light");
+
       } else {
+
         themeStyle.href = "style.css";
         themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark");
       }
+
     });
   }
-</script>
-
+  </script>
 
 </body>
 </html>
