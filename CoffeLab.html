@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bean to Brew - Coffee Lab</title>
+  <link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html, body{
+      overflow-x:hidden;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      min-height:100vh;
+      padding-top:90px;
+    }
+
+    /* ===== Navbar Fix ===== */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      min-height:80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background-color:#26231F;
+      padding:14px 32px;
+      gap:18px;
+      z-index:1000;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .logo img{
+      width:60px;
+      height:auto;
+      display:block;
+    }
+
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex:1;
+      flex-wrap:wrap;
+    }
+
+    .nav-links li{
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      white-space:nowrap;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:#f3d9b1;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-shrink:0;
+    }
+
+    .mode-btn{
+      background:transparent;
+      border:none;
+      color:white;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    .search-box{
+      padding:8px 12px;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:14px;
+      min-width:150px;
+      max-width:220px;
+      width:100%;
+    }
+
+    /* ===== Page ===== */
+    .coffee-lab-page{
+      padding:40px 32px 80px;
+      min-height:100vh;
+    }
+
+    .path-wrap{
+      position:static;
+      width:min(100%, 1320px);
+      margin:0 auto 30px;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:#fff7ef;
+      font-size:14px;
+    }
+
+    .path-breadcrumb a{
+      color:#fff7ef;
+      text-decoration:none;
+    }
+
+    .page-title{
+      width:min(100%, 1320px);
+      margin:0 auto;
+    }
+
+    .page-title h1{
+      font-size:48px;
+      font-weight:500;
+      margin-bottom:30px;
+      color:#EDE8DC;
+      font-family:'Playfair Display', serif;
+    }
+
+    .lab-layout{
+      width:min(100%, 1320px);
+      margin:0 auto;
+      display:flex;
+      align-items:flex-start;
+      gap:32px;
+    }
+
+    .filter-sidebar{
+      width:250px;
+      flex-shrink:0;
+    }
+
+    .filter-sidebar h2{
+      font-size:34px;
+      margin-bottom:18px;
+      color:#EDE8DC;
+      font-family:'Playfair Display', serif;
+    }
+
+    .filter-box{
+      background-color:#4B4F3E;
+      border:1px solid #4B4F3E;
+      padding:18px;
+      border-radius:12px;
+    }
+
+    .filter-group{
+      margin-bottom:18px;
+    }
+
+    .filter-group label{
+      display:block;
+      font-size:15px;
+      margin-bottom:8px;
+      font-weight:600;
+      color:#EDE8DC;
+    }
+
+    .filter-group select {
+  width: 100%;
+  height: 42px;
+  background-color: #C1B393;
+  border: 1px solid #C1B393;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #2f241d;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+    .filter-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+
+    .filter-buttons button{
+      flex:1 1 120px;
+      height:42px;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      border-radius:6px;
+    }
+
+    #applyBtn{
+      background-color:#26231F;
+      color:white;
+    }
+
+    #resetBtn{
+      background-color:#d9d9d9;
+      color:#2f241d;
+    }
+
+    .lab-content{
+      flex:1;
+      min-width:0;
+    }
+
+    .main-search{
+      margin:0 0 35px;
+    }
+
+    .main-search input{
+      width:100%;
+      max-width:560px;
+      height:58px;
+      border:2px solid #EDE8DC;
+      border-radius:10px;
+      padding:0 18px;
+      font-size:18px;
+      background-color:#EDE8DC;
+      color:#2f241d;
+      outline:none;
+    }
+
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(220px, 1fr));
+      gap:28px;
+    }
+
+    .lab-card-wrap{
+      perspective:1200px;
+      min-height:340px;
+    }
+
+    .flip-toggle{
+      display:none;
+    }
+
+    .lab-card-flip{
+      position:relative;
+      width:100%;
+      height:340px;
+      transform-style:preserve-3d;
+      transition:transform 0.7s ease;
+    }
+
+    .flip-toggle:checked + .lab-card-flip{
+      transform:rotateY(180deg);
+    }
+
+    .lab-card-front,
+    .lab-card-back{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
+      border:1px solid #4B4F3E;
+      border-radius:12px;
+      padding:18px;
+      box-shadow:0 4px 12px rgba(0, 0, 0, 0.04);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    .lab-card-front{
+      background:linear-gradient(135deg, #4B4F3E 0%, #4B4F3E 60%, #C1B393 100%);
+    }
+
+    .lab-card-back{
+      transform:rotateY(180deg);
+      background-color:#C1B393;
+    }
+
+    .card-image,
+    .card-back-image{
+      width:100%;
+      height:170px;
+      border-radius:8px;
+      margin-bottom:16px;
+      background-size:cover;
+      background-position:center center;
+      background-repeat:no-repeat;
+    }
+
+    .card-image.espresso,
+    .card-back-image.espresso{ background-image:url("Espresso.png"); background-color:#d8c3af; }
+    .card-image.turkish,
+    .card-back-image.turkish{ background-image:url("Turkish.png"); background-color:#d8c3af; }
+    .card-image.v60,
+    .card-back-image.v60{ background-image:url("V60.png"); background-color:#d8c3af; }
+    .card-image.frenchpress,
+    .card-back-image.frenchpress{ background-image:url("French Press.png"); background-color:#d8c3af; }
+    .card-image.moka,
+    .card-back-image.moka{ background-image:url("Moka Pot.png"); background-color:#d8c3af; }
+    .card-image.chemex,
+    .card-back-image.chemex{ background-image:url("Chemex.png"); background-color:#d8c3af; }
+    .card-image.roasting,
+    .card-back-image.roasting{ background-image:url("Headerpic.png"); background-color:#d8c3af; }
+    .card-image.grinders,
+    .card-back-image.grinders{ background-image:url("beanpic.png"); background-color:#d8c3af; }
+    .card-image.coldbrew,
+    .card-back-image.coldbrew{ background-image:url("coldbrew.png"); background-color:#d8c3af; }
+
+    .lab-card-front h3,
+    .lab-card-back h3{
+      font-size:22px;
+      margin-bottom:10px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .lab-card-front h3{ color:#EDE8DC; }
+    .lab-card-back h3{ color:#2f241d; }
+
+    .lab-card-front p{
+      font-size:14px;
+      line-height:1.7;
+      color:#EDE8DC;
+      margin-bottom:18px;
+      flex-grow:1;
+    }
+
+    .details-btn,
+    .book-btn{
+      width:100%;
+      min-height:44px;
+      border:none;
+      border-radius:6px;
+      font-size:14px;
+      font-weight:600;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .details-btn{
+      background-color:#26231F;
+      color:#EDE8DC;
+      margin-top:auto;
+    }
+
+    .details-btn:hover{ background-color:#9f744f; }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:14px;
+    }
+
+    .back-arrow{
+      font-size:28px;
+      color:#2f241d;
+      cursor:pointer;
+      line-height:1;
+      width:fit-content;
+    }
+
+    .back-tag{
+      font-size:13px;
+      color:#2f241d;
+      font-weight:600;
+    }
+
+    .back-details{
+      margin-top:10px;
+      margin-bottom:16px;
+      flex-grow:1;
+    }
+
+    .back-details p{
+      font-size:14px;
+      line-height:1.8;
+      color:#4a3a2f;
+      margin-bottom:6px;
+    }
+
+    .book-btn{
+      background-color:#2f241d;
+      color:#EDE8DC;
+      margin-top:auto;
+    }
+
+    .book-btn:hover{ background-color:#9f744f; }
+
+    .discover-section{
+      width:min(100%, 1320px);
+      margin:85px auto 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:60px;
+      background-color:#4B4F3E;
+      padding:35px;
+      border-radius:12px;
+    }
+
+    .discover-text{ max-width:620px; }
+
+    .discover-text h3{
+      font-size:30px;
+      margin-bottom:14px;
+      color:#EDE8DC;
+      font-family:'Playfair Display', serif;
+    }
+
+    .discover-text p{
+      font-size:15px;
+      line-height:1.9;
+      color:#C1B393;
+    }
+
+    .discover-right{
+      width:260px;
+      flex-shrink:0;
+    }
+
+    .small-card{
+      width:100%;
+      min-height:300px;
+      background-color:#C1B393;
+      border:1px solid #C1B393;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      text-decoration:none;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .small-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .small-card-image{
+      width:100%;
+      height:120px;
+      background:url("Headerpic.png") center/cover no-repeat;
+      background-color:#cfcfcf;
+      margin-bottom:16px;
+      border-radius:6px;
+    }
+
+    .small-card h3{
+      font-size:20px;
+      margin-bottom:10px;
+      color:#2f241d;
+      font-family:'Playfair Display', serif;
+    }
+
+    .card-desc{
+      font-size:14px;
+      line-height:1.7;
+      color:#4a4a4a;
+      margin-bottom:18px;
+      flex-grow:1;
+    }
+
+    .mini-details{
+      display:block;
+      width:100%;
+      height:42px;
+      background-color:#26231F;
+      color:#EDE8DC;
+      font-size:14px;
+      font-weight:600;
+      text-align:center;
+      line-height:42px;
+      border-radius:6px;
+    }
+
+    .lesson-buttons{
+      width:min(100%, 1320px);
+      margin:30px auto 80px;
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .lesson-buttons a{
+      text-decoration:none;
+      font-size:1.1rem;
+      font-weight:600;
+      color:#C1B393;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+    }
+
+    .light-mode{
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.35), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(255,255,255,0.25), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.20), transparent 32%),
+        linear-gradient(140deg, #f5eee6 0%, #e8dccb 45%, #d8c3af 100%);
+    }
+
+    .light-mode .page-title h1,
+    .light-mode .filter-sidebar h2,
+    .light-mode .discover-text h3{
+      color:#2f241d;
+    }
+
+    .light-mode .discover-text p,
+    .light-mode .path-breadcrumb,
+    .light-mode .path-breadcrumb a{
+      color:#4a3a2f;
+    }
+
+    /* ===== Footer ===== */
+    .site-footer{
+      background-image:
+        linear-gradient(rgba(35,24,18,0.80), rgba(35,24,18,0.80)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:top center;
+      background-repeat:no-repeat;
+      padding:25px 20px 40px;
+      text-align:center;
+      color:beige;
+    }
+
+    .footer-top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-bottom:5px;
+    }
+
+    .footer-logo img{
+      width:300px;
+      max-width:100%;
+      padding:10px;
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,0.2));
+    }
+
+    .footer-contact h3,
+    .footer-social h3{
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .footer-contact p{
+      margin:6px 0;
+      font-size:16px;
+      font-weight:600;
+      color:beige;
+    }
+
+    .footer-social{
+      text-align:center;
+    }
+
+    .social-icons{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-top:5px;
+      flex-wrap:wrap;
+    }
+
+    .social-icons a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .social-icons img{
+      width:30px;
+      height:30px;
+      object-fit:contain;
+      transition:transform 0.25s ease;
+      filter:brightness(1.4);
+    }
+
+    .social-icons img:hover{
+      transform:scale(1.15);
+    }
+
+    .social-divider{
+      width:1px;
+      height:22px;
+      background:rgba(255,255,255,0.4);
+    }
+
+    .footer-note{
+      font-size:16px;
+      margin-top:15px;
+      line-height:1.8;
+      color:beige;
+    }
+
+    .copyright{
+      font-size:15px;
+      margin-top:10px;
+      color:beige;
+    }
+
+    /* ===== Clock ===== */
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    /* ===== Back To Top ===== */
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:1150px){
+      .cards-grid{
+        grid-template-columns:repeat(2, minmax(230px, 1fr));
+      }
+
+      .discover-section{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .discover-right{
+        width:100%;
+        max-width:280px;
+      }
+    }
+
+    @media (max-width:992px){
+      body{
+        padding-top:130px;
+      }
+
+      .navbar{
+        padding:14px 20px;
+      }
+
+      .coffee-lab-page{
+        padding:30px 24px 70px;
+      }
+
+      .lab-layout{
+        flex-direction:column;
+      }
+
+      .filter-sidebar{
+        width:100%;
+      }
+
+      .main-search input{
+        max-width:100%;
+      }
+
+      .page-title h1{
+        font-size:42px;
+      }
+    }
+
+    @media (max-width:768px){
+      body{
+        padding-top:165px;
+      }
+
+      .navbar{
+        justify-content:center;
+        padding:14px 16px;
+      }
+
+      .logo,
+      .nav-right{
+        width:100%;
+        justify-content:center;
+        display:flex;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:center;
+        gap:12px;
+        order:3;
+      }
+
+      .nav-right{
+        order:2;
+      }
+
+      .search-box{
+        max-width:220px;
+        min-width:0;
+      }
+
+      .cards-grid{
+        grid-template-columns:1fr;
+      }
+
+      .coffee-lab-page{
+        padding:25px 18px 60px;
+      }
+
+      .page-title h1{
+        font-size:36px;
+        margin-bottom:24px;
+      }
+
+      .filter-sidebar h2{
+        font-size:30px;
+      }
+
+      .discover-section{
+        padding:24px 20px;
+        gap:28px;
+      }
+
+      .discover-text h3{
+        font-size:26px;
+      }
+
+      .discover-text p{
+        font-size:14px;
+      }
+
+      .lab-card-wrap,
+      .lab-card-flip{
+        min-height:360px;
+        height:360px;
+      }
+
+      .card-image,
+      .card-back-image{
+        height:160px;
+      }
+
+      .footer-logo img{
+        width:240px;
+      }
+    }
+
+    @media (max-width:560px){
+      body{
+        padding-top:205px;
+      }
+
+      .navbar{
+        padding:12px 14px;
+        gap:12px;
+      }
+
+      .logo img{
+        width:52px;
+      }
+
+      .nav-links{
+        gap:10px 14px;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .mode-btn{
+        font-size:20px;
+      }
+
+      .search-box{
+        max-width:200px;
+        font-size:13px;
+        padding:8px 10px;
+      }
+
+      .coffee-lab-page{
+        padding:22px 14px 55px;
+      }
+
+      .path-wrap{
+        margin-bottom:20px;
+      }
+
+      .page-title h1{
+        font-size:30px;
+      }
+
+      .filter-box{
+        padding:14px;
+      }
+
+      .filter-buttons{
+        flex-direction:column;
+      }
+
+      .filter-buttons button{
+        width:100%;
+      }
+
+      .main-search input{
+        height:52px;
+        font-size:16px;
+      }
+
+      .lab-card-front,
+      .lab-card-back{
+        padding:14px;
+      }
+
+      .lab-card-front h3,
+      .lab-card-back h3{
+        font-size:20px;
+      }
+
+      .lab-card-front p,
+      .back-details p{
+        font-size:13px;
+      }
+
+      .discover-section{
+        padding:18px 16px;
+      }
+
+      .lesson-buttons a{
+        font-size:1rem;
+      }
+
+      .footer-logo img{
+        width:200px;
+      }
+
+      .social-divider{
+        display:none;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+
+    <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="BrewSchool.html">Brew School</a></li>
+        <li><a href="CoffeLab.html" class="active">Coffee Lab</a></li>
+        <li><a href="student-dashboard.html">Student Dashboard</a></li>
+        <li><a href="About-us.html">About Us</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
+
+        <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+  <input type="text" placeholder="Search" class="search-box">
+</div>
+
+    </nav>
+  </header>
+
+  <main class="coffee-lab-page">
+
+    <div class="path-wrap">
+      <div class="path-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Coffee Lab</span>
+      </div>
+    </div>
+
+    <section class="page-title">
+      <h1>Coffee Lab</h1>
+    </section>
+
+    <section class="lab-layout">
+
+      <aside class="filter-sidebar">
+        <h2>Filter</h2>
+
+        <div class="filter-box">
+          <div class="filter-group">
+            <label for="trainerFilter">Trainer</label>
+            <select id="trainerFilter">
+              <option>All Trainers</option>
+              <option>Latifah</option>
+              <option>Abdurahman</option>
+              <option>Hamad</option>
+			  <option>Sadeem</option>
+			  <option>Wajd</option>
+			  <option>Fahad</option>
+			  <option>Sara</option>
+			  <option>Salman</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="locationFilter">Location</label>
+            <select id="locationFilter">
+              <option>All Locations</option>
+              <option>Riyadh</option>
+              <option>Jeddah</option>
+              <option>Online</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="timeFilter">Time</label>
+            <select id="timeFilter">
+              <option>All Times</option>
+              <option>8-11 AM</option>
+              <option>1-3 PM</option>
+            </select>
+          </div>
+
+          <div class="filter-buttons">
+            <button id="applyBtn" type="button">Apply</button>
+            <button id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="lab-content">
+
+        <div class="main-search">
+          <input type="text" id="searchInput" placeholder="Search by lab name">
+        </div>
+
+                <section class="cards-grid">
+
+          <!-- Card 1 -->
+          <div class="lab-card-wrap" data-title="Espresso Basics" data-trainer="Latifah" data-location="Riyadh" data-time="8-11 AM">
+            <input type="checkbox" id="flip1" class="flip-toggle">
+            <div class="lab-card-flip">
+              <div class="lab-card-front">
+                <div class="card-image espresso"></div>
+                <h3>Espresso Basics</h3>
+                <p>Learn the basics of espresso extraction and balance through a simple hands-on lab.</p>
+                <label for="flip1" class="details-btn">More Details</label>
+              </div>
+
+              <div class="lab-card-back">
+                <div class="card-top">
+                  <label for="flip1" class="back-arrow">&#8592;</label>
+                  <span class="back-tag">Coffee Lab</span>
+                </div>
+                <div class="card-back-image espresso"></div>
+                <h3>Espresso Basics</h3>
+                <div class="back-details">
+                  <p><strong>Trainer:</strong> Latifah</p>
+                  <p><strong>Location:</strong> Riyadh</p>
+                  <p><strong>Time:</strong> 8-11 AM</p>
+                  <p><strong>Level:</strong> Beginner</p>
+                </div>
+                <a href="#" class="book-btn" data-lab="Espresso Basics">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+<div class="lab-card-wrap" data-title="Turkish Coffee" data-trainer="Abdurahman" data-location="Riyadh" data-time="1-3 PM">
+  <input type="checkbox" id="flip2" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image turkish"></div>
+      <h3>Turkish Coffee</h3>
+      <p>Learn the art of Turkish coffee and discover how fine grinding, foam formation, and gentle heating create its rich flavor.</p>
+      <label for="flip2" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip2" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image turkish"></div>
+      <h3>Turkish Coffee</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Abdurahman</p>
+        <p><strong>Location:</strong> Riyadh</p>
+        <p><strong>Time:</strong> 1-3 PM</p>
+        <p><strong>Level:</strong> Beginner</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Turkish Coffee">Book Now</a>
+    </div>
+  </div>
+</div>
+
+          <!-- Card 3 -->
+<div class="lab-card-wrap" data-title="V60" data-trainer="Hamad" data-location="Jeddah" data-time="8-11 AM">
+  <input type="checkbox" id="flip3" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image v60"></div>
+      <h3>V60</h3>
+      <p>Practice precise pour-over brewing and understand how flow rate, timing, and technique affect clarity and balance.</p>
+      <label for="flip3" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip3" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image v60"></div>
+      <h3>V60</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Hamad</p>
+        <p><strong>Location:</strong> Jeddah</p>
+        <p><strong>Time:</strong> 8-11 AM</p>
+        <p><strong>Level:</strong> Intermediate</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="V60">Book Now</a>
+    </div>
+  </div>
+</div>
+
+         <!-- Card 4 -->
+<div class="lab-card-wrap" data-title="French Press" data-trainer="Eman" data-location="Online" data-time="1-3 PM">
+  <input type="checkbox" id="flip4" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image frenchpress"></div>
+      <h3>French Press</h3>
+      <p>Explore full-bodied brewing with the French Press and learn how steeping time and grind size shape the final cup.</p>
+      <label for="flip4" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip4" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image frenchpress"></div>
+      <h3>French Press</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Eman</p>
+        <p><strong>Location:</strong> Online</p>
+        <p><strong>Time:</strong> 1-3 PM</p>
+        <p><strong>Level:</strong> Beginner</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="French Press">Book Now</a>
+    </div>
+  </div>
+</div>
+
+         <!-- Card 5 -->
+<div class="lab-card-wrap" data-title="Moka Pot" data-trainer="Sadeem" data-location="Riyadh" data-time="8-11 AM">
+  <input type="checkbox" id="flip5" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image moka"></div>
+      <h3>Moka Pot</h3>
+      <p>Discover how to brew rich coffee with a moka pot and understand how heat control and grind consistency affect taste.</p>
+      <label for="flip5" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip5" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image moka"></div>
+      <h3>Moka Pot</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Sadeem</p>
+        <p><strong>Location:</strong> Riyadh</p>
+        <p><strong>Time:</strong> 8-11 AM</p>
+        <p><strong>Level:</strong> Intermediate</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Moka Pot">Book Now</a>
+    </div>
+  </div>
+</div>
+
+          <!-- Card 6 -->
+<div class="lab-card-wrap" data-title="Chemex" data-trainer="Wajd" data-location="Online" data-time="1-3 PM">
+  <input type="checkbox" id="flip6" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image chemex"></div>
+      <h3>Chemex</h3>
+      <p>Learn how to brew clean and delicate coffee with Chemex while improving pouring control and extraction balance.</p>
+      <label for="flip6" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip6" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image chemex"></div>
+      <h3>Chemex</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Wajd</p>
+        <p><strong>Location:</strong> Online</p>
+        <p><strong>Time:</strong> 1-3 PM</p>
+        <p><strong>Level:</strong> Intermediate</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Chemex">Book Now</a>
+    </div>
+  </div>
+</div>
+
+         <!-- Card 7 -->
+<div class="lab-card-wrap" data-title="Roasting Basics" data-trainer="Fahad" data-location="Jeddah" data-time="8-11 AM">
+  <input type="checkbox" id="flip7" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image roasting"></div>
+      <h3>Roasting Basics</h3>
+      <p>Understand the basics of coffee roasting and explore how roast levels influence aroma, sweetness, and body.</p>
+      <label for="flip7" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip7" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image roasting"></div>
+      <h3>Roasting Basics</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Fahad</p>
+        <p><strong>Location:</strong> Jeddah</p>
+        <p><strong>Time:</strong> 8-11 AM</p>
+        <p><strong>Level:</strong> Advanced</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Roasting Basics">Book Now</a>
+    </div>
+  </div>
+</div>
+          <!-- Card 8 -->
+<div class="lab-card-wrap" data-title="Grinders & Grinding" data-trainer="Sara" data-location="Riyadh" data-time="1-3 PM">
+  <input type="checkbox" id="flip8" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image grinders"></div>
+      <h3>Grinders & Grinding</h3>
+      <p>Learn how grinder types and grind size influence extraction and discover how to choose the right grind for each method.</p>
+      <label for="flip8" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip8" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image grinders"></div>
+      <h3>Grinders & Grinding</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Sara</p>
+        <p><strong>Location:</strong> Riyadh</p>
+        <p><strong>Time:</strong> 1-3 PM</p>
+        <p><strong>Level:</strong> Beginner</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Grinders & Grinding">Book Now</a>
+    </div>
+  </div>
+</div>
+
+          <!-- Card 9 -->
+<div class="lab-card-wrap" data-title="Cold Brew" data-trainer="Salman" data-location="Jeddah" data-time="1-3 PM">
+  <input type="checkbox" id="flip9" class="flip-toggle">
+  <div class="lab-card-flip">
+    <div class="lab-card-front">
+      <div class="card-image coldbrew"></div>
+      <h3>Cold Brew</h3>
+      <p>Learn how to prepare smooth cold brew coffee and understand how time, grind size, and water ratio shape its taste.</p>
+      <label for="flip9" class="details-btn">More Details</label>
+    </div>
+
+    <div class="lab-card-back">
+      <div class="card-top">
+        <label for="flip9" class="back-arrow">&#8592;</label>
+        <span class="back-tag">Coffee Lab</span>
+      </div>
+      <div class="card-back-image coldbrew"></div>
+      <h3>Cold Brew</h3>
+      <div class="back-details">
+        <p><strong>Trainer:</strong> Salman</p>
+        <p><strong>Location:</strong> Jeddah</p>
+        <p><strong>Time:</strong> 1-3 PM</p>
+        <p><strong>Level:</strong> Intermediate</p>
+      </div>
+      <a href="#" class="book-btn" data-lab="Cold Brew">Book Now</a>
+    </div>
+  </div>
+</div>
+
+        </section>
+
+      </div>
+    </section>
+
+    <section class="discover-section">
+      <div class="discover-text">
+        <h3>Discover Our Signature Brews</h3>
+        <p>
+          At Bean to Brew, we believe every cup tells a story. Our coffee lab gives learners
+          the chance to explore coffee beans, roasting ideas, and brewing styles in a simple
+          and practical way. Whether you want to improve your skills or just try something new,
+          each lab is designed to make the experience richer and more enjoyable.
+        </p>
+      </div>
+
+      <div class="discover-right">
+        <a href="#" class="small-card">
+          <div class="small-card-image roasting-img"></div>
+          <h3>Roasting Lab</h3>
+          <p class="card-desc">
+            Discover how roasting transforms green coffee beans into rich aromatic flavors.
+            Learn the basics of roast levels and how they influence aroma, acidity, and body.
+          </p>
+          <span class="mini-details">Explore Lab</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="lesson-buttons">
+      <a href="index.html">← Back</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Bean to Brew Logo">
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact us</h3>
+        <p>+966504256847</p>
+        <p>BeantoBrew@gmail.com</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow us</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com">
+            <img src="instagramicon.png" alt="Instagram">
+          </a>
+          <span class="social-divider"></span>
+          <a href="https://instagram.com">
+            <img src="Xicon.png" alt="X">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+    <div class="footer-clock">
+      <div class="clock-box">
+        <span class="clock-label">Current Time</span>
+        <span id="live-clock">00:00:00</span>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    const trainerFilter = document.getElementById("trainerFilter");
+    const locationFilter = document.getElementById("locationFilter");
+    const timeFilter = document.getElementById("timeFilter");
+    const applyBtn = document.getElementById("applyBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".lab-card-wrap");
+    const bookButtons = document.querySelectorAll(".book-btn");
+    const modeBtn = document.querySelector(".mode-btn");
+    const liveClock = document.getElementById("live-clock");
+    const backToTopBtn = document.getElementById("backToTop");
+
+    function filterCards() {
+      const trainerValue = trainerFilter.value.toLowerCase();
+      const locationValue = locationFilter.value.toLowerCase();
+      const timeValue = timeFilter.value.toLowerCase();
+      const searchValue = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const trainer = card.dataset.trainer.toLowerCase();
+        const location = card.dataset.location.toLowerCase();
+        const time = card.dataset.time.toLowerCase();
+
+        let showCard = true;
+
+        if (trainerValue !== "all trainers" && trainer !== trainerValue) showCard = false;
+        if (locationValue !== "all locations" && location !== locationValue) showCard = false;
+        if (timeValue !== "all times" && time !== timeValue) showCard = false;
+        if (searchValue !== "" && !title.includes(searchValue)) showCard = false;
+
+        card.style.display = showCard ? "" : "none";
+      });
+    }
+
+    applyBtn.addEventListener("click", filterCards);
+    searchInput.addEventListener("input", filterCards);
+
+    resetBtn.addEventListener("click", function() {
+      trainerFilter.value = "All Trainers";
+      locationFilter.value = "All Locations";
+      timeFilter.value = "All Times";
+      searchInput.value = "";
+
+      cards.forEach(card => {
+        card.style.display = "";
+      });
+    });
+
+    bookButtons.forEach(button => {
+      button.addEventListener("click", function(event) {
+        event.preventDefault();
+        const labName = this.dataset.lab;
+        alert("Your booking for " + labName + " has been completed successfully.");
+      });
+    });
+
+    modeBtn.addEventListener("click", function() {
+      document.body.classList.toggle("light-mode");
+    });
+
+    function updateClock() {
+      const now = new Date();
+
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      if (liveClock) {
+        liveClock.textContent = time;
+      }
+    }
+
+    function toggleBackToTop() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    }
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", function() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
+
+    window.addEventListener("scroll", toggleBackToTop);
+
+    updateClock();
+    setInterval(updateClock, 1000);
+	
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+
+  }
+
+  </script>
+
+</body>
+</html>

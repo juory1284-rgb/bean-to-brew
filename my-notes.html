@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Notes</title>
+<link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html, body{
+      overflow-x:hidden;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      background-color:#f8f4ef;
+      color:#3e2c23;
+    }
+
+    /* ===== Navbar Fix ===== */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      min-height:80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background-color:#26231F;
+      padding:14px 32px;
+      gap:18px;
+      z-index:1000;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .logo img{
+      width:60px;
+      height:auto;
+      display:block;
+    }
+
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex:1;
+      flex-wrap:wrap;
+    }
+
+    .nav-links li{
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      white-space:nowrap;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:#f3d9b1;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-shrink:0;
+    }
+
+    .mode-btn{
+      background:transparent;
+      border:none;
+      color:white;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    .search-box{
+      padding:8px 12px;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:14px;
+      min-width:150px;
+      max-width:220px;
+      width:100%;
+    }
+
+    /* ===== Notes Page ===== */
+    .notes-page{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      padding-top:90px;
+    }
+
+    .notes-section{
+      position:relative;
+      max-width:1200px;
+      margin:0 auto;
+      padding:45px 40px 70px;
+    }
+
+    .path-wrap{
+      position:static;
+      width:min(92%, 1150px);
+      margin:0 auto 25px;
+      text-align:left;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:#fff7ef;
+      font-size:14px;
+    }
+
+    .path-breadcrumb a{
+      color:#fff7ef;
+      text-decoration:none;
+    }
+
+    .notes-header{
+      text-align:center;
+      margin-bottom:48px;
+    }
+
+    .notes-header h1{
+      font-size:46px;
+      color:#EDE8DC;
+      margin-bottom:14px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .notes-subtitle{
+      font-size:17px;
+      color:#EDE8DC;
+      line-height:1.7;
+      max-width:640px;
+      margin:0 auto;
+    }
+
+    .note-input-box{
+      background-color:#4B4F3E;
+      padding:26px 34px;
+      display:flex;
+      align-items:center;
+      gap:22px;
+      margin-bottom:38px;
+      flex-wrap:wrap;
+      border-radius:20px;
+    }
+
+    .note-input{
+      flex:1;
+      min-width:240px;
+      min-height:48px;
+      border:1px dashed #EDE8DC;
+      background-color:#f8f8f8;
+      padding:12px 16px;
+      font-size:15px;
+      color:#333;
+      outline:none;
+      border-radius:10px;
+    }
+
+    .priority-select{
+      width:170px;
+      height:48px;
+      border:1px dashed #EDE8DC;
+      background-color:#f8f8f8;
+      padding:0 12px;
+      font-size:15px;
+      color:#333;
+      outline:none;
+      border-radius:10px;
+    }
+
+    .save-btn{
+      width:125px;
+      height:42px;
+      border:none;
+      background-color:#EDE8DC;
+      color:#2f241d;
+      font-size:15px;
+      cursor:pointer;
+      border-radius:10px;
+      font-weight:600;
+    }
+
+    .saved-title{
+      font-size:38px;
+      color:#EDE8DC;
+      margin-bottom:22px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .notes-list{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+
+    .note-card{
+      background-color:#4B4F3E;
+      min-height:92px;
+      padding:18px 18px 18px 16px;
+      display:flex;
+      align-items:center;
+      border-radius:18px;
+    }
+
+    .note-card.priority-1{
+      background-color:#8B3A3A;
+    }
+
+    .note-card.priority-2{
+      background-color:#9A8B3A;
+    }
+
+    .note-card.priority-3{
+      background-color:#4B6B4B;
+    }
+
+    .note-left{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      flex:1;
+      min-width:0;
+    }
+
+    .note-check{
+      width:27px;
+      height:27px;
+      accent-color:#7a4d2c;
+      flex-shrink:0;
+      cursor:pointer;
+    }
+
+    .note-text{
+      font-size:17px;
+      color:#EDE8DC;
+      line-height:1.6;
+      word-break:break-word;
+    }
+
+    .notes-bottom{
+      margin-top:32px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-end;
+    }
+
+    .delete-all-btn{
+      min-height:40px;
+      padding:0 18px;
+      border:none;
+      background-color:#EDE8DC;
+      color:#2f241d;
+      font-size:15px;
+      cursor:pointer;
+      border-radius:10px;
+      font-weight:600;
+    }
+
+    .save-btn:hover{
+      background-color:#e6dfd7;
+    }
+
+    .delete-all-btn:hover{
+      background-color:#9f9f9f;
+      color:white;
+    }
+
+    .lesson-buttons{
+      width:min(1150px, 92%);
+      margin:30px auto 80px;
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .lesson-buttons a{
+      text-decoration:none;
+      font-size:1.1rem;
+      font-weight:600;
+      color:#C1B393;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+    }
+
+    /* ===== Footer ===== */
+    .site-footer{
+      background-image:
+        linear-gradient(rgba(35,24,18,0.80), rgba(35,24,18,0.80)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:top center;
+      background-repeat:no-repeat;
+      padding:25px 20px 40px;
+      text-align:center;
+      color:beige;
+    }
+
+    .footer-top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-bottom:5px;
+    }
+
+    .footer-logo img{
+      width:300px;
+      max-width:100%;
+      padding:10px;
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,0.2));
+    }
+
+    .footer-contact h3,
+    .footer-social h3{
+      font-size:20px;
+      margin-bottom:8px;
+      color:beige;
+    }
+
+    .footer-contact p{
+      margin:6px 0;
+      font-size:16px;
+      font-weight:600;
+      color:beige;
+    }
+
+    .footer-social{
+      text-align:center;
+    }
+
+    .social-icons{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-top:5px;
+      flex-wrap:wrap;
+    }
+
+    .social-icons a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .social-icons img{
+      width:30px;
+      height:30px;
+      object-fit:contain;
+      transition:transform 0.25s ease;
+      filter:brightness(1.4);
+    }
+
+    .social-icons img:hover{
+      transform:scale(1.15);
+    }
+
+    .social-divider{
+      width:1px;
+      height:22px;
+      background:rgba(255,255,255,0.4);
+    }
+
+    .footer-note{
+      font-size:16px;
+      margin-top:15px;
+      line-height:1.8;
+      color:beige;
+    }
+
+    .copyright{
+      font-size:15px;
+      margin-top:10px;
+      color:beige;
+    }
+
+    /* ===== Clock ===== */
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    /* ===== Back To Top ===== */
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:992px){
+      .notes-page{
+        padding-top:130px;
+      }
+
+      .navbar{
+        padding:14px 20px;
+      }
+    }
+
+    @media (max-width:768px){
+      .notes-page{
+        padding-top:165px;
+      }
+
+      .navbar{
+        justify-content:center;
+        padding:14px 16px;
+      }
+
+      .logo,
+      .nav-right{
+        width:100%;
+        justify-content:center;
+        display:flex;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:center;
+        gap:12px;
+        order:3;
+      }
+
+      .nav-right{
+        order:2;
+      }
+
+      .search-box{
+        max-width:220px;
+        min-width:0;
+      }
+
+      .notes-section{
+        padding:35px 20px 60px;
+      }
+
+      .notes-header h1{
+        font-size:36px;
+      }
+
+      .note-input-box{
+        flex-direction:column;
+        align-items:stretch;
+        padding:20px;
+      }
+
+      .save-btn,
+      .priority-select{
+        width:100%;
+      }
+
+      .note-card{
+        flex-direction:column;
+        align-items:stretch;
+        padding:18px;
+      }
+
+      .note-left{
+        gap:18px;
+        align-items:flex-start;
+      }
+
+      .notes-bottom{
+        margin-top:32px;
+        display:flex;
+        justify-content:flex-end;
+      }
+
+      .footer-logo img{
+        width:240px;
+      }
+    }
+
+    @media (max-width:560px){
+      .notes-page{
+        padding-top:205px;
+      }
+
+      .navbar{
+        padding:12px 14px;
+        gap:12px;
+      }
+
+      .logo img{
+        width:52px;
+      }
+
+      .nav-links{
+        gap:10px 14px;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .mode-btn{
+        font-size:20px;
+      }
+
+      .search-box{
+        max-width:200px;
+        font-size:13px;
+        padding:8px 10px;
+      }
+
+      .notes-section{
+        padding:30px 14px 55px;
+      }
+
+      .notes-header h1{
+        font-size:30px;
+      }
+
+      .notes-subtitle{
+        font-size:15px;
+      }
+
+      .saved-title{
+        font-size:28px;
+      }
+
+      .note-input{
+        min-width:0;
+      }
+
+      .note-text{
+        font-size:15px;
+      }
+
+      .footer-logo img{
+        width:200px;
+      }
+
+      .social-divider{
+        display:none;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notes-page">
+
+    <header>
+      <nav class="navbar">
+
+        <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="BrewSchool.html">Brew School</a></li>
+          <li><a href="CoffeLab.html">Coffee Lab</a></li>
+          <li><a href="student-dashboard.html" class="active">Student Dashboard</a></li>
+          <li><a href="About-us.html">About Us</a></li>
+          <li><a href="Contact.html">Contact Us</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <button type="button" id="themeToggle" class="mode-btn">☀️</button>
+          <input type="text" placeholder="Search" class="search-box">
+        </div>
+
+      </nav>
+    </header>
+
+    <main>
+      <section class="notes-section">
+
+        <div class="path-wrap">
+          <div class="path-breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="student-dashboard.html">Student Dashboard</a>
+            <span>›</span>
+            <span>My Notes</span>
+          </div>
+        </div>
+
+        <div class="notes-header">
+          <h1>My Notes</h1>
+          <p class="notes-subtitle">
+            Manage your note by adding new note, viewing and deleting the<br>
+            saved ones
+          </p>
+        </div>
+
+        <form class="note-input-box" id="addNoteForm">
+  <input type="text" class="note-input" id="noteInput" placeholder="Enter your note here..">
+
+  <select id="prioritySelect" class="priority-select">
+    <option value="">Choose Priority</option>
+    <option value="1">Priority 1</option>
+    <option value="2">Priority 2</option>
+    <option value="3">Priority 3</option>
+  </select>
+
+  <button type="submit" class="save-btn" id="addBtn">Add Note</button>
+<button type="button" class="save-btn" id="saveBtn">Save Notes</button>
+</form>
+
+        <h2 class="saved-title">Saved Notes</h2>
+
+        <div class="notes-list" id="notesList"></div>
+
+        <form class="notes-bottom" id="deleteNoteForm">
+  <button type="submit" class="delete-all-btn">Delete All selected</button>
+</form>
+
+      </section>
+
+      <div class="lesson-buttons">
+        <a href="student-dashboard.html">← Back</a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Bean to Brew Logo">
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact us</h3>
+          <p>+966504256847</p>
+          <p>BeantoBrew@gmail.com</p>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow us</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com">
+              <img src="instagramicon.png" alt="Instagram">
+            </a>
+            <span class="social-divider"></span>
+            <a href="https://instagram.com">
+              <img src="Xicon.png" alt="X">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+      <div class="footer-clock">
+        <div class="clock-box">
+          <span class="clock-label">Current Time</span>
+          <span id="live-clock">00:00:00</span>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    const noteInput = document.getElementById("noteInput");
+    const prioritySelect = document.getElementById("prioritySelect");
+    const addBtn = document.getElementById("addBtn");
+    const saveBtn = document.getElementById("saveBtn");
+	const addNoteForm = document.getElementById("addNoteForm");
+    const deleteNoteForm = document.getElementById("deleteNoteForm");
+    const notesList = document.getElementById("notesList");
+    const liveClock = document.getElementById("live-clock");
+    const backToTopBtn = document.getElementById("backToTop");
+    const modeBtn = document.querySelector(".mode-btn");
+
+    let notes = JSON.parse(localStorage.getItem("myNotes")) || [];
+
+    function renderNotes() {
+      notesList.innerHTML = "";
+
+      notes.forEach((note, index) => {
+        const noteCard = document.createElement("div");
+        noteCard.className = "note-card priority-" + note.priority;
+
+        noteCard.innerHTML = `
+          <div class="note-left">
+            <input type="checkbox" class="note-check" data-index="${index}">
+            <p class="note-text">${note.text}</p>
+          </div>
+        `;
+
+        notesList.appendChild(noteCard);
+      });
+    }
+
+    function saveNotesToLocalStorage() {
+      localStorage.setItem("myNotes", JSON.stringify(notes));
+    }
+
+    addNoteForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+      const noteText = noteInput.value.trim();
+      const priority = prioritySelect.value;
+
+      if (noteText === "") {
+        alert("Note cannot be empty.");
+        return;
+      }
+
+      if (noteText.length < 30) {
+        alert("Note must be at least 30 characters.");
+        return;
+      }
+
+      if (priority === "") {
+        alert("Please choose a priority.");
+        return;
+      }
+
+      const newNote = {
+        text: noteText,
+        priority: priority
+      };
+
+      notes.push(newNote);
+      renderNotes();
+
+      noteInput.value = "";
+      prioritySelect.value = "";
+    });
+	
+	saveBtn.addEventListener("click", function () {
+  saveNotesToLocalStorage();
+  alert("Notes saved successfully.");
+});
+
+    deleteNoteForm.addEventListener("submit", function (event) {
+     event.preventDefault();
+      const checkedNotes = document.querySelectorAll(".note-check:checked");
+
+      if (checkedNotes.length === 0) {
+        alert("Please select at least one note");
+        return;
+      }
+
+      const confirmDelete = confirm("Are you sure you want to delete the selected notes?");
+
+      if (!confirmDelete) {
+        return;
+      }
+
+      const selectedIndexes = Array.from(checkedNotes).map(note => Number(note.dataset.index));
+
+      notes = notes.filter((note, index) => !selectedIndexes.includes(index));
+
+      saveNotesToLocalStorage();
+      renderNotes();
+    });
+
+    function updateClock() {
+      const now = new Date();
+
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      if (liveClock) {
+        liveClock.textContent = time;
+      }
+    }
+
+    function toggleBackToTop() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    }
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
+
+    if (modeBtn) {
+      modeBtn.addEventListener("click", function () {
+        document.body.classList.toggle("light-mode");
+      });
+    }
+
+    renderNotes();
+    updateClock();
+    setInterval(updateClock, 1000);
+    window.addEventListener("scroll", toggleBackToTop);
+	
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+
+  }
+  </script>
+
+</body>
+</html>

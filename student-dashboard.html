@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html, body{
+      overflow-x:hidden;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      background-color:#f8f4ef;
+      color:#3e2c23;
+    }
+
+    /* ===== Navbar Fix ===== */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      min-height:80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background-color:#26231F;
+      padding:14px 32px;
+      gap:18px;
+      z-index:1000;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .logo img{
+      width:60px;
+      height:auto;
+      display:block;
+    }
+
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      flex:1;
+      flex-wrap:wrap;
+    }
+
+    .nav-links li{
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      white-space:nowrap;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:#f3d9b1;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-shrink:0;
+    }
+
+    .mode-btn{
+      background:transparent;
+      border:none;
+      color:white;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    .search-box{
+      padding:8px 12px;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:14px;
+      min-width:150px;
+      max-width:220px;
+      width:100%;
+    }
+
+    /* ===== Dashboard Page ===== */
+    .dashboard-page{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      padding-top:90px;
+    }
+
+    .dashboard-section{
+      position:relative;
+      text-align:center;
+      padding:45px 20px 90px;
+      width:min(1200px, 100%);
+      margin:0 auto;
+    }
+
+    .path-wrap{
+      position:static;
+      width:min(92%, 1150px);
+      margin:0 auto 25px;
+      text-align:left;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:#fff7ef;
+      font-size:14px;
+    }
+
+    .path-breadcrumb a{
+      color:#fff7ef;
+      text-decoration:none;
+    }
+
+    .dashboard-section h1{
+      color:#EDE8DC;
+      margin-bottom:10px;
+      font-family:'Playfair Display', serif;
+      font-size:48px;
+    }
+
+    .dashboard-subtitle{
+      font-size:18px;
+      color:#EDE8DC;
+      margin-top:10px;
+      margin-bottom:60px;
+    }
+
+    .dashboard-cards{
+      display:flex;
+      justify-content:center;
+      gap:32px;
+      flex-wrap:wrap;
+    }
+
+    .dashboard-card{
+      width:320px;
+      min-height:260px;
+      background-color:#4B4F3E;
+      color:white;
+      border-radius:32px;
+      padding:28px 25px;
+      text-align:left;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dashboard-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:25px;
+    }
+
+    .card-icon{
+      width:80px;
+      height:80px;
+      object-fit:contain;
+      padding:6px;
+    }
+
+    .card-title{
+      font-size:30px;
+      font-weight:500;
+      margin:0;
+      color:#EDE8DC;
+      line-height:1.2;
+      font-family:'Playfair Display', serif;
+    }
+
+    .card-text{
+      font-size:20px;
+      line-height:1.7;
+      color:#EDE8DC;
+      margin-bottom:35px;
+      max-width:230px;
+    }
+
+    .card-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background-color:#C1B393;
+      color:#2f2f2f;
+      text-decoration:none;
+      border-radius:8px;
+      padding:10px 18px;
+      font-size:15px;
+      transition:background-color 0.3s ease;
+    }
+
+    .card-btn:hover{
+      background-color:#d8d1c7;
+    }
+
+    .scores-section{
+      width:min(1000px, 92%);
+      margin:60px auto 0;
+      text-align:left;
+    }
+
+    .scores-title{
+      font-size:32px;
+      color:#EDE8DC;
+      margin-bottom:20px;
+      text-align:center;
+      font-family:'Playfair Display', serif;
+    }
+
+    .no-scores{
+      display:none;
+      text-align:center;
+      color:#EDE8DC;
+      font-size:18px;
+      margin-top:20px;
+    }
+
+    .scores-table-wrap{
+      display:none;
+      overflow-x:auto;
+      border-radius:12px;
+    }
+
+    .scores-table{
+      width:100%;
+      min-width:420px;
+      border-collapse:collapse;
+      background:#4B4F3E;
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    .scores-table th,
+    .scores-table td{
+      padding:14px 16px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.08);
+      color:#EDE8DC;
+    }
+
+    .scores-table th{
+      background:#C1B393;
+      color:#2f241d;
+      font-weight:600;
+    }
+
+    .lesson-buttons{
+      width:min(1150px, 92%);
+      margin:30px auto 80px;
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .lesson-buttons a{
+      text-decoration:none;
+      font-size:1.1rem;
+      font-weight:600;
+      color:#C1B393;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+    }
+
+    /* ===== Footer ===== */
+    .site-footer{
+      background-image:
+        linear-gradient(rgba(35,24,18,0.80), rgba(35,24,18,0.80)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:top center;
+      background-repeat:no-repeat;
+      padding:25px 20px 40px;
+      text-align:center;
+      color:beige;
+    }
+
+    .footer-top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-bottom:5px;
+    }
+
+    .footer-logo img{
+      width:300px;
+      max-width:100%;
+      padding:10px;
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,0.2));
+    }
+
+    .footer-contact h3,
+    .footer-social h3{
+      font-size:20px;
+      margin-bottom:8px;
+      color:beige;
+    }
+
+    .footer-contact p{
+      margin:6px 0;
+      font-size:16px;
+      font-weight:600;
+      color:beige;
+    }
+
+    .footer-social{
+      text-align:center;
+    }
+
+    .social-icons{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-top:5px;
+      flex-wrap:wrap;
+    }
+
+    .social-icons a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .social-icons img{
+      width:30px;
+      height:30px;
+      object-fit:contain;
+      transition:transform 0.25s ease;
+      filter:brightness(1.4);
+    }
+
+    .social-icons img:hover{
+      transform:scale(1.15);
+    }
+
+    .social-divider{
+      width:1px;
+      height:22px;
+      background:rgba(255,255,255,0.4);
+    }
+
+    .footer-note{
+      font-size:16px;
+      margin-top:15px;
+      line-height:1.8;
+      color:beige;
+    }
+
+    .copyright{
+      font-size:15px;
+      margin-top:10px;
+      color:beige;
+    }
+
+    /* ===== Clock ===== */
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    /* ===== Back To Top ===== */
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:992px){
+      .dashboard-page{
+        padding-top:130px;
+      }
+
+      .navbar{
+        padding:14px 20px;
+      }
+
+      .dashboard-section h1{
+        font-size:42px;
+      }
+    }
+
+    @media (max-width:768px){
+      .dashboard-page{
+        padding-top:165px;
+      }
+
+      .navbar{
+        justify-content:center;
+        padding:14px 16px;
+      }
+
+      .logo,
+      .nav-right{
+        width:100%;
+        justify-content:center;
+        display:flex;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:center;
+        gap:12px;
+        order:3;
+      }
+
+      .nav-right{
+        order:2;
+      }
+
+      .search-box{
+        max-width:220px;
+        min-width:0;
+      }
+
+      .dashboard-section{
+        padding:35px 18px 70px;
+      }
+
+      .dashboard-subtitle{
+        font-size:16px;
+        margin-bottom:40px;
+      }
+
+      .dashboard-card{
+        width:100%;
+        max-width:340px;
+      }
+
+      .card-title{
+        font-size:26px;
+      }
+
+      .card-text{
+        font-size:18px;
+      }
+
+      .dashboard-section h1{
+        font-size:36px;
+      }
+
+      .scores-title{
+        font-size:28px;
+      }
+
+      .footer-logo img{
+        width:240px;
+      }
+    }
+
+    @media (max-width:560px){
+      .dashboard-page{
+        padding-top:205px;
+      }
+
+      .navbar{
+        padding:12px 14px;
+        gap:12px;
+      }
+
+      .logo img{
+        width:52px;
+      }
+
+      .nav-links{
+        gap:10px 14px;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .mode-btn{
+        font-size:20px;
+      }
+
+      .search-box{
+        max-width:200px;
+        font-size:13px;
+        padding:8px 10px;
+      }
+
+      .dashboard-section{
+        padding:30px 14px 55px;
+      }
+
+      .dashboard-section h1{
+        font-size:30px;
+      }
+
+      .dashboard-subtitle{
+        font-size:15px;
+      }
+
+      .card-top{
+        gap:14px;
+      }
+
+      .card-icon{
+        width:65px;
+        height:65px;
+      }
+
+      .card-title{
+        font-size:22px;
+      }
+
+      .card-text{
+        font-size:16px;
+        max-width:100%;
+      }
+
+      .scores-title{
+        font-size:24px;
+      }
+
+      .footer-logo img{
+        width:200px;
+      }
+
+      .social-divider{
+        display:none;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-page">
+
+    <header>
+      <nav class="navbar">
+
+       <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="BrewSchool.html">Brew School</a></li>
+          <li><a href="CoffeLab.html">Coffee Lab</a></li>
+          <li><a href="student-dashboard.html" class="active">Student Dashboard</a></li>
+          <li><a href="About-us.html">About Us</a></li>
+          <li><a href="Contact.html">Contact Us</a></li>
+        </ul>
+
+          <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+  <input type="text" placeholder="Search" class="search-box">
+</div>
+
+      </nav>
+    </header>
+
+    <main>
+      <section class="dashboard-section">
+
+        <div class="path-wrap">
+          <div class="path-breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Student Dashboard</span>
+          </div>
+        </div>
+
+        <h1>Student's Dashboard</h1>
+        <p class="dashboard-subtitle">
+          Manage your notes and evaluate our Experience Creators from here
+        </p>
+
+        <div class="dashboard-cards">
+          <div class="dashboard-card">
+            <div class="card-top">
+              <img src="Mynote.png" alt="Notes Icon" class="card-icon">
+              <h2 class="card-title">My Notes</h2>
+            </div>
+
+            <p class="card-text">
+              View, add, and delete your notes
+            </p>
+
+            <a href="my-notes.html" class="card-btn">➡ Go to my Notes</a>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-top">
+              <img src="ratingicon.png" alt="Teacher Evaluation Icon" class="card-icon">
+              <h2 class="card-title">Teachers Evaluation</h2>
+            </div>
+
+            <p class="card-text">
+              Rate teachers and share your feedback
+            </p>
+
+            <a href="Evaluation-Form.html" class="card-btn">➡ Evaluate Teachers</a>
+          </div>
+        </div>
+
+        <div class="scores-section">
+          <h2 class="scores-title">My Quiz Scores</h2>
+
+          <p class="no-scores" id="noScoresMessage">No quiz scores available yet.</p>
+
+          <div class="scores-table-wrap" id="scoresTableWrap">
+            <table class="scores-table">
+              <thead>
+                <tr>
+                  <th>Lesson</th>
+                  <th>Best Score</th>
+                </tr>
+              </thead>
+              <tbody id="scoresTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <div class="lesson-buttons">
+      <a href="index.html">← Back</a>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Bean to Brew Logo">
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact us</h3>
+          <p>+966504256847</p>
+          <p>BeantoBrew@gmail.com</p>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow us</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com">
+              <img src="instagramicon.png" alt="Instagram">
+            </a>
+            <span class="social-divider"></span>
+            <a href="https://instagram.com">
+              <img src="Xicon.png" alt="X">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+      <div class="footer-clock">
+        <div class="clock-box">
+          <span class="clock-label">Current Time</span>
+          <span id="live-clock">00:00:00</span>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+  const scoresTableWrap = document.getElementById("scoresTableWrap");
+  const scoresTableBody = document.getElementById("scoresTableBody");
+  const noScoresMessage = document.getElementById("noScoresMessage");
+  const liveClock = document.getElementById("live-clock");
+  const backToTopBtn = document.getElementById("backToTop");
+  const modeBtn = document.querySelector(".mode-btn");
+
+  let savedScores = JSON.parse(localStorage.getItem("quizScores")) || [];
+
+  if (savedScores.length === 0) {
+    noScoresMessage.style.display = "block";
+  } else {
+    scoresTableWrap.style.display = "block";
+
+    savedScores.sort((a, b) => b.bestScore - a.bestScore);
+
+    savedScores.forEach(score => {
+      const row = document.createElement("tr");
+
+      let color = "#EDE8DC";
+
+      if (score.bestScore >= 5) {
+        color = "#A8E6A3";
+      } else if (score.bestScore >= 3) {
+        color = "#FDE9C7";
+      } else {
+        color = "#E7A6A1";
+      }
+
+      row.innerHTML = `
+        <td>${score.lesson}</td>
+        <td style="color:${color}; font-weight:600;">
+          ${score.bestScore} / ${score.total || 6}
+        </td>
+      `;
+
+      scoresTableBody.appendChild(row);
+    });
+  }
+
+  function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    if (liveClock) {
+      liveClock.textContent = time;
+    }
+  }
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  if (modeBtn) {
+    modeBtn.addEventListener("click", function () {
+      document.body.classList.toggle("light-mode");
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTop);
+
+  updateClock();
+  setInterval(updateClock, 1000);
+  
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+
+  }
+</script>
+
+</body>
+</html>

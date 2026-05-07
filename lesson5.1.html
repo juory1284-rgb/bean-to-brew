@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5 - Brewing Methods</title>
+<link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      .lesson5-page{
+        font-family:Arial, sans-serif;
+        color:#EDE8DC;
+        padding-top:110px;
+        background:
+  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+        overflow:hidden;
+      }
+
+      .path-wrap{
+        position:static;
+        top:auto;
+        left:auto;
+        width:min(92%, 1320px);
+        margin:auto auto 30px;
+        padding:0;
+        z-index:auto;
+      }
+
+      .lesson5-wrap{
+        width:min(92%, 1280px);
+        margin:auto;
+        padding:34px 0 80px;
+      }
+
+      .lesson5-breadcrumb{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        align-items:center;
+        color:#cab8a1;
+        font-size:14px;
+        margin-bottom:18px;
+      }
+
+      .lesson5-breadcrumb a{
+        color:#EBD8B7;
+        text-decoration:none;
+        transition:0.3s ease;
+      }
+
+      .lesson5-breadcrumb a:hover{
+        color:#FDE9C7;
+      }
+
+      .lesson5-hero{
+        position:relative;
+        min-height:470px;
+        border-radius:34px;
+        overflow:hidden;
+        display:flex;
+        align-items:flex-end;
+        padding:42px;
+        background:
+          linear-gradient(rgba(16,12,10,0.20), rgba(16,12,10,0.55)),
+          url("images/lesson5.jpg");
+        background-size:cover;
+        background-position:center;
+        border:1px solid rgba(255,255,255,0.08);
+        box-shadow:0 28px 65px rgba(0,0,0,0.35);
+      }
+
+      .lesson5-hero::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:
+          linear-gradient(90deg, rgba(20,15,12,0.72) 0%, rgba(20,15,12,0.35) 38%, rgba(20,15,12,0.18) 100%);
+      }
+
+      .lesson5-hero::after{
+        content:"";
+        position:absolute;
+        width:360px;
+        height:360px;
+        right:-80px;
+        top:-60px;
+        border-radius:50%;
+        background:radial-gradient(circle, rgba(253,233,199,0.16), transparent 65%);
+        filter:blur(4px);
+      }
+
+      .lesson5-hero-content{
+        position:relative;
+        z-index:2;
+        max-width:680px;
+        animation:fadeUp 0.9s ease;
+      }
+
+      .lesson5-tag{
+        display:inline-block;
+        margin-bottom:16px;
+        padding:10px 18px;
+        border-radius:999px;
+        background:rgba(255,255,255,0.10);
+        border:1px solid rgba(255,255,255,0.18);
+        backdrop-filter:blur(6px);
+        color:#FFF4DF;
+        font-size:14px;
+        letter-spacing:1px;
+      }
+
+      .lesson5-hero h1{
+        margin:0 0 16px;
+        font-family:'Playfair Display', serif;
+        font-size:clamp(46px, 8vw, 92px);
+        line-height:0.95;
+        color:#fff7ef;
+        text-shadow:0 8px 24px rgba(0,0,0,0.28);
+      }
+
+      .lesson5-hero p{
+        margin:0;
+        font-size:19px;
+        line-height:1.9;
+        color:#F5ECE2;
+        max-width:600px;
+      }
+
+      .lesson5-intro{
+        max-width:950px;
+        margin:54px auto 76px;
+        text-align:center;
+      }
+.lesson5-intro p{
+  margin:0;
+  padding:34px 30px;
+  border-radius:28px;
+  line-height:1.95;
+  font-size:20px;
+  color:#3A2F2B;
+  background:
+    linear-gradient(135deg, rgba(235,216,183,0.85), rgba(193,179,147,0.60), rgba(255,244,223,0.70));
+  border:1px solid rgba(253,233,199,0.20);
+  box-shadow:0 18px 38px rgba(0,0,0,0.12);
+}
+
+      .lesson5-styles{
+        margin-bottom:76px;
+        text-align:center;
+      }
+
+      .lesson5-styles h2{
+        margin:0 0 12px;
+        font-family:'Playfair Display', serif;
+        font-size:clamp(38px, 5vw, 66px);
+        color:#FFF1DD;
+      }
+
+      .lesson5-styles-sub{
+        margin:0 0 34px;
+        font-size:17px;
+        color:#D7C6B3;
+      }
+
+      .lesson5-grid{
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap:28px;
+      }
+
+      .lesson5-card{
+        position:relative;
+        padding:28px 24px;
+        border-radius:28px;
+        overflow:hidden;
+        transition:0.35s ease;
+        box-shadow:0 18px 42px rgba(0,0,0,0.22);
+      }
+
+      .lesson5-card:hover{
+        transform:translateY(-10px);
+      }.lesson5-card.one{
+  background:#6B7557; /* زيتي */
+  border:1px solid rgba(253,233,199,0.22);
+}
+
+.lesson5-card.two{
+  background:#6B7557; /* زيتي */
+  border:1px solid rgba(193,179,147,0.14);
+}
+
+.lesson5-card.three{
+  background:#6B7557; /* زيتي */
+  border:1px solid rgba(193,179,147,0.14);
+}
+
+      .lesson5-icon-shell{
+        width:150px;
+        height:150px;
+        margin:0 auto 18px;
+        border-radius:50%;
+        display:grid;
+        place-items:center;
+        box-shadow:
+          inset 0 10px 18px rgba(255,255,255,0.18),
+          0 10px 26px rgba(0,0,0,0.18);
+      }
+
+      .lesson5-card.one .lesson5-icon-shell{
+        background:radial-gradient(circle at 30% 30%, #FDE9C7, #D9C5A1 55%, #8A6A52 100%);
+      }
+
+      .lesson5-card.two .lesson5-icon-shell{
+        background:radial-gradient(circle at 30% 30%, #EDE8DC, #B8B08F 55%, #4B4F3E 100%);
+      }
+
+      .lesson5-card.three .lesson5-icon-shell{
+        background:radial-gradient(circle at 30% 30%, #FDE9C7, #C89A68 55%, #7A4D2C 100%);
+      }
+
+      .lesson5-icon{
+        width:95px;
+        height:95px;
+      }
+
+      .lesson5-icon .bg{
+        fill:#F8F2EA;
+      }
+
+      .lesson5-icon .shape{
+        fill:#5F3D2C;
+      }
+
+      .lesson5-icon .line{
+        stroke:#3A2F2B;
+        stroke-width:5;
+        stroke-linecap:round;
+        fill:none;
+      }
+
+      .lesson5-card h3{
+        margin:0 0 12px;
+        font-family:'Playfair Display', serif;
+        font-size:26px;
+        color:#FFF2E0;
+      }
+
+      .lesson5-card p{
+        margin:0;
+        line-height:1.85;
+        font-size:15px;
+        color:#E6D9CC;
+      }
+
+      .lesson5-chip{
+        display:inline-block;
+        margin-top:16px;
+        padding:8px 14px;
+        border-radius:999px;
+        font-size:13px;
+        color:#FFF2DF;
+        background:rgba(255,255,255,0.08);
+        border:1px solid rgba(255,255,255,0.10);
+      }
+
+      .lesson5-quote-wrap{
+        text-align:center;
+        margin-bottom:76px;
+      }
+
+      .lesson5-quote{
+        display:inline-block;
+        max-width:900px;
+        padding:18px 26px;
+        border-radius:22px;
+        font-family:'Playfair Display', serif;
+        font-size:clamp(22px, 3vw, 34px);
+        color:#FFF8F0;
+        background:linear-gradient(90deg, #4B4F3E, #7A4D2C, #C1B393, #3A2F2B);
+        background-size:250% 250%;
+        animation:gradientMove 8s ease infinite;
+        box-shadow:0 16px 36px rgba(0,0,0,0.22);
+      }
+
+      .lesson5-video-section{
+        display:grid;
+        grid-template-columns:0.9fr 1.1fr;
+        gap:32px;
+        align-items:center;
+        margin-bottom:70px;
+      }
+
+      .lesson5-video-text{
+        padding:34px;
+        border-radius:28px;
+        background:
+          linear-gradient(135deg, rgba(75,79,62,0.28), rgba(58,47,43,0.88), rgba(193,179,147,0.10));
+        border:1px solid rgba(253,233,199,0.10);
+        box-shadow:0 16px 35px rgba(0,0,0,0.20);
+      }
+
+      .lesson5-video-text span{
+        display:inline-block;
+        margin-bottom:14px;
+        color:#FDE9C7;
+        letter-spacing:2px;
+        font-size:13px;
+        text-transform:uppercase;
+      }
+
+      .lesson5-video-text h2{
+        margin:0 0 14px;
+        font-family:'Playfair Display', serif;
+        font-size:clamp(32px, 4vw, 54px);
+        color:#FFF0DC;
+        line-height:1.05;
+      }
+
+      .lesson5-video-text p{
+        margin:0;
+        font-size:17px;
+        line-height:1.9;
+        color:#E5D9CC;
+      }
+
+      .lesson5-video-box{
+        padding:14px;
+        border-radius:30px;
+        background:linear-gradient(135deg, rgba(253,233,199,0.10), rgba(75,79,62,0.14), rgba(122,77,44,0.18));
+        border:1px solid rgba(253,233,199,0.10);
+        box-shadow:0 22px 48px rgba(0,0,0,0.24);
+      }
+
+      .lesson5-video-box iframe{
+        width:100%;
+        height:420px;
+        border:none;
+        display:block;
+        border-radius:20px;
+      }
+
+    /* =============================== */
+    /* Lesson Navigation Buttons */
+    /* =============================== */
+    .lesson-buttons {
+      width: min(1150px, 92%);
+      margin: 30px auto 80px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lesson-buttons a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+	  color:   #C1B393;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back,
+    .btn-next {
+      background: #C1B393;
+      color: #2f241d;
+      border: 1px solid #b9997d;
+    }
+
+    .btn-back:hover,
+    .btn-next:hover {
+      background: #7a4d2c;
+      color: #EDE8DC;
+      transform: translateY(-3px);
+    }
+
+      @keyframes fadeUp{
+        from{
+          opacity:0;
+          transform:translateY(24px);
+        }
+        to{
+          opacity:1;
+          transform:translateY(0);
+        }
+      }
+
+      @keyframes gradientMove{
+        0%{ background-position:0% 50%; }
+        50%{ background-position:100% 50%; }
+        100%{ background-position:0% 50%; }
+      }
+
+      @media (max-width: 1100px){
+        .lesson5-grid,
+        .lesson5-video-section{
+          grid-template-columns:1fr;
+        }
+      }
+
+      @media (max-width: 700px){
+        .lesson5-wrap{
+          padding:24px 0 60px;
+        }
+
+        .lesson5-hero{
+          min-height:380px;
+          padding:26px;
+        }
+
+        .lesson5-intro p,
+        .lesson5-video-text,
+        .lesson5-card{
+          padding-left:20px;
+          padding-right:20px;
+        }
+
+        .lesson5-video-box iframe{
+          height:240px;
+        }
+
+        .lesson5-buttons{
+          flex-direction:column;
+        }
+
+        .lesson5-btn{
+          width:100%;
+        }
+      }
+    </style>
+
+</head>
+<body>
+<header>
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="logo.png" alt="Bean to Brew Logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html"class="active">Home</a></li>
+      <li><a href="BrewSchool.html">Brew School</a></li>
+      <li><a href="CoffeLab.html">Coffee Lab</a></li>
+      <li><a href="student-dashboard.html">Student Dashboard</a></li>
+      <li><a href="About-us.html">About Us</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+      <input type="text" placeholder="Search" class="search-box">
+    </div>
+
+  </nav>
+</header>
+  <main class="lesson5-page">
+  <div class="path-wrap">
+
+      <div class="path-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="BrewSchool.html">Brew School</a>
+        <span>›</span>
+         <a href="lesson5.1.html">lesson5.1</a>
+      </div>
+    </div>
+
+      <section class="lesson5-hero">
+        <div class="lesson5-hero-content">
+          <span class="lesson5-tag">Lesson 5</span>
+          <h1>Brewing Methods</h1>
+          <p>
+            Explore how different brewing methods shape coffee’s flavor, body,
+            and strength — and why the same beans can create completely different experiences.
+          </p>
+        </div>
+      </section>
+
+      <section class="lesson5-intro">
+        <p>
+          Brewing is the final step in making coffee. It is the process where water extracts flavor
+          from ground coffee and turns it into the drink we enjoy. The brewing method you choose can
+          greatly affect taste, strength, and body.
+        </p>
+      </section>
+
+      <section class="lesson5-styles">
+        <h2>Brewing Styles</h2>
+        <p class="lesson5-styles-sub">Each method reveals coffee in a different way.</p>
+
+        <div class="lesson5-grid">
+
+          <article class="lesson5-card one">
+            <div class="lesson5-icon-shell">
+              <svg class="lesson5-icon" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" class="bg"/>
+                <path d="M28 34 L72 34 L64 66 L36 66 Z" class="shape"/>
+                <line x1="50" y1="18" x2="50" y2="34" class="line"/>
+                <line x1="36" y1="48" x2="64" y2="48" class="line"/>
+              </svg>
+            </div>
+            <h3>Percolation Brewing</h3>
+            <p>
+              Water passes through the coffee grounds and filters down, creating a clean,
+              lighter cup with more clarity and delicate notes.
+            </p>
+            <span class="lesson5-chip">Clean & balanced</span>
+          </article>
+
+          <article class="lesson5-card two">
+            <div class="lesson5-icon-shell">
+              <svg class="lesson5-icon" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" class="bg"/>
+                <rect x="30" y="30" width="40" height="36" rx="8" class="shape"/>
+                <line x1="34" y1="44" x2="66" y2="44" class="line"/>
+                <line x1="34" y1="54" x2="66" y2="54" class="line"/>
+              </svg>
+            </div>
+            <h3>Immersion Brewing</h3>
+            <p>
+              Coffee grounds stay in water for a longer time, giving the cup more body,
+              deeper flavor, and a smoother texture.
+            </p>
+            <span class="lesson5-chip">Full body</span>
+          </article>
+
+          <article class="lesson5-card three">
+            <div class="lesson5-icon-shell">
+              <svg class="lesson5-icon" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" class="bg"/>
+                <rect x="34" y="38" width="32" height="26" rx="7" class="shape"/>
+                <path d="M50 20 L64 38 L36 38 Z" class="shape"/>
+                <line x1="50" y1="38" x2="50" y2="54" class="line"/>
+              </svg>
+            </div>
+            <h3>Pressure Brewing</h3>
+            <p>
+              Water is pushed through the coffee quickly under pressure, producing a bold,
+              concentrated, and intense taste.
+            </p>
+            <span class="lesson5-chip">Bold & rich</span>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="lesson5-quote-wrap">
+        <div class="lesson5-quote">“Different styles extract flavor in different ways.”</div>
+      </section>
+
+      <section class="lesson5-video-section">
+        <div class="lesson5-video-text">
+          <span>Watch & Learn</span>
+          <h2>See brewing methods in action</h2>
+          <p>
+            Watch how each method changes extraction and discover why brewing technique
+            has such a strong effect on the final cup.
+          </p>
+        </div>
+
+        <div class="lesson5-video-box">
+          <iframe
+            src="https://www.youtube.com/embed/QVTNscQY0c?si=baK_VSn5QIHja7ak"
+            title="Brewing Methods Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+ <div class="lesson-buttons">
+      <a href="BrewSchool.html" >← Back</a>
+      <a href="lesson5.2.html" >Next →</a>
+    </div>
+
+  </main>
+
+ <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Bean to Brew Logo">
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact us</h3>
+          <p>+966504256847</p>
+          <p>BeantoBrew@gmail.com</p>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow us</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com">
+              <img src="instagramicon.png" alt="Instagram">
+            </a>
+            <span class="social-divider"></span>
+            <a href="https://instagram.com">
+              <img src="Xicon.png" alt="X">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+    </footer>
+
+ <script>
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+    if (themeToggle) themeToggle.textContent = "🌙";
+  } else {
+    themeStyle.href = "style.css";
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (themeStyle.getAttribute("href") === "style.css") {
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+</script>
+
+
+</body>
+</html>

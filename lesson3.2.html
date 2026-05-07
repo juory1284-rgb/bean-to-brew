@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3 | Roast Levels</title>
+
+<link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+	
+      background:
+  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      color: #EDE8DC;
+
+
+      color:#EDE8DC;
+      overflow-x:hidden;
+    }
+
+    p, li{
+      font-family:Arial, sans-serif;
+    }
+
+    .lesson-page{
+      width:100%;
+      padding-top:110px;
+    }
+		      
+    .path-wrap{
+      position:static;
+      top:auto;
+      left:auto;
+      width:min(92%, 1320px);
+      margin:0 auto 30px;
+      padding:0;
+      z-index:auto;
+    }
+
+    /* ================= HERO ================= */
+    .hero-lesson{
+      width:100%;
+      min-height:74vh;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:0 70px 72px;
+      background-image:
+        linear-gradient(rgba(20,14,11,0.38), rgba(20,14,11,0.40)),
+        url("roast-levels-hero.jpg");
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+
+    .hero-lesson::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(20,14,11,0.60) 0%, rgba(20,14,11,0.32) 42%, rgba(20,14,11,0.10) 100%),
+        radial-gradient(circle at 15% 30%, rgba(253,233,199,0.12), transparent 22%),
+        radial-gradient(circle at 80% 18%, rgba(122,77,44,0.14), transparent 25%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:650px;
+      animation:fadeUp 0.9s ease;
+    }
+
+    .lesson-badge{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.18);
+      color:#FDE9C7;
+      font-size:14px;
+      margin-bottom:18px;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .hero-content h1{
+      font-family:'Playfair Display', serif;
+      font-size:70px;
+      line-height:1.04;
+      color:#ffffff;
+      margin-bottom:16px;
+      text-shadow:0 10px 26px rgba(0,0,0,0.28);
+    }
+
+    .hero-content p{
+      font-size:21px;
+      line-height:1.8;
+      color:#FDE9C7;
+      max-width:590px;
+      text-shadow:0 4px 14px rgba(0,0,0,0.18);
+    }
+
+    /* ================= MAIN WRAP ================= */
+    .page-wrap{
+      width:min(1180px, calc(100% - 40px));
+      margin:0 auto;
+      padding:72px 0 95px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:34px;
+    }
+
+    .section-title h2{
+      font-family:'Playfair Display', serif;
+      font-size:50px;
+      color:#fff;
+      margin-bottom:12px;
+    }
+
+    .section-title p{
+      max-width:780px;
+      margin:0 auto;
+      color:#DDD2C8;
+      font-size:19px;
+      line-height:1.9;
+    }
+
+    /* ================= CHANGES PANEL ================= */
+    .changes-panel{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      padding:58px 32px 48px;
+      background:
+        linear-gradient(145deg, rgba(58,47,43,0.78), rgba(75,79,62,0.62));
+      border:1px solid rgba(255,255,255,0.07);
+      box-shadow:0 22px 48px rgba(0,0,0,0.18);
+    }
+
+    .changes-panel::before{
+      content:"";
+      position:absolute;
+      top:-100px;
+      right:-90px;
+      width:240px;
+      height:240px;
+      background:radial-gradient(circle, rgba(253,233,199,0.12), transparent 68%);
+      pointer-events:none;
+    }
+
+    .changes-panel::after{
+      content:"";
+      position:absolute;
+      bottom:-80px;
+      left:-80px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(193,179,147,0.10), transparent 70%);
+      pointer-events:none;
+    }
+
+    .diamond-area{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:18px;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .diamond-card{
+      width:152px;
+      height:152px;
+      margin:0 auto;
+      transform:rotate(45deg);
+      border:1.5px solid rgba(253,233,199,0.48);
+      background:
+        linear-gradient(145deg, rgba(253,233,199,0.10), rgba(75,79,62,0.18));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      transition:0.35s ease;
+      box-shadow:0 12px 26px rgba(0,0,0,0.14);
+    }
+
+    .diamond-card:hover{
+      transform:rotate(45deg) translateY(-10px) scale(1.04);
+      border-color:#FDE9C7;
+      background:
+        linear-gradient(145deg, rgba(253,233,199,0.16), rgba(122,77,44,0.18));
+      box-shadow:0 18px 30px rgba(0,0,0,0.18);
+    }
+
+    .diamond-card span{
+      transform:rotate(-45deg);
+      display:block;
+      width:100px;
+      text-align:center;
+      color:#F7EEE4;
+      font-size:18px;
+      line-height:1.55;
+    }
+
+    .diamond-card.center{
+      width:172px;
+      height:172px;
+      background:
+        linear-gradient(145deg, rgba(193,179,147,0.22), rgba(75,79,62,0.24));
+      border-color:#FDE9C7;
+    }
+
+    .diamond-card.center span{
+      width:122px;
+      font-size:20px;
+      color:#fff;
+    }
+
+    .diamond-left-top{ margin-top:-30px; }
+    .diamond-left-bottom{ margin-top:68px; }
+    .diamond-center{ margin-top:24px; }
+    .diamond-right-bottom{ margin-top:68px; }
+    .diamond-right-top{ margin-top:-18px; }
+
+    /* ================= IMAGE CARD ================= */
+    .wide-image-card{
+      margin-top:38px;
+      position:relative;
+      overflow:hidden;
+      border-radius:32px;
+      background:#EDE8DC;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 20px 42px rgba(0,0,0,0.16);
+    }
+
+    .wide-image-card img{
+      width:100%;
+      height:430px;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.5s ease;
+      filter:saturate(1.04) contrast(1.01);
+    }
+
+    .wide-image-card:hover img{
+      transform:scale(1.04);
+    }
+
+    .wide-image-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to top, rgba(20,14,11,0.22), rgba(20,14,11,0.05));
+      pointer-events:none;
+    }
+
+    /* ================= BRIDGE ================= */
+    .bridge-section{
+      margin-top:38px;
+      text-align:center;
+      padding:52px 24px;
+      border-radius:32px;
+
+    background-color:#EDE8DC;     
+	border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .bridge-section h3{
+      font-family:'Playfair Display', serif;
+      font-size:40px;
+      color: #3A2F2B;
+      margin-bottom:16px;
+    }
+
+    .bridge-section p{
+      max-width:760px;
+      margin:0 auto;
+      color:#5a3e2d;
+      font-size:28px;
+      line-height:1.7;
+    }
+
+    .bridge-line{
+      width:230px;
+      height:1px;
+      margin:30px auto 0;
+      background:linear-gradient(90deg, transparent, #C1B393, transparent);
+    }
+
+    /* ================= LEVELS ================= */
+    .levels-section{
+      margin-top:44px;
+      padding:56px 30px 48px;
+      border-radius:34px;
+      background: linear-gradient(to bottom, #3A2F2B, #4B4F3E);
+      color: #2f241d;
+
+    }
+
+    .levels-section h2{
+      font-family:'Playfair Display', serif;
+      text-align:center;
+      font-size:64px;
+      color:#fff;
+      margin-bottom:56px;
+    }
+
+    .levels-line{
+      position:relative;
+      max-width:1020px;
+      margin:0 auto;
+      padding-top:54px;
+    }
+
+    .levels-line::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:93px;
+      height:4px;
+      border-radius:999px;
+      background:linear-gradient(90deg, #C1B393, #FDE9C7, #7A4D2C);
+      box-shadow:0 0 12px rgba(253,233,199,0.10);
+    }
+
+    .levels-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:34px;
+      position:relative;
+      z-index:2;
+    }
+
+    .level-card{
+      text-align:center;
+      position:relative;
+    }
+
+    .level-card h3{
+      font-family:'Playfair Display', serif;
+      font-size:34px;
+      color:#fff;
+      margin-bottom:66px;
+    }
+
+    .level-card .dot{
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      background:#231B18;
+      border:4px solid #FDE9C7;
+      margin:0 auto 24px;
+      box-shadow:0 0 0 8px rgba(253,233,199,0.08);
+      transition:0.3s ease;
+    }
+
+    .level-card:hover .dot{
+      transform:scale(1.14);
+      box-shadow:0 0 0 12px rgba(253,233,199,0.10);
+    }
+
+    .level-card ul{
+      list-style:none;
+      text-align:left;
+      max-width:220px;
+      margin:0 auto;
+      display:grid;
+      gap:10px;
+      color:#F5EEE5;
+      font-size:15px;
+      line-height:1.75;
+    }
+
+    .level-card li{
+      position:relative;
+      padding-left:16px;
+    }
+
+    .level-card li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:#FDE9C7;
+    }
+
+    /* ================= SUMMARY SPLIT ================= */
+    .summary-split{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 20px 42px rgba(0,0,0,0.16);
+    }
+
+    .summary-text{
+      background:
+        linear-gradient(135deg, rgba(193,179,147,0.34), rgba(122,77,44,0.34));
+      padding:52px 56px;
+    }
+
+    .summary-text h3{
+      font-family:'Playfair Display', serif;
+      font-size:40px;
+      color:#fff;
+      margin-bottom:22px;
+    }
+
+    .summary-text ul{
+      list-style:none;
+      display:grid;
+      gap:18px;
+    }
+
+    .summary-text li{
+      color:#FAF1E6;
+      font-size:21px;
+      line-height:1.7;
+      position:relative;
+      padding-left:26px;
+    }
+
+    .summary-text li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:#FDE9C7;
+      font-size:24px;
+    }
+
+    .summary-image{
+      min-height:100%;
+      background-image:
+        linear-gradient(rgba(20,14,11,0.18), rgba(20,14,11,0.18)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .summary-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(20,14,11,0.18), rgba(20,14,11,0.06));
+    }
+
+    /* ================= FINAL NOTE ================= */
+    .final-note{
+      margin-top:40px;
+      text-align:center;
+      padding:28px 16px;
+    }
+
+    .final-note p{
+      max-width:880px;
+      margin:0 auto;
+      color:#DED2C6;
+      line-height:2;
+      font-size:18px;
+    }
+    /* =============================== */
+    /* Lesson Navigation Buttons */
+    /* =============================== */
+    .lesson-buttons {
+      width: min(1150px, 92%);
+      margin: 30px auto 80px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lesson-buttons a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+	  color:   #C1B393;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back,
+    .btn-next {
+      background: #C1B393;
+      color: #2f241d;
+      border: 1px solid #b9997d;
+    }
+
+    .btn-back:hover,
+    .btn-next:hover {
+      background: #7a4d2c;
+      color: #EDE8DC;
+      transform: translateY(-3px);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1100px){
+      .diamond-area{
+        grid-template-columns:repeat(2, 1fr);
+        justify-items:center;
+      }
+
+      .diamond-left-top,
+      .diamond-left-bottom,
+      .diamond-center,
+      .diamond-right-bottom,
+      .diamond-right-top{
+        margin-top:0;
+      }
+
+      .summary-split{
+        grid-template-columns:1fr;
+      }
+
+      .summary-image{
+        min-height:300px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-lesson{
+        padding:0 24px 48px;
+        min-height:64vh;
+      }
+
+      .hero-content h1{
+        font-size:48px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+      .page-wrap{
+        width:min(100% - 20px, 1180px);
+        padding:46px 0 72px;
+      }
+
+      .section-title h2{
+        font-size:36px;
+      }
+
+      .bridge-section p{
+        font-size:22px;
+      }
+
+      .levels-section h2{
+        font-size:46px;
+      }
+
+      .levels-grid{
+        grid-template-columns:1fr;
+        gap:46px;
+      }
+
+      .levels-line::before{
+        display:none;
+      }
+
+      .level-card{
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.06);
+        border-radius:24px;
+        padding:26px 20px;
+      }
+
+      .level-card h3{
+        margin-bottom:18px;
+      }
+
+      .level-card .dot{
+        margin-bottom:18px;
+      }
+
+      .wide-image-card img{
+        height:300px;
+      }
+    }
+
+    @media (max-width: 600px){
+      .changes-panel,
+      .bridge-section,
+      .levels-section,
+      .summary-text{
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .diamond-area{
+        grid-template-columns:1fr;
+      }
+
+      .diamond-card,
+      .diamond-card.center{
+        width:145px;
+        height:145px;
+      }
+
+      .diamond-card span,
+      .diamond-card.center span{
+        width:98px;
+        font-size:17px;
+      }
+
+      .lesson-nav a{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="logo.png" alt="Bean to Brew Logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html"class="active">Home</a></li>
+      <li><a href="BrewSchool.html">Brew School</a></li>
+      <li><a href="CoffeLab.html">Coffee Lab</a></li>
+      <li><a href="student-dashboard.html">Student Dashboard</a></li>
+      <li><a href="About-us.html">About Us</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+      <input type="text" placeholder="Search" class="search-box">
+    </div>
+
+  </nav>
+</header>
+
+  <main class="lesson-page">
+    <div class="path-wrap">
+
+      <div class="path-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="BrewSchool.html">Brew School</a>
+        <span>›</span>
+        <a href="lesson3.1.html">lesson3.1</a>
+        <span>›</span>
+         <a href="lesson3.2.html">lesson3.2</a>
+      </div>
+    </div>
+	  
+    <section class="hero-lesson">
+      <div class="hero-content">
+        <h1>Roast Levels</h1>
+        <p>
+          Explore how roasting changes sweetness, acidity, bitterness,
+          body, and the final personality of coffee.
+        </p>
+      </div>
+    </section>
+
+    <section class="page-wrap">
+
+      <section class="changes-panel">
+        <div class="section-title">
+          <h2>How Roasting Changes Coffee</h2>
+        </div>
+
+        <div class="diamond-area">
+          <div class="diamond-card diamond-left-top">
+            <span>Sweetness can become deeper</span>
+          </div>
+
+          <div class="diamond-card diamond-left-bottom">
+            <span>Bitterness becomes stronger</span>
+          </div>
+
+          <div class="diamond-card center diamond-center">
+            <span>Acidity becomes softer</span>
+          </div>
+
+          <div class="diamond-card diamond-right-bottom">
+            <span>Body becomes heavier</span>
+          </div>
+
+          <div class="diamond-card diamond-right-top">
+            <span>Original origin flavors become less noticeable</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="wide-image-card">
+        <img src="Headerpic.png" alt="Coffee roasting image">
+      </section>
+
+      <section class="bridge-section">
+        <h3>Roasting shapes the personality of coffee</h3>
+        <p>
+          If roasting changes flavor this much, how different are light and dark roasts?
+        </p>
+        <div class="bridge-line"></div>
+      </section>
+
+      <section class="levels-section">
+        <h2>Roast Levels</h2>
+
+        <div class="levels-line">
+          <div class="levels-grid">
+
+            <div class="level-card">
+              <h3>Light Roast</h3>
+              <div class="dot"></div>
+              <ul>
+                <li>Light brown color</li>
+                <li>Higher acidity</li>
+                <li>Original bean flavors remain clear</li>
+                <li>Lighter body</li>
+              </ul>
+            </div>
+
+            <div class="level-card">
+              <h3>Medium Roast</h3>
+              <div class="dot"></div>
+              <ul>
+                <li>Medium brown color</li>
+                <li>Balanced acidity and bitterness</li>
+                <li>Smooth and well-rounded flavor</li>
+                <li>Medium body</li>
+              </ul>
+            </div>
+
+            <div class="level-card">
+              <h3>Dark Roast</h3>
+              <div class="dot"></div>
+              <ul>
+                <li>Dark brown color</li>
+                <li>Lower acidity</li>
+                <li>Stronger bitterness</li>
+                <li>Heavier body and bold smoky notes</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-split">
+        <div class="summary-text">
+          <h3>As roasting increases:</h3>
+          <ul>
+            <li>Acidity decreases</li>
+            <li>Bitterness increases</li>
+            <li>Body becomes heavier</li>
+          </ul>
+        </div>
+
+        <div class="summary-image"></div>
+      </section>
+
+      <section class="final-note">
+        <p>
+          Roasting is the stage where coffee truly comes to life. From light to dark,
+          each roast level creates a different balance of acidity, bitterness, and body.
+          Understanding these differences helps you choose the roast that best matches your taste.
+        </p>
+      </section>
+
+      <div class="lesson-buttons">
+        <a href="lesson3.1.html" >← Back</a>
+        <a href="quiz3.html" >Start Quiz →</a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Bean to Brew Logo">
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact us</h3>
+        <p>+966504256847</p>
+        <p>BeantoBrew@gmail.com</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow us</h3>
+        <div class="social-icons">
+          <a href="javascript:void(0);">
+            <img src="instagramicon.png" alt="Instagram">
+          </a>
+
+          <span class="social-divider"></span>
+
+          <a href="javascript:void(0);">
+            <img src="Xicon.png" alt="X">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      Learn, explore, and enjoy the world of coffee.
+    </p>
+
+    <p class="copyright">
+      © 2026 Bean to Brew. All rights reserved.
+    </p>
+  </footer>
+
+
+  <script>
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+    if (themeToggle) themeToggle.textContent = "🌙";
+  } else {
+    themeStyle.href = "style.css";
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (themeStyle.getAttribute("href") === "style.css") {
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

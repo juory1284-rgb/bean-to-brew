@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 5 Quiz | Bean to Brew</title>
+
+<link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+       body{
+      background:
+      radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+      radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+      radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+      radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+      linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      min-height:100vh;
+    }
+
+    /* ===== Global Typography ===== */
+    h1, h2, h3, h4, h5, h6{
+      font-family:'Playfair Display', serif;
+    }
+
+    p{
+      font-family:Arial, sans-serif;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background-color:#26231F;
+      padding:0 40px;
+      z-index:1000;
+    }
+
+    .logo img{
+      width:60px;
+      height:auto;
+      display:block;
+    }
+
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin:0;
+      padding:0;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#f3d9b1;
+    }
+
+    .nav-links a.active{
+      color:#f3d9b1;
+      font-weight:bold;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .mode-btn{
+      background:transparent;
+      border:none;
+      color:white;
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    .search-box{
+      padding:8px 12px;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:14px;
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      width:100%;
+      min-height:100vh;
+      background-image:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("Headerpic.png");
+      background-size:cover;
+      background-position:center top;
+      display:flex;
+      align-items:center;
+      padding-top:80px;
+      padding-left:80px;
+    }
+
+    .hero-content{
+      margin-top:-280px;
+      margin-left:-60px;
+    }
+
+    .main-hero-title{
+      font-family:'Playfair Display', serif;
+      font-size:60px;
+      line-height:1.2;
+      margin:0;
+      text-align:left;
+    }
+
+    .beige-text{
+      color:#FDE9C7;
+    }
+
+    .white-text{
+      color:white;
+    }
+
+    /* ===== Breadcrumb ===== */
+    .path-wrap{
+      position:absolute;
+      top:110px;
+      left:80px;
+      width:auto;
+      margin:0;
+      padding:0;
+      z-index:5;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
+      color:#fff7ef;
+      font-size:14px;
+      margin:0;
+      animation:fadeUp 0.8s ease;
+    }
+
+    .path-breadcrumb a,
+    .path-breadcrumb a:visited,
+    .path-breadcrumb a:active{
+      color:#fff7ef;
+      text-decoration:none;
+      transition:0.3s ease;
+    }
+
+    .path-breadcrumb a:hover{
+      color:#FDE9C7;
+      text-decoration:none;
+    }
+
+    .path-breadcrumb span{
+      color:#fff7ef;
+    }
+
+    /* ===== Quiz Layout ===== */
+    .quiz-page{
+      width:min(1000px, 92%);
+      margin:170px auto 80px;
+    }
+
+    .quiz-header{
+      text-align:center;
+      background:#26231F;
+      border-radius:30px;
+      padding:40px 30px;
+      margin-bottom:30px;
+      color:white;
+      box-shadow:0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    .quiz-badge{
+      display:inline-block;
+      padding:9px 20px;
+      border-radius:999px;
+      background:#C1B393;
+      color:#2f241d;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .quiz-header h1{
+      font-size:clamp(2.2rem, 5vw, 3.4rem);
+      color:#FDE9C7;
+      margin-bottom:14px;
+    }
+
+    .quiz-header p{
+      color:#EDE8DC;
+      font-size:1.05rem;
+      line-height:1.9;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .quiz-form{
+      display:grid;
+      gap:24px;
+    }
+
+    .question-card{
+      background:#4B4F3E;
+      border:1px solid #4B4F3E;
+      border-radius:28px;
+      padding:28px 24px;
+      box-shadow:0 18px 35px rgba(0,0,0,0.14);
+    }
+
+    .question-card h3{
+      font-size:1.25rem;
+      margin-bottom:18px;
+      color:#FDE9C7;
+      line-height:1.6;
+    }
+
+    .options{
+      display:grid;
+      gap:14px;
+    }
+
+    .option{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background:#EDE8DC;
+      border:1px solid #d8ccbb;
+      border-radius:16px;
+      padding:14px 16px;
+      transition:0.3s ease;
+      cursor:pointer;
+      color:#2f241d;
+      line-height:1.7;
+      font-family:Arial, sans-serif;
+    }
+
+    .option:hover{
+      background:#f7f1e7;
+      border-color:#C1B393;
+    }
+
+    .option input{
+      accent-color:#7a4d2c;
+      transform:scale(1.15);
+      margin-top:3px;
+      cursor:pointer;
+      flex-shrink:0;
+    }
+
+    /* ===== Buttons ===== */
+    .quiz-actions{
+  width:min(1150px, 92%);
+  margin:30px auto 80px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.quiz-actions a,
+.quiz-actions button{
+  text-decoration:none;
+  font-size:1.5rem;
+  font-weight:600;
+  color:#C1B393;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:all 0.3s ease;
+  font-family:'Playfair Display', serif;
+  background:transparent;
+  border:none;
+  padding:0;
+  cursor:pointer;
+}
+
+.quiz-actions a:hover,
+.quiz-actions button:hover{
+  color:#7a4d2c;
+  transform:translateY(-3px);
+}
+
+    /* ===== Footer ===== */
+    .site-footer{
+      background-image:
+        linear-gradient(rgba(35,24,18,0.80), rgba(35,24,18,0.80)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:top center;
+      background-repeat:no-repeat;
+      padding:25px 20px 40px;
+      text-align:center;
+      color:beige;
+    }
+
+    .footer-top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-bottom:5px;
+    }
+
+    .footer-logo img{
+      width:300px;
+      padding:10px;
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,0.2));
+    }
+
+    .footer-contact h3,
+    .footer-social h3{
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .footer-contact p{
+      margin:6px 0;
+      font-size:16px;
+      font-weight:600;
+    }
+
+    .footer-social{
+      text-align:center;
+    }
+
+    .social-icons{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      margin-top:5px;
+    }
+
+    .social-icons a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .social-icons img{
+      width:30px;
+      height:30px;
+      object-fit:contain;
+      transition:transform 0.25s ease;
+      filter:brightness(1.4);
+    }
+
+    .social-icons img:hover{
+      transform:scale(1.15);
+    }
+
+    .social-divider{
+      width:1px;
+      height:22px;
+      background:rgba(255,255,255,0.4);
+    }
+
+    .footer-note{
+      font-size:16px;
+      margin-top:15px;
+    }
+
+    .copyright{
+      font-size:15px;
+      margin-top:10px;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(10px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media (max-width:992px){
+  .quiz-page{
+    width:min(1000px, 94%);
+    margin:160px auto 75px;
+  }
+
+  .quiz-header{
+    padding:34px 24px;
+  }
+
+  .question-card{
+    padding:26px 22px;
+  }
+}
+
+@media (max-width:768px){
+  .navbar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:15px 10px;
+    gap:10px;
+    height:auto;
+  }
+
+  .logo{
+    order:1;
+  }
+
+  .nav-right{
+    order:2;
+    display:flex;
+    justify-content:center;
+    width:100%;
+  }
+
+  .nav-links{
+    order:3;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    margin-top:5px;
+  }
+
+  .nav-links li{
+    list-style:none;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  .search-box{
+    max-width:200px;
+  }
+
+  .path-wrap{
+    left:20px;
+    top:185px;
+  }
+
+  .path-breadcrumb{
+    flex-wrap:wrap;
+    font-size:13px;
+  }
+
+  .quiz-page{
+    width:min(1000px, 92%);
+    margin:240px auto 70px;
+  }
+
+  .quiz-header{
+    padding:30px 20px;
+    border-radius:24px;
+  }
+
+  .quiz-header h1{
+    font-size:2.2rem;
+  }
+
+  .quiz-header p{
+    font-size:0.98rem;
+  }
+
+  .question-card{
+    padding:24px 18px;
+    border-radius:22px;
+  }
+
+  .question-card h3{
+    font-size:1.1rem;
+  }
+
+  .option{
+    padding:13px 14px;
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  .quiz-actions{
+    width:100%;
+    justify-content:space-between;
+    margin:28px auto 65px;
+  }
+
+  .quiz-actions a,
+  .quiz-actions button{
+    font-size:1.2rem;
+  }
+}
+
+@media (max-width:560px){
+  .path-breadcrumb{
+    display:none;
+  }
+
+  .quiz-page{
+    width:min(100%, calc(100% - 28px));
+    margin:220px auto 60px;
+  }
+
+  .quiz-header{
+    padding:28px 16px;
+  }
+
+  .quiz-badge{
+    font-size:13px;
+    padding:8px 16px;
+  }
+
+  .quiz-header h1{
+    font-size:1.9rem;
+  }
+
+  .quiz-header p{
+    font-size:0.95rem;
+    line-height:1.7;
+  }
+
+  .quiz-form{
+    gap:20px;
+  }
+
+  .question-card{
+    padding:22px 16px;
+  }
+
+  .question-card h3{
+    font-size:1rem;
+  }
+
+  .option{
+    gap:10px;
+    padding:12px 13px;
+    font-size:13px;
+  }
+
+  .quiz-actions{
+    gap:14px;
+  }
+
+  .quiz-actions a,
+  .quiz-actions button{
+    font-size:1.05rem;
+  }
+}
+
+@media (max-width:480px){
+  .nav-links{
+    gap:8px;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .search-box{
+    max-width:160px;
+    font-size:12px;
+  }
+
+  .mode-btn{
+    font-size:18px;
+  }
+
+  .quiz-page{
+    margin:230px auto 55px;
+  }
+
+  .quiz-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .quiz-actions a,
+  .quiz-actions button{
+    width:100%;
+    justify-content:center;
+  }
+  .footer-clock{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.clock-box{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border:1px solid rgba(253, 233, 199, 0.28);
+  border-radius:14px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(4px);
+  color:#F5F1E8;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+.clock-label{
+  font-size:14px;
+  font-weight:600;
+  color:#EDE8DC;
+  letter-spacing:0.4px;
+}
+
+#live-clock{
+  font-size:15px;
+  font-weight:700;
+  color:#F5F1E8;
+  letter-spacing:1px;
+  min-width:105px;
+  text-align:center;
+}
+
+#backToTop{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  background-color:#C1B393;
+  color:#26231F;
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  transition:all 0.3s ease;
+  z-index:9999;
+}
+
+#backToTop:hover{
+  background-color:#FDE9C7;
+  transform:translateY(0) scale(1.06);
+}
+
+#backToTop.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+@media (max-width:560px){
+  .clock-box{
+    padding:9px 14px;
+    gap:8px;
+  }
+
+  .clock-label{
+    font-size:13px;
+  }
+
+  #live-clock{
+    font-size:14px;
+    min-width:95px;
+  }
+
+  #backToTop{
+    right:16px;
+    bottom:16px;
+    width:46px;
+    height:46px;
+    font-size:20px;
+  }
+}
+}
+  </style>
+</head>
+<body>
+
+ <header>
+    <nav class="navbar">
+
+     <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="BrewSchool.html" class="active">Brew School</a></li>
+        <li><a href="CoffeLab.html">Coffee Lab</a></li>
+        <li><a href="student-dashboard.html">Student Dashboard</a></li>
+        <li><a href="About-us.html">About Us</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+        <input type="text" placeholder="Search" class="search-box">
+      </div>
+
+    </nav>
+  </header>
+
+  <main class="quiz-page">
+  
+    <div class="path-wrap">
+      <div class="path-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="BrewSchool.html">Brew School</a>
+        <span>›</span>
+        <a href="lesson5.1.html">Lesson 5.1</a>
+        <span>›</span>
+        <a href="lesson5.2.html">Lesson 5.2</a>
+        <span>›</span>
+        <span>Quiz 5</span>
+      </div>
+    </div>
+
+    <div class="quiz-header">
+      <span class="quiz-badge">Lesson 5 Quiz</span>
+      <h1>Brewing Methods</h1>
+      <p>
+        Answer the following multiple-choice questions about brewing styles,
+        extraction methods, and how different techniques affect the final cup.
+      </p>
+    </div>
+
+    <form class="quiz-form" id="quizForm">
+
+      <div class="question-card">
+        <h3>1) What is brewing?</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q1" value="a"> The process of roasting coffee beans</label>
+<label class="option"><input type="radio" name="q1" value="b"> The process where water extracts flavor from ground coffee</label>
+<label class="option"><input type="radio" name="q1" value="c"> The process of grinding beans only</label>
+<label class="option"><input type="radio" name="q1" value="d"> The process of drying green coffee beans</label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <h3>2) Which brewing style creates a clean and lighter cup?</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q2" value="a"> Immersion Brewing</label>
+<label class="option"><input type="radio" name="q2" value="b"> Pressure Brewing</label>
+<label class="option"><input type="radio" name="q2" value="c"> Percolation Brewing</label>
+<label class="option"><input type="radio" name="q2" value="d"> Cold Storage Brewing</label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <h3>3) In immersion brewing, coffee grounds:</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q3" value="a"> Stay in water for a longer time</label>
+<label class="option"><input type="radio" name="q3" value="b"> Are pushed under high pressure</label>
+<label class="option"><input type="radio" name="q3" value="c"> Do not touch water directly</label>
+<label class="option"><input type="radio" name="q3" value="d"> Become lighter in color</label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <h3>4) Which method uses high pressure and a short brew time?</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q4" value="a"> V60</label>
+<label class="option"><input type="radio" name="q4" value="b"> French Press</label>
+<label class="option"><input type="radio" name="q4" value="c"> Cold Brew</label>
+<label class="option"><input type="radio" name="q4" value="d"> Espresso</label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <h3>5) Which brewing method is known for being smooth and low in acidity?</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q5" value="a"> Cold Brew</label>
+<label class="option"><input type="radio" name="q5" value="b"> Espresso</label>
+<label class="option"><input type="radio" name="q5" value="c"> V60</label>
+<label class="option"><input type="radio" name="q5" value="d"> Moka Pot</label>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <h3>6) Which method uses a paper filter and highlights flavor notes?</h3>
+        <div class="options">
+        <label class="option"><input type="radio" name="q6" value="a"> French Press</label>
+<label class="option"><input type="radio" name="q6" value="b"> V60</label>
+<label class="option"><input type="radio" name="q6" value="c"> Espresso</label>
+<label class="option"><input type="radio" name="q6" value="d"> Cold Brew</label>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <a href="lesson5.2.html">← Back</a>
+        <button type="submit">Submit →</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <div class="footer-logo">
+        <img src="logo.png" alt="Bean to Brew Logo">
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact us</h3>
+        <p>+966504256847</p>
+        <p>BeantoBrew@gmail.com</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow us</h3>
+
+        <div class="social-icons">
+          <a href="javascript:void(0);">
+            <img src="instagramicon.png" alt="Instagram">
+          </a>
+          <span class="social-divider"></span>
+          <a href="javascript:void(0);">
+            <img src="Xicon.png" alt="X">
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p class="footer-note">
+      Learn, explore, and enjoy the world of coffee.
+    </p>
+<div class="footer-clock">
+  <div class="clock-box">
+    <span class="clock-label">Current Time</span>
+    <span id="live-clock">00:00:00</span>
+  </div>
+</div>
+    <p class="copyright">
+      © 2026 Bean to Brew. All rights reserved.
+    </p>
+
+  </footer>
+<button id="backToTop" title="Back to Top">↑</button>
+<script>
+const liveClock = document.getElementById("live-clock");
+  const backToTopBtn = document.getElementById("backToTop");
+
+  function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    if (liveClock) {
+      liveClock.textContent = time;
+    }
+  }
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTop);
+
+  updateClock();
+  setInterval(updateClock, 1000);
+document.addEventListener("DOMContentLoaded", function () {
+  const quizForm = document.getElementById("quizForm");
+
+  if (!quizForm) return;
+
+  quizForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const correctAnswers = {
+      q1: "b",
+      q2: "c",
+      q3: "a",
+      q4: "d",
+      q5: "a",
+      q6: "b"
+    };
+
+    let score = 0;
+    const lessonName = "Lesson 5 Quiz";
+    const totalQuestions = 6;
+    const quizLink = "quiz5.html";
+
+    for (let question in correctAnswers) {
+      const selectedAnswer = document.querySelector('input[name="' + question + '"]:checked');
+
+      if (!selectedAnswer) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+
+      if (selectedAnswer.value === correctAnswers[question]) {
+        score++;
+      }
+    }
+
+    let scores = JSON.parse(localStorage.getItem("quizScores")) || [];
+
+    let existingLesson = scores.find(function(item) {
+      return item.lesson === lessonName;
+    });
+
+    if (existingLesson) {
+      if (score > existingLesson.bestScore) {
+        existingLesson.bestScore = score;
+      }
+    } else {
+      scores.push({
+        lesson: lessonName,
+        bestScore: score
+      });
+    }
+
+    localStorage.setItem("quizScores", JSON.stringify(scores));
+    localStorage.setItem("currentQuizScore", String(score));
+    localStorage.setItem("currentQuizLesson", lessonName);
+    localStorage.setItem("currentQuizTotal", String(totalQuestions));
+    localStorage.setItem("currentQuizLink", quizLink);
+
+    window.location.href = "result.html";
+  });
+});
+
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+  }
+
+</script>
+
+</body>
+</html>

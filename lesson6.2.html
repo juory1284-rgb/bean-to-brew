@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 6 - Coffee Characteristics Comparison</title>
+<link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="logo.png" alt="Bean to Brew Logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="BrewSchool.html">Brew School</a></li>
+      <li><a href="CoffeLab.html">Coffee Lab</a></li>
+      <li><a href="student-dashboard.html">Student Dashboard</a></li>
+      <li><a href="About-us.html">About Us</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+      <input type="text" placeholder="Search" class="search-box">
+    </div>
+
+  </nav>
+</header>
+
+<main class="lesson6b-page">
+  <style>
+    .lesson6b-page{
+      font-family:Arial, sans-serif;
+      color:#EDE8DC;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      overflow:hidden;
+      padding-top:110px;
+    }
+
+    .path-wrap{
+      position:relative;
+      top:auto;
+      left:auto;
+      width:min(92%, 1320px);
+      margin:auto;
+      padding:0 0 80px;
+      z-index:5;
+    }
+
+    .path-breadcrumb{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:#fff7ef;
+      font-size:14px;
+      margin-bottom:20px;
+      animation:fadeUp 0.8s ease;
+    }
+
+    .path-breadcrumb a{
+      color:#fff7ef;
+      text-decoration:none;
+      transition:0.3s ease;
+    }
+
+    .path-breadcrumb a:hover{
+      color:#FDE9C7;
+    }
+
+    .lesson6b-hero{
+      position:relative;
+      min-height:340px;
+      border-radius:34px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:42px;
+      background:
+        linear-gradient(135deg, rgba(58,47,43,0.92), rgba(75,79,62,0.72), rgba(122,77,44,0.34)),
+        url("coffee-comparison-hero.jpg") center/cover no-repeat;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 28px 65px rgba(0,0,0,0.34);
+    }
+
+    .lesson6b-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(16,12,10,0.78) 0%, rgba(16,12,10,0.35) 45%, rgba(16,12,10,0.14) 100%);
+    }
+
+    .lesson6b-hero-content{
+      position:relative;
+      z-index:2;
+      max-width:760px;
+      animation:fadeUp 1s ease;
+    }
+
+    .lesson6b-pill{
+      display:inline-block;
+      margin-bottom:16px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.09);
+      border:1px solid rgba(255,255,255,0.14);
+      color:#fff3de;
+      font-size:14px;
+      letter-spacing:1px;
+      backdrop-filter:blur(8px);
+    }
+
+    .lesson6b-hero h1{
+      margin:0 0 14px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(38px, 6vw, 74px);
+      line-height:0.98;
+      color:#fff7ef;
+      text-shadow:0 8px 24px rgba(0,0,0,0.30);
+    }
+
+    .lesson6b-hero p{
+      margin:0;
+      color:#f3e8db;
+      font-size:18px;
+      line-height:1.9;
+      max-width:620px;
+    }
+
+    .comparison-section{
+      margin:58px 0 70px;
+      padding:34px 24px;
+      border-radius:34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+        rgba(38,35,31,0.74);
+      border:1px solid rgba(253,233,199,0.08);
+      box-shadow:0 18px 44px rgba(0,0,0,0.18);
+    }
+
+    .comparison-head{
+      text-align:center;
+      margin-bottom:28px;
+    }
+
+    .comparison-head h2{
+      margin:0 0 10px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(34px, 5vw, 58px);
+      color:#FFF2DF;
+    }
+
+    .comparison-head p{
+      margin:0;
+      color:#d8cbbb;
+      font-size:17px;
+    }
+
+    .comparison-table-wrap{
+      overflow-x:auto;
+      border-radius:24px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .comparison-table{
+      width:90%;
+      margin:auto;
+      border-collapse:collapse;
+      min-width:650px;
+      font-size:14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td{
+      padding:16px 14px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .comparison-table th{
+      background:#6B7557;
+      color:#FFF4E6;
+      font-family:'Playfair Display', serif;
+      font-size:17px;
+    }
+
+    .comparison-table td{
+      color:#3A2F2B;
+      font-size:14px;
+      background:#F3E7D3;
+    }
+
+    .comparison-table tr:nth-child(even) td{
+      background:#E8D8C0;
+    }
+
+    .comparison-table tr:hover td{
+      background:rgba(255,255,255,0.05);
+    }
+
+    .comparison-table td:first-child,
+    .comparison-table th:first-child{
+      text-align:left;
+      padding-left:20px;
+    }
+
+    .yes{
+      color:#d8efc4;
+      font-weight:700;
+      font-size:18px;
+    }
+
+    .no{
+      color:#e7c4b1;
+      font-weight:700;
+      font-size:18px;
+    }
+
+    .journey-section{
+      margin:0 0 54px;
+      text-align:center;
+    }
+
+    .journey-section h2{
+      margin:0 0 16px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(32px, 5vw, 56px);
+      color:#F7EBDC;
+      line-height:1.2;
+    }
+
+    .journey-sub{
+      max-width:860px;
+      margin:0 auto 42px;
+      color:#d7c8bb;
+      font-size:18px;
+      line-height:1.9;
+    }
+
+    .journey-map{
+      position:relative;
+      min-height:760px;
+      border-radius:34px;
+      padding:30px 20px;
+      background:
+        radial-gradient(circle at top left, rgba(193,179,147,0.10), transparent 18%),
+        radial-gradient(circle at bottom right, rgba(75,79,62,0.16), transparent 20%),
+        linear-gradient(135deg, rgba(58,47,43,0.90), rgba(38,35,31,0.96));
+      border:1px solid rgba(253,233,199,0.08);
+      box-shadow:0 18px 45px rgba(0,0,0,0.18);
+      overflow:hidden;
+    }
+
+    .journey-lines{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      opacity:0.7;
+    }
+
+    .journey-lines path{
+      stroke:#c8b897;
+      stroke-width:2.2;
+      fill:none;
+      stroke-dasharray:7 8;
+      stroke-linecap:round;
+    }
+
+    .journey-card{
+      position:absolute;
+      width:220px;
+      min-height:170px;
+      border-radius:28px;
+      padding:22px 20px;
+      text-align:left;
+      box-shadow:0 16px 34px rgba(0,0,0,0.18);
+      transition:0.35s ease;
+      border:1px solid rgba(255,255,255,0.08);
+      overflow:hidden;
+    }
+
+    .journey-card::before{
+      content:"";
+      position:absolute;
+      top:-30px;
+      right:-30px;
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.16), transparent 68%);
+    }
+
+    .journey-card:hover{
+      transform:translateY(-8px) scale(1.02);
+    }
+
+    .journey-card h3{
+      margin:0 0 10px;
+      font-family:'Playfair Display', serif;
+      font-size:28px;
+      color:#fff6ea;
+      position:relative;
+      z-index:1;
+    }
+
+    .journey-card p{
+      margin:0;
+      font-size:15px;
+      line-height:1.8;
+      color:#f0e6db;
+      position:relative;
+      z-index:1;
+    }
+
+    .journey-badge{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:#fff9f0;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.10);
+      position:relative;
+      z-index:1;
+    }
+
+    .journey-card.bean{
+      top:60px;
+      left:70px;
+      background:#7D8B63;
+    }
+
+    .journey-card.roast{
+      top:70px;
+      right:80px;
+      background:#9B6A4B;
+    }
+
+    .journey-card.grind{
+      top:360px;
+      left:90px;
+      background:#6F755E;
+    }
+
+    .journey-card.brew{
+      top:430px;
+      right:120px;
+      background:#8A5C42;
+    }
+
+    .journey-card.cup{
+      bottom:70px;
+      left:50%;
+      transform:translateX(-50%);
+      width:280px;
+      min-height:210px;
+      text-align:center;
+      background:#C1B393;
+    }
+
+    .journey-card.cup h3,
+    .journey-card.cup p,
+    .journey-card.cup .journey-badge{
+      color:#3A2F2B;
+    }
+
+    .journey-card.cup .journey-badge{
+      background:rgba(58,47,43,0.10);
+      border:1px solid rgba(58,47,43,0.10);
+    }
+
+    .journey-card.cup .journey-icon{
+      margin:0 auto 14px;
+    }
+
+    .journey-bottom-text{
+      max-width:900px;
+      margin:34px auto 0;
+      font-size:18px;
+      line-height:1.9;
+      color:#ddd1c4;
+    }
+
+    .lesson-buttons {
+      width: min(1150px, 92%);
+      margin: 30px auto 80px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lesson-buttons a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color:#C1B393;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back,
+    .btn-next {
+      background: #C1B393;
+      color: #2f241d;
+      border: 1px solid #b9997d;
+    }
+
+    .btn-back:hover,
+    .btn-next:hover {
+      background: #7a4d2c;
+      color: #EDE8DC;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px){
+      .journey-map{
+        min-height:auto;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        padding:24px;
+      }
+
+      .journey-lines{
+        display:none;
+      }
+
+      .journey-card{
+        position:relative;
+        top:auto !important;
+        left:auto !important;
+        right:auto !important;
+        bottom:auto !important;
+        width:100%;
+        transform:none !important;
+      }
+
+      .journey-card.cup{
+        width:100%;
+      }
+
+      .journey-card.cup:hover{
+        transform:translateY(-8px) scale(1.02) !important;
+      }
+    }
+
+    @media (max-width: 720px){
+      .lesson6b-wrap{
+        padding:24px 0 60px;
+      }
+
+      .lesson6b-hero{
+        min-height:320px;
+        padding:28px 24px 30px;
+      }
+
+      .journey-map{
+        grid-template-columns:1fr;
+      }
+
+      .lesson6b-actions{
+        flex-direction:column;
+      }
+
+      .lesson6b-btn{
+        width:100%;
+      }
+
+      .comparison-section,
+      .journey-map{
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .comparison-head p,
+      .journey-sub,
+      .journey-bottom-text{
+        font-size:16px;
+      }
+    }
+  </style>
+
+  <div class="path-wrap">
+
+    <div class="path-breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="BrewSchool.html">Brew School</a>
+      <span>›</span>
+      <a href="lesson6.1.html">lesson6.1</a>
+      <span>›</span>
+      <a href="lesson6.2.html">lesson6.2</a>
+    </div>
+
+    <section class="lesson6b-hero">
+      <div class="lesson6b-hero-content">
+        <h1>Coffee Characteristics Comparison</h1>
+        <p>
+          Compare coffee drinks more clearly, then follow the journey from bean to brew to understand
+          how each choice shapes the final cup.
+        </p>
+      </div>
+    </section>
+
+    <section class="comparison-section">
+      <div class="comparison-head">
+        <h2>Coffee Characteristics Comparison</h2>
+        <p>Quickly compare drink styles by temperature, milk, strength, and sweetness.</p>
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Coffee</th>
+              <th>Hot</th>
+              <th>Iced</th>
+              <th>Milk</th>
+              <th>Water</th>
+              <th>Strong</th>
+              <th>Sweet</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Espresso</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+            </tr>
+            <tr>
+              <td>Americano</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+            </tr>
+            <tr>
+              <td>Latte</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+            </tr>
+            <tr>
+              <td>Cappuccino</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+            </tr>
+            <tr>
+              <td>Flat White</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+            </tr>
+            <tr>
+              <td>Mocha</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+            </tr>
+            <tr>
+              <td>Cold Brew</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+            </tr>
+            <tr>
+              <td>Iced Latte</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+              <td class="yes">✓</td>
+              <td class="no">×</td>
+              <td class="no">×</td>
+              <td class="yes">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="journey-section">
+      <h2>Your perfect coffee starts with understanding the journey</h2>
+      <p class="journey-sub">
+        From the bean’s origin to the final brewing method, every step shapes the flavor, aroma,
+        and texture of your cup.
+      </p>
+
+      <div class="journey-map">
+        <svg class="journey-lines" viewBox="0 0 1200 900" preserveAspectRatio="none">
+          <path d="M290 150 C430 170, 700 150, 900 190" />
+          <path d="M900 300 C760 330, 520 390, 330 450" />
+          <path d="M330 520 C500 520, 700 530, 860 560" />
+          <path d="M860 650 C790 720, 680 770, 600 790" />
+        </svg>
+
+        <article class="journey-card bean">
+          <div class="journey-icon">🌱</div>
+          <span class="journey-badge">Step 1</span>
+          <h3>Bean</h3>
+          <p>
+            It starts with the coffee bean. Origin, variety, and farm conditions all influence
+            the bean’s natural character.
+          </p>
+        </article>
+
+        <article class="journey-card roast">
+          <div class="journey-icon">🔥</div>
+          <span class="journey-badge">Step 2</span>
+          <h3>Roast</h3>
+          <p>
+            Roasting brings out sweetness, body, and aroma. Light, medium, and dark roasts each
+            create a different cup personality.
+          </p>
+        </article>
+
+        <article class="journey-card grind">
+          <div class="journey-icon">⚙️</div>
+          <span class="journey-badge">Step 3</span>
+          <h3>Grind</h3>
+          <p>
+            Grind size controls extraction. Fine grinds create stronger, quicker extraction,
+            while coarse grinds slow the process.
+          </p>
+        </article>
+
+        <article class="journey-card brew">
+          <div class="journey-icon">🫖</div>
+          <span class="journey-badge">Step 4</span>
+          <h3>Brew</h3>
+          <p>
+            The brewing method turns preparation into flavor. V60, French Press, Espresso,
+            and Cold Brew each reveal coffee differently.
+          </p>
+        </article>
+
+        <article class="journey-card cup">
+          <div class="journey-icon">☕</div>
+          <span class="journey-badge">Final Result</span>
+          <h3>Your Cup</h3>
+          <p>
+            The final cup reflects every choice before it — bean, roast, grind, and brewing method.
+            That is how coffee becomes your perfect match.
+          </p>
+        </article>
+      </div>
+
+      <p class="journey-bottom-text">
+        Understanding this journey helps you choose coffee more confidently and discover
+        which combination best suits your taste.
+      </p>
+    </section>
+
+    <div class="lesson-buttons">
+      <a href="lesson6.1.html">← Back</a>
+      <a href="quiz6.html">Start Quiz →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <img src="logo.png" alt="Bean to Brew Logo">
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact us</h3>
+      <p>+966504256847</p>
+      <p>BeantoBrew@gmail.com</p>
+    </div>
+
+    <div class="footer-social">
+      <h3>Follow us</h3>
+      <div class="social-icons">
+        <a href="https://instagram.com">
+          <img src="instagramicon.png" alt="Instagram">
+        </a>
+        <span class="social-divider"></span>
+        <a href="https://instagram.com">
+          <img src="Xicon.png" alt="X">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+  <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+</footer>
+
+
+ <script>
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+    if (themeToggle) themeToggle.textContent = "🌙";
+  } else {
+    themeStyle.href = "style.css";
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (themeStyle.getAttribute("href") === "style.css") {
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bean to Brew - About Us</title>
+
+<link rel="stylesheet" href="style.css" id="theme-style">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+    radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+    linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+  min-height:100vh;
+}
+
+/* ===== About Page ===== */
+.about-page {
+  position: relative;
+  padding: 150px 60px 80px;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-page h1 {
+  font-size: 52px;
+  font-family: 'Playfair Display', serif;
+  color: #EDE8DC;
+  margin-bottom: 35px;
+}
+
+.about-image {
+  margin-bottom: 35px;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 850px;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.about-text {
+  max-width: 950px;
+}
+
+.about-text p {
+  font-size: 20px;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  color: #EDE8DC;
+}
+
+/* ===== TEACHERS ===== */
+.teachers-section{
+  padding:70px 60px;
+}
+
+.teachers-title{
+  font-size:42px;
+  color:#EDE8DC;
+}
+
+.teachers-desc{
+  color:#EDE8DC;
+  margin-bottom:30px;
+}
+
+.teacher-img{
+  width:100%;
+  height:150px;
+  border-radius:20px;
+  margin-bottom:18px;
+  background: url("photo.png") center/cover no-repeat;
+  background-color:#d8c3af;
+}
+
+/* ===== SORT ===== */
+.teachers-topbar{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:30px;
+}
+
+.sort-title{
+  color:#EDE8DC;
+  font-weight:600;
+}
+
+.sort-select{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #b9997d;
+  background:#C1B393;
+  color:#2f241d;
+}
+
+/* ===== SLIDER ===== */
+.teachers-slider{
+  position:relative;
+  max-width:900px;
+  margin:auto;
+}
+
+.teachers-slider input{
+  display:none;
+}
+
+.cards{
+  position:relative;
+  height:430px;
+}
+
+.card{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:240px;
+  height:340px;
+  background:#C1B393;
+  border-radius:24px;
+  padding:24px 18px;
+  transform:translate(-50%,-50%) scale(0.45);
+  opacity:0;
+  transition:0.5s ease;
+  text-align:center;
+  overflow:hidden;
+}
+
+.card h3{
+  font-size:28px;
+  line-height:1.1;
+  margin:0 0 8px;
+  color:#2f241d;
+  font-family:'Playfair Display', serif;
+}
+
+.teacher-exp{
+  font-size:16px;
+  margin:0 0 10px;
+  color:#2f241d;
+  font-weight:600;
+}
+
+/* ✅ Short inner scroll box only */
+.card{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:240px;
+  height:340px;
+  background:#C1B393;
+  border-radius:24px;
+  padding:22px 18px;
+  transform:translate(-50%,-50%) scale(0.45);
+  opacity:0;
+  transition:0.5s ease;
+  text-align:center;
+  box-sizing:border-box;
+
+  /* السكرول على كرت الخبير كامل */
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+.card::-webkit-scrollbar{
+  width:5px;
+}
+
+.card::-webkit-scrollbar-track{
+  background:transparent;
+  margin:18px 0;
+}
+
+.card::-webkit-scrollbar-thumb{
+  background:#7A4D2C;
+  border-radius:20px;
+}
+
+.card::-webkit-scrollbar-thumb:hover{
+  background:#3A2F2B;
+}
+
+.teacher-note{
+  font-size:14px;
+  line-height:1.4;
+  color:#2f241d;
+  margin:0 auto;
+  max-width:90%;
+}
+
+.teacher-note::-webkit-scrollbar{
+  width:4px;
+}
+
+.teacher-note::-webkit-scrollbar-track{
+  background:rgba(255,255,255,0.25);
+  border-radius:10px;
+}
+
+.teacher-note::-webkit-scrollbar-thumb{
+  background:#7A4D2C;
+  border-radius:10px;
+}
+
+.teacher-note::-webkit-scrollbar-thumb:hover{
+  background:#3A2F2B;
+}
+
+/* center */
+#t1:checked ~ .cards .c1,
+#t2:checked ~ .cards .c2,
+#t3:checked ~ .cards .c3,
+#t4:checked ~ .cards .c4,
+#t5:checked ~ .cards .c5,
+#t6:checked ~ .cards .c6,
+#t7:checked ~ .cards .c7,
+#t8:checked ~ .cards .c8,
+#t9:checked ~ .cards .c9,
+#t10:checked ~ .cards .c10,
+#t11:checked ~ .cards .c11,
+#t12:checked ~ .cards .c12{
+  transform:translate(-50%,-50%) scale(1.15);
+  opacity:1;
+  z-index:5;
+}
+
+/* right near */
+#t1:checked ~ .cards .c2,
+#t2:checked ~ .cards .c3,
+#t3:checked ~ .cards .c4,
+#t4:checked ~ .cards .c5,
+#t5:checked ~ .cards .c6,
+#t6:checked ~ .cards .c7,
+#t7:checked ~ .cards .c8,
+#t8:checked ~ .cards .c9,
+#t9:checked ~ .cards .c10,
+#t10:checked ~ .cards .c11,
+#t11:checked ~ .cards .c12,
+#t12:checked ~ .cards .c1{
+  transform:translate(70%,-50%) scale(0.82);
+  opacity:0.75;
+  z-index:4;
+}
+
+/* left near */
+#t1:checked ~ .cards .c12,
+#t2:checked ~ .cards .c1,
+#t3:checked ~ .cards .c2,
+#t4:checked ~ .cards .c3,
+#t5:checked ~ .cards .c4,
+#t6:checked ~ .cards .c5,
+#t7:checked ~ .cards .c6,
+#t8:checked ~ .cards .c7,
+#t9:checked ~ .cards .c8,
+#t10:checked ~ .cards .c9,
+#t11:checked ~ .cards .c10,
+#t12:checked ~ .cards .c11{
+  transform:translate(-170%,-50%) scale(0.82);
+  opacity:0.75;
+  z-index:4;
+}
+
+/* right far */
+#t1:checked ~ .cards .c3,
+#t2:checked ~ .cards .c4,
+#t3:checked ~ .cards .c5,
+#t4:checked ~ .cards .c6,
+#t5:checked ~ .cards .c7,
+#t6:checked ~ .cards .c8,
+#t7:checked ~ .cards .c9,
+#t8:checked ~ .cards .c10,
+#t9:checked ~ .cards .c11,
+#t10:checked ~ .cards .c12,
+#t11:checked ~ .cards .c1,
+#t12:checked ~ .cards .c2{
+  transform:translate(180%,-50%) scale(0.6);
+  opacity:0.35;
+  z-index:3;
+}
+
+/* left far */
+#t1:checked ~ .cards .c11,
+#t2:checked ~ .cards .c12,
+#t3:checked ~ .cards .c1,
+#t4:checked ~ .cards .c2,
+#t5:checked ~ .cards .c3,
+#t6:checked ~ .cards .c4,
+#t7:checked ~ .cards .c5,
+#t8:checked ~ .cards .c6,
+#t9:checked ~ .cards .c7,
+#t10:checked ~ .cards .c8,
+#t11:checked ~ .cards .c9,
+#t12:checked ~ .cards .c10{
+  transform:translate(-280%,-50%) scale(0.6);
+  opacity:0.35;
+  z-index:3;
+}
+
+/* arrows */
+.arrows{
+  display:none;
+  position:absolute;
+  top:50%;
+  width:100%;
+  justify-content:space-between;
+  transform:translateY(-50%);
+}
+
+.arrow{
+  font-size:72px;
+  color:white;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* show current arrows */
+#t1:checked ~ .arrows-1,
+#t2:checked ~ .arrows-2,
+#t3:checked ~ .arrows-3,
+#t4:checked ~ .arrows-4,
+#t5:checked ~ .arrows-5,
+#t6:checked ~ .arrows-6,
+#t7:checked ~ .arrows-7,
+#t8:checked ~ .arrows-8,
+#t9:checked ~ .arrows-9,
+#t10:checked ~ .arrows-10,
+#t11:checked ~ .arrows-11,
+#t12:checked ~ .arrows-12{
+  display:flex;
+}
+
+.lesson-buttons {
+  width: min(1150px, 92%);
+  margin: 30px auto 80px;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+.lesson-buttons a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color:#C1B393;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  white-space:nowrap;
+}
+
+.lesson-buttons a:hover{
+  color:#FDE9C7;
+  transform:translateY(-3px);
+}
+
+/* ===== Responsive Header ===== */
+@media (max-width: 768px){
+  .navbar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:15px 10px;
+    gap:10px;
+    height:auto;
+  }
+
+  .logo{
+    order:1;
+  }
+
+  .nav-right{
+    order:2;
+    display:flex;
+    justify-content:center;
+    width:100%;
+  }
+
+  .nav-links{
+    order:3;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    margin-top:5px;
+  }
+
+  .nav-links li{
+    list-style:none;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  .search-box{
+    max-width:200px;
+  }
+
+  .path-breadcrumb{
+    display:none;
+  }
+
+  .about-page{
+    padding:190px 24px 70px;
+  }
+
+  .about-page h1{
+    font-size:40px;
+  }
+
+  .about-image img{
+    height:280px;
+  }
+
+  .about-text p{
+    font-size:17px;
+  }
+
+  .teachers-section{
+    padding:55px 24px;
+  }
+
+  .teachers-topbar{
+    flex-wrap:wrap;
+  }
+
+  .lesson-buttons a{
+    font-size:1.15rem;
+  }
+}
+
+@media (max-width: 480px){
+  .nav-links{
+    gap:8px;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .search-box{
+    max-width:160px;
+    font-size:12px;
+  }
+
+  .mode-btn{
+    font-size:18px;
+  }
+
+  .about-page{
+    padding:220px 16px 60px;
+  }
+
+  .about-page h1{
+    font-size:34px;
+  }
+
+  .about-image img{
+    height:220px;
+  }
+
+  .about-text p{
+    font-size:16px;
+  }
+
+  .teachers-title{
+    font-size:32px;
+  }
+
+  .lesson-buttons a{
+    font-size:1rem;
+  }
+}
+
+/* ===== Footer Clock ===== */
+.footer-clock{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.clock-box{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border:1px solid rgba(253, 233, 199, 0.28);
+  border-radius:14px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(4px);
+  color:#F5F1E8;
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+.clock-label{
+  font-size:14px;
+  font-weight:600;
+  color:#EDE8DC;
+  letter-spacing:0.4px;
+}
+
+#live-clock{
+  font-size:15px;
+  font-weight:700;
+  color:#F5F1E8;
+  letter-spacing:1px;
+  min-width:105px;
+  text-align:center;
+}
+
+/* ===== Back To Top Button ===== */
+#backToTop{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  background-color:#C1B393;
+  color:#26231F;
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  transition:all 0.3s ease;
+  z-index:9999;
+}
+
+#backToTop:hover{
+  background-color:#FDE9C7;
+  transform:translateY(0) scale(1.06);
+}
+
+#backToTop.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+@media (max-width: 560px){
+  .clock-box{
+    padding:9px 14px;
+    gap:8px;
+  }
+
+  .clock-label{
+    font-size:13px;
+  }
+
+  #live-clock{
+    font-size:14px;
+    min-width:95px;
+  }
+
+  #backToTop{
+    right:16px;
+    bottom:16px;
+    width:46px;
+    height:46px;
+    font-size:20px;
+  }
+  @media (max-width: 1800px){
+  .arrows{
+    display:none !important;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+
+    <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="BrewSchool.html">Brew School</a></li>
+      <li><a href="CoffeLab.html">Coffee Lab</a></li>
+      <li><a href="student-dashboard.html">Student Dashboard</a></li>
+      <li><a href="About-us.html" class="active">About Us</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+
+          <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+    <input type="text" placeholder="Search" class="search-box">
+</div>
+
+  </nav>
+</header>
+
+<main>
+
+ <section class="about-page">
+
+      <div class="path-wrap">
+        <div class="path-breadcrumb">
+          <a href="index.html">Home</a>
+          <span>›</span>
+          <span>About Us</span>
+        </div>
+      </div>
+
+      <div class="about-container">
+        <h1>About Us</h1>
+
+        <div class="about-image">
+          <img src="beanspic.png" alt="Coffee experience at Bean to Brew">
+        </div>
+
+        <div class="about-text">
+          <p>
+            At <strong>Bean to Brew</strong>, we created this platform to make learning about coffee
+            simple, enjoyable, and easy to explore.
+          </p>
+
+          <p>
+            From understanding coffee beans and their origins to learning different brewing methods,
+            our goal is to help users build knowledge step by step in a fun and clear way.
+          </p>
+
+          <p>
+            Whether you are a beginner or already a coffee lover, Bean to Brew gives you a space
+            to discover, learn, and enjoy the experience behind every cup.
+          </p>
+
+          <p>
+            We believe coffee is more than just a drink — it is a journey, a skill, and a story
+            waiting to be explored.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+<section class="teachers-section">
+
+  <h2 class="teachers-title">Meet Our Teachers</h2>
+
+  <p class="teachers-desc">
+    Our teachers bring passion, knowledge, and hands-on experience.
+  </p>
+
+<div class="teachers-topbar">
+  <label class="sort-title" for="sortTeachers">Sort Teachers:</label>
+  
+ <select class="sort-select" id="sortTeachers">
+  <option value="default">Random</option>
+
+  <optgroup label="Sort by Name">
+    <option value="alphabetical">A → Z</option>
+  </optgroup>
+
+  <optgroup label="Sort by Experience">
+    <option value="experience">Years</option>
+  </optgroup>
+</select>
+
+</div>
+
+  <div class="teachers-slider">
+
+ <input type="radio" name="tcard" id="t1" checked>
+<input type="radio" name="tcard" id="t2">
+<input type="radio" name="tcard" id="t3">
+<input type="radio" name="tcard" id="t4">
+<input type="radio" name="tcard" id="t5">
+<input type="radio" name="tcard" id="t6">
+<input type="radio" name="tcard" id="t7">
+<input type="radio" name="tcard" id="t8">
+<input type="radio" name="tcard" id="t9">
+<input type="radio" name="tcard" id="t10">
+<input type="radio" name="tcard" id="t11">
+<input type="radio" name="tcard" id="t12">
+
+    <div class="cards">
+
+      <div class="card c1" data-name="Hamad" data-exp="4">
+      <div class="teacher-img"></div>
+      <h3>Hamad</h3>
+     <p class="teacher-exp">4 Years</p>
+	 <p class="teacher-note">Focuses on brewing foundations and helps beginners learn coffee skills clearly.</p>
+     </div>
+
+      <div class="card c2" data-name="Eman" data-exp="6">
+	  <div class="teacher-img"></div>
+	  <h3>Eman</h3>
+	  <p class="teacher-exp">6 Years</p>
+	  <p class="teacher-note">Guides learners through flavor understanding and coffee culture in an engaging way.</p>
+	  </div>
+	  
+      <div class="card c3" data-name="Joury" data-exp="3">
+	  <div class="teacher-img"></div>
+	  <h3>Joury</h3>
+	  <p class="teacher-exp">3 Years</p>
+	  <p class="teacher-note">Specializes in brewing methods and practical techniques for balanced coffee results.</p>
+	  </div>
+	  
+      <div class="card c4" data-name="Saud" data-exp="8">
+	  <div class="teacher-img"></div>
+	  <h3>Saud</h3>
+	  <p class="teacher-exp">8 Years</p>
+	  <p class="teacher-note">Helps students understand espresso workflow, extraction, and balance with confidence.</p>
+	  </div>
+	  
+      <div class="card c5" data-name="Wajd" data-exp="5">
+	  <div class="teacher-img"></div>
+	  <h3>Wajd</h3>
+	  <p class="teacher-exp">5 Years</p>
+	  <p class="teacher-note">Creates interactive workshops that connect creativity with practical coffee learning.</p>
+	  </div>
+	  
+      <div class="card c6" data-name="Salman" data-exp="7">
+	  <div class="teacher-img"></div>
+	  <h3>Salman</h3>
+	  <p class="teacher-exp">7 Years</p>
+	  <p class="teacher-note">Supports students through practical sessions and step-by-step coffee training.</p>
+	  </div>
+	  
+	  <div class="card c7" data-name="Sadeem" data-exp="4">
+	  <div class="teacher-img"></div>
+	  <h3>Sadeem</h3>
+	  <p class="teacher-exp">4 Years</p>
+	  <p class="teacher-note">Brings creative energy into workshops and encourages learners to explore new ideas.</p>
+	  </div>
+	  
+	  <div class="card c8" data-name="Latifah" data-exp="3">
+	  <div class="teacher-img"></div>
+	  <h3>Latifah</h3>
+	  <p class="teacher-exp">3 Years</p>
+	  <p class="teacher-note">Leads coffee sessions with a practical teaching style and strong learner focus.</p>
+	  </div>
+	  
+	  <div class="card c9" data-name="Abdurhman" data-exp="3">
+	  <div class="teacher-img"></div>
+	  <h3>Abdurhman</h3>
+	  <p class="teacher-exp">3 Years</p>
+	  <p class="teacher-note">Focuses on taste, aroma, and flavor development to deepen learners’ coffee knowledge.</p>
+	  </div>
+	  
+	  <div class="card c10" data-name="Sara" data-exp="9">
+	  <div class="teacher-img"></div>
+	  <h3>Sara</h3>
+	  <p class="teacher-exp">9 Years</p>
+	  <p class="teacher-note">Leads creative coffee sessions and helps learners enjoy different brew styles.</p>
+	  </div>
+	  
+	  <div class="card c11" data-name="Nasser" data-exp="5">
+	  <div class="teacher-img"></div>
+	  <h3>Nasser</h3>
+	  <p class="teacher-exp">5 Years</p>
+	  <p class="teacher-note">Specializes in grinders, grind size, and improving extraction through technique.</p>
+	  </div>
+	  
+	  <div class="card c12" data-name="Fahad" data-exp="6">
+	  <div class="teacher-img"></div>
+	  <h3>Fahad</h3>
+	  <p class="teacher-exp">6 Years</p>
+	  <p class="teacher-note">Helps learners understand roasting stages and how they affect coffee flavor.</p>
+	  </div>
+
+    </div>
+
+    <div class="arrows arrows-1">
+  <label for="t12" class="arrow">&#10094;</label>
+  <label for="t2" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-2">
+  <label for="t1" class="arrow">&#10094;</label>
+  <label for="t3" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-3">
+  <label for="t2" class="arrow">&#10094;</label>
+  <label for="t4" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-4">
+  <label for="t3" class="arrow">&#10094;</label>
+  <label for="t5" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-5">
+  <label for="t4" class="arrow">&#10094;</label>
+  <label for="t6" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-6">
+  <label for="t5" class="arrow">&#10094;</label>
+  <label for="t7" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-7">
+  <label for="t6" class="arrow">&#10094;</label>
+  <label for="t8" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-8">
+  <label for="t7" class="arrow">&#10094;</label>
+  <label for="t9" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-9">
+  <label for="t8" class="arrow">&#10094;</label>
+  <label for="t10" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-10">
+  <label for="t9" class="arrow">&#10094;</label>
+  <label for="t11" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-11">
+  <label for="t10" class="arrow">&#10094;</label>
+  <label for="t12" class="arrow">&#10095;</label>
+</div>
+
+<div class="arrows arrows-12">
+  <label for="t11" class="arrow">&#10094;</label>
+  <label for="t1" class="arrow">&#10095;</label>
+</div>
+
+  </div>
+
+</section>
+
+<div class="lesson-buttons">
+      <a href="index.html">← Back</a>
+    </div>
+
+</main>
+
+ <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Bean to Brew Logo">
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact us</h3>
+          <p>+966504256847</p>
+          <p>BeantoBrew@gmail.com</p>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow us</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com">
+              <img src="instagramicon.png" alt="Instagram">
+            </a>
+            <span class="social-divider"></span>
+            <a href="https://instagram.com">
+              <img src="Xicon.png" alt="X">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+      <div class="footer-clock">
+        <div class="clock-box">
+          <span class="clock-label">Current Time</span>
+          <span id="live-clock">00:00:00</span>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+    </footer>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+const cardsContainer = document.querySelector(".cards");
+const sortSelect = document.getElementById("sortTeachers");
+const slider = document.querySelector(".teachers-slider");
+
+let cards = Array.from(document.querySelectorAll(".card"));
+let currentIndex = 1;
+const totalCards = 12;
+let isSliding = false;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function goToCard(index) {
+  if (index < 1) index = totalCards;
+  if (index > totalCards) index = 1;
+
+  currentIndex = index;
+  const radio = document.getElementById("t" + currentIndex);
+
+  if (radio) {
+    radio.checked = true;
+  }
+}
+
+function nextCard() {
+  goToCard(currentIndex + 1);
+}
+
+function prevCard() {
+  goToCard(currentIndex - 1);
+}
+
+function slideOnce(direction) {
+  if (isSliding) return;
+
+  isSliding = true;
+
+  if (direction === "next") {
+    nextCard();
+  } else {
+    prevCard();
+  }
+
+  setTimeout(function () {
+    isSliding = false;
+  }, 550);
+}
+
+function showCards(newCards) {
+  cardsContainer.innerHTML = "";
+  newCards.forEach(card => cardsContainer.appendChild(card));
+
+  newCards.forEach((card, index) => {
+    card.className = "card c" + (index + 1);
+  });
+
+  goToCard(1);
+}
+
+cards = shuffle(cards);
+showCards(cards);
+
+sortSelect.addEventListener("change", function () {
+  if (this.value === "alphabetical") {
+    cards.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+  } else if (this.value === "experience") {
+    cards.sort((a, b) => a.dataset.exp - b.dataset.exp);
+  } else {
+    cards = shuffle(cards);
+  }
+
+  showCards(cards);
+});
+
+/* Keyboard arrows */
+document.addEventListener("keydown", function(event) {
+  if (event.key === "ArrowRight") {
+    slideOnce("next");
+  }
+
+  if (event.key === "ArrowLeft") {
+    slideOnce("prev");
+  }
+});
+
+/* Touchpad horizontal swipe */
+slider.addEventListener("wheel", function(event) {
+  if (Math.abs(event.deltaX) > Math.abs(event.deltaY) && Math.abs(event.deltaX) > 25) {
+    event.preventDefault();
+
+    if (event.deltaX > 0) {
+      slideOnce("next");
+    } else {
+      slideOnce("prev");
+    }
+  }
+}, { passive:false });
+
+/* Mobile touch swipe */
+let startX = 0;
+let startY = 0;
+
+slider.addEventListener("touchstart", function(event) {
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+}, { passive:true });
+
+slider.addEventListener("touchend", function(event) {
+  const endX = event.changedTouches[0].clientX;
+  const endY = event.changedTouches[0].clientY;
+
+  const diffX = startX - endX;
+  const diffY = startY - endY;
+
+  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+    if (diffX > 0) {
+      slideOnce("next");
+    } else {
+      slideOnce("prev");
+    }
+  }
+}, { passive:true });
+
+const liveClock = document.getElementById("live-clock");
+
+function updateClock() {
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+
+  if (liveClock) {
+    liveClock.textContent = time;
+  }
+}
+
+const backToTopBtn = document.getElementById("backToTop");
+
+function toggleBackToTop() {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+}
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
+
+window.addEventListener("scroll", toggleBackToTop);
+
+updateClock();
+setInterval(updateClock, 1000);
+
+const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+
+  }
+  
+</script>
+
+</body>
+</html>

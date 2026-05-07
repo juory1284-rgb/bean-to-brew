@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bean to Brew - Contact</title>
+
+<link rel="stylesheet" href="style.css" id="theme-style">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+background:
+radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+color:#3e2c23;
+overflow-x:hidden;
+}
+
+.contact-section{
+position:relative;
+padding:150px 20px 80px;
+}
+
+.path-wrap{
+width:min(92%,1320px);
+margin:0 auto 30px;
+}
+
+.contact-title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.contact-title h1{
+font-size:48px;
+font-family:'Playfair Display', serif;
+color:#EDE8DC;
+margin-bottom:10px;
+}
+
+.contact-title p{
+color:#C1B393;
+font-size:16px;
+}
+
+.contact-container{
+max-width:600px;
+margin:auto;
+background:#4B4F3E;
+padding:40px;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.contact-form label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:#EDE8DC;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+margin-bottom:20px;
+border:1px solid #EDE8DC;
+border-radius:6px;
+font-size:14px;
+}
+
+.contact-form textarea{
+height:130px;
+resize:none;
+}
+
+.contact-form button{
+width:100%;
+padding:14px;
+background:#26231F;
+color:#EDE8DC;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.contact-form button:hover{
+background:#C1B393;
+}
+
+.lesson-buttons{
+width:min(1150px,92%);
+margin:30px auto 80px;
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:nowrap;
+}
+
+.lesson-buttons a{
+text-decoration:none;
+font-size:1.5rem;
+font-weight:600;
+color:#C1B393;
+display:inline-flex;
+align-items:center;
+gap:10px;
+transition:all 0.3s ease;
+white-space:nowrap;
+}
+
+.btn-back,
+.btn-next{
+background:#C1B393;
+color:#2f241d;
+border:1px solid #b9997d;
+}
+
+.btn-back:hover,
+.btn-next:hover{
+background:#7a4d2c;
+color:#EDE8DC;
+transform:translateY(-3px);
+}
+
+.footer-clock{
+margin-top:18px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.clock-box{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:10px 18px;
+border:1px solid rgba(253, 233, 199, 0.28);
+border-radius:14px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(4px);
+color:#F5F1E8;
+box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+.clock-label{
+font-size:14px;
+font-weight:600;
+color:#EDE8DC;
+letter-spacing:0.4px;
+}
+
+#live-clock{
+font-size:15px;
+font-weight:700;
+color:#F5F1E8;
+letter-spacing:1px;
+min-width:105px;
+text-align:center;
+}
+
+#backToTop{
+position:fixed;
+right:22px;
+bottom:22px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background-color:#C1B393;
+color:#26231F;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+opacity:0;
+visibility:hidden;
+transform:translateY(12px);
+transition:all 0.3s ease;
+z-index:9999;
+}
+
+#backToTop:hover{
+background-color:#FDE9C7;
+transform:translateY(0) scale(1.06);
+}
+
+#backToTop.show{
+opacity:1;
+visibility:visible;
+transform:translateY(0);
+}
+
+@media (max-width:768px){
+.navbar{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:15px 10px;
+gap:10px;
+height:auto;
+}
+
+.logo{
+order:1;
+}
+
+.nav-right{
+order:2;
+width:100%;
+justify-content:center;
+display:flex;
+}
+
+.nav-links{
+order:3;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+width:100%;
+margin-top:5px;
+}
+
+.nav-links li{
+list-style:none;
+}
+
+.nav-links a{
+font-size:14px;
+}
+
+.search-box{
+max-width:200px;
+}
+
+.path-wrap{
+display:none;
+}
+
+.contact-section{
+padding:240px 16px 60px;
+}
+
+.contact-title h1{
+font-size:38px;
+}
+
+.contact-container{
+padding:25px;
+}
+
+.lesson-buttons{
+flex-direction:row;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:nowrap;
+}
+
+.lesson-buttons a{
+font-size:1.15rem;
+white-space:nowrap;
+}
+}
+
+@media (max-width:480px){
+.contact-section{
+padding:260px 14px 55px;
+}
+
+.contact-title h1{
+font-size:34px;
+}
+
+.contact-title p{
+font-size:14px;
+}
+
+.contact-container{
+padding:22px 18px;
+}
+
+.nav-links{
+gap:8px;
+}
+
+.nav-links a{
+font-size:13px;
+}
+
+.search-box{
+max-width:160px;
+font-size:12px;
+}
+
+.mode-btn{
+font-size:18px;
+}
+
+.lesson-buttons a{
+font-size:1rem;
+}
+}
+
+@media (max-width:560px){
+.clock-box{
+padding:9px 14px;
+gap:8px;
+}
+
+.clock-label{
+font-size:13px;
+}
+
+#live-clock{
+font-size:14px;
+min-width:95px;
+}
+
+#backToTop{
+right:16px;
+bottom:16px;
+width:46px;
+height:46px;
+font-size:20px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+
+<div class="logo">
+<img src="logo.png" alt="Bean to Brew Logo">
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="BrewSchool.html">Brew School</a></li>
+<li><a href="CoffeLab.html">Coffee Lab</a></li>
+<li><a href="student-dashboard.html">Student Dashboard</a></li>
+<li><a href="About-us.html">About Us</a></li>
+<li><a href="Contact.html" class="active">Contact Us</a></li>
+</ul>
+
+<div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+<input type="text" placeholder="Search" class="search-box">
+</div>
+
+</nav>
+</header>
+
+<main>
+
+<section class="contact-section">
+
+<div class="path-wrap">
+<div class="path-breadcrumb">
+<a href="index.html">Home</a>
+<span>›</span>
+<span>Contact Us</span>
+</div>
+</div>
+
+<div class="contact-title">
+<h1>Contact Us</h1>
+<p>Have a question? Send us a message.</p>
+</div>
+
+<div class="contact-container">
+
+<form class="contact-form" id="contactForm">
+
+<label for="name">Name</label>
+<input type="text" id="name" name="name" placeholder="Enter your first and last name" required>
+
+<label for="email">Email</label>
+<input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+<label for="message">Message</label>
+<textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</div>
+
+</section>
+
+<div class="lesson-buttons">
+<a href="index.html">← Back</a>
+</div>
+
+</main>
+
+<footer class="site-footer">
+
+<div class="footer-top">
+
+<div class="footer-logo">
+<img src="logo.png" alt="Bean to Brew Logo">
+</div>
+
+<div class="footer-contact">
+<h3>Contact us</h3>
+<p>+966504256847</p>
+<p>BeantoBrew@gmail.com</p>
+</div>
+
+<div class="footer-social">
+<h3>Follow us</h3>
+
+<div class="social-icons">
+<a href="https://instagram.com">
+<img src="instagramicon.png" alt="Instagram">
+</a>
+
+<span class="social-divider"></span>
+
+<a href="https://instagram.com">
+<img src="Xicon.png" alt="X">
+</a>
+</div>
+
+</div>
+
+</div>
+
+<p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+<div class="footer-clock">
+<div class="clock-box">
+<span class="clock-label">Current Time</span>
+<span id="live-clock">00:00:00</span>
+</div>
+</div>
+
+<p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+
+</footer>
+
+<button id="backToTop" title="Back to Top">↑</button>
+
+<script>
+const liveClock = document.getElementById("live-clock");
+const backToTopBtn = document.getElementById("backToTop");
+
+function updateClock() {
+const now = new Date();
+
+const time = now.toLocaleTimeString("en-US", {
+hour: "2-digit",
+minute: "2-digit",
+second: "2-digit",
+hour12: true
+});
+
+if (liveClock) {
+liveClock.textContent = time;
+}
+}
+
+function toggleBackToTop() {
+if (window.scrollY > 300) {
+backToTopBtn.classList.add("show");
+} else {
+backToTopBtn.classList.remove("show");
+}
+}
+
+if (backToTopBtn) {
+backToTopBtn.addEventListener("click", function () {
+window.scrollTo({
+top: 0,
+behavior: "smooth"
+});
+});
+}
+
+window.addEventListener("scroll", toggleBackToTop);
+
+updateClock();
+setInterval(updateClock, 1000);
+const contactForm = document.getElementById("contactForm");
+const nameInput = document.getElementById("name");
+
+contactForm.addEventListener("submit", function(event) {
+const nameValue = nameInput.value.trim();
+const nameParts = nameValue.split(/\s+/);
+
+if (/^\d/.test(nameValue)) {
+event.preventDefault();
+alert("Name cannot start with a number.");
+nameInput.focus();
+return;
+}
+
+if (nameParts.length < 2) {
+event.preventDefault();
+alert("Please enter your first and last name.");
+nameInput.focus();
+return;
+}
+});
+
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
+  } else {
+    themeStyle.href = "style.css";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
+  }
+
+  if (themeToggle) {
+
+    themeToggle.addEventListener("click", function () {
+
+      if (themeStyle.getAttribute("href") === "style.css") {
+
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+
+      } else {
+
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+
+    });
+  }
+</script>
+
+</body>
+</html>

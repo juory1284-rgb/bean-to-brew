@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 4 | Grind Guide</title>
+
+<link rel="stylesheet" href="style.css" id="theme-style">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+
+	background:
+  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+  radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+  linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+color:#EDE8DC;
+}
+
+main{
+  padding-top:110px;
+}
+
+.path-wrap{
+  position:static;
+  top:auto;
+  left:auto;
+  width:min(92%, 1320px);
+  margin:0 auto 30px;
+  padding:0;
+  z-index:auto;
+}
+
+/* SECTION WRAPPER */
+
+.section{
+width:100%;
+max-width:none;
+margin:0;
+padding:80px 0px;
+}
+
+/* TABLE SECTION */
+
+.grind-table{
+
+background:linear-gradient(135deg,#3A2F2B,#4B4F3E);
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+.grind-table h2{
+
+text-align:center;
+margin-bottom:30px;
+font-family:'Playfair Display',serif;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+color:white;
+
+}
+
+th,td{
+
+padding:14px;
+text-align:center;
+
+}
+
+th{
+
+background:#FDE9C7;
+color:#3A2F2B;
+
+}
+
+tr:nth-child(even){
+
+background:rgba(255,255,255,0.05);
+
+}
+
+/* DID YOU KNOW */
+
+.did-you-know{
+
+text-align:center;
+margin-top:90px;
+
+}
+
+.did-you-know h2{
+
+font-size:50px;
+font-family:'Playfair Display',serif;
+color:#FDE9C7;
+
+}
+
+.did-you-know span{
+
+font-size:55px;
+}
+.coffee-fact{
+text-align:center;
+padding:80px 20px;
+background:#efe6d7;
+border-radius:20px;
+margin:60px auto;
+max-width:1100px;
+}
+
+.fact-title{
+font-size:40px;
+margin-bottom:20px;
+color:#e7c48b;
+}
+
+.fact-quote{
+font-size:18px;
+letter-spacing:2px;
+margin-bottom:60px;
+color:#3a2d22;
+}
+
+.coffee-diagram{
+position:relative;
+height:320px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.cup{
+width:140px;
+height:120px;
+background:#c7a889;
+border-radius:10px 10px 40px 40px;
+position:relative;
+}
+
+.cup::after{
+content:"";
+position:absolute;
+right:-35px;
+top:20px;
+width:40px;
+height:50px;
+border:8px solid #c7a889;
+border-radius:50%;
+}
+
+.steam{
+width:8px;
+height:30px;
+background:#ddd;
+border-radius:50%;
+position:absolute;
+top:-35px;
+left:50%;
+animation:steam 2s infinite ease-in-out;
+}
+
+.steam:nth-child(2){
+left:40%;
+animation-delay:.3s;
+}
+
+.steam:nth-child(3){
+left:60%;
+animation-delay:.6s;
+}
+
+@keyframes steam{
+0%{opacity:0; transform:translateY(10px);}
+50%{opacity:1;}
+100%{opacity:0; transform:translateY(-20px);}
+}
+
+.fact{
+position:absolute;
+width:180px;
+font-size:14px;
+color:#4a3b2e;
+}
+
+.left1{left:40px; top:20px;}
+.left2{left:40px; bottom:30px;}
+.right1{right:40px; top:20px;}
+.right2{right:40px; bottom:30px;}
+.bottom{bottom:-40px;}
+    /* =============================== */
+    /* Lesson Navigation Buttons */
+    /* =============================== */
+    .lesson-buttons {
+      width: min(1150px, 92%);
+      margin: 30px auto 80px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lesson-buttons a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+	  color:   #C1B393;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back,
+    .btn-next {
+      background: #C1B393;
+      color: #2f241d;
+      border: 1px solid #b9997d;
+    }
+
+    .btn-back:hover,
+    .btn-next:hover {
+      background: #7a4d2c;
+      color: #EDE8DC;
+      transform: translateY(-3px);
+    }
+
+</style>
+
+</head>
+
+<body>
+<header>
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="logo.png" alt="Bean to Brew Logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html"class="active">Home</a></li>
+      <li><a href="BrewSchool.html">Brew School</a></li>
+      <li><a href="CoffeLab.html">Coffee Lab</a></li>
+      <li><a href="student-dashboard.html">Student Dashboard</a></li>
+      <li><a href="About-us.html">About Us</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+      <input type="text" placeholder="Search" class="search-box">
+    </div>
+
+  </nav>
+</header>
+
+<main>
+
+    <div class="path-wrap">
+
+      <div class="path-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="BrewSchool.html">Brew School</a>
+        <span>›</span>
+         <a href="lesson4.1.html">lesson4.1</a>
+        <span>›</span>
+         <a href="lesson4.2.html">lesson4.2</a>
+      </div>
+    </div>
+
+<section class="section">
+
+<div class="grind-table">
+
+<h2>Best Grind Size for Each Brewing Method</h2>
+
+<table>
+
+<tr>
+<th>Brewing Method</th>
+<th>Grind Size</th>
+<th>Texture</th>
+<th>Brew Time</th>
+</tr>
+
+<tr>
+<td>Espresso</td>
+<td>Fine (Very Fine)</td>
+<td>Like powder</td>
+<td>25–30 sec</td>
+</tr>
+
+<tr>
+<td>V60 / Drip</td>
+<td>Medium</td>
+<td>Like sand</td>
+<td>2–3 min</td>
+</tr>
+
+<tr>
+<td>French Press</td>
+<td>Coarse</td>
+<td>Like sea salt</td>
+<td>4 min</td>
+</tr>
+
+<tr>
+<td>Cold Brew</td>
+<td>Coarse</td>
+<td>Rough & chunky</td>
+<td>8–12 hours</td>
+</tr>
+
+<tr>
+<td>Moka Pot</td>
+<td>Medium-Fine</td>
+<td>Between fine & medium</td>
+<td>1–2 min</td>
+</tr>
+
+</table>
+
+</div>
+
+<section class="coffee-fact">
+
+<h2 class="fact-title">☕ Did You Know?</h2>
+
+<p class="fact-quote">
+“SAME COFFEE, DIFFERENT GRIND, COMPLETELY DIFFERENT TASTE.”
+</p>
+
+<div class="coffee-diagram">
+
+<div class="fact left1">
+Grind size controls flavor
+</div>
+
+<div class="fact left2">
+Wrong grind size can ruin good coffee
+</div>
+
+<div class="fact right1">
+Coarser grind = lighter extraction
+</div>
+
+<div class="fact right2">
+Each brewing method needs a specific grind size
+</div>
+
+<div class="fact bottom">
+Finer grind = stronger extraction
+</div>
+
+<div class="cup">
+<div class="steam"></div>
+<div class="steam"></div>
+<div class="steam"></div>
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+ <div class="lesson-buttons">
+    <a href="lesson4.1.html" >← Back</a>
+    <a href="quiz4.html" >Start Quiz →</a>
+  </div>
+
+</main>
+ 
+ <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Bean to Brew Logo">
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact us</h3>
+          <p>+966504256847</p>
+          <p>BeantoBrew@gmail.com</p>
+        </div>
+
+        <div class="footer-social">
+          <h3>Follow us</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com">
+              <img src="instagramicon.png" alt="Instagram">
+            </a>
+            <span class="social-divider"></span>
+            <a href="https://instagram.com">
+              <img src="Xicon.png" alt="X">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+      <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+    </footer>
+	
+	 <script>
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+    if (themeToggle) themeToggle.textContent = "🌙";
+  } else {
+    themeStyle.href = "style.css";
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (themeStyle.getAttribute("href") === "style.css") {
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+</script>
+
+
+</body>
+</html>

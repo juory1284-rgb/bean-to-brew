@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bean to Brew</title>
+ <link rel="stylesheet" href="style.css" id="theme-style">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    html, body{
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+    }
+
+    body{
+      font-family:Arial, sans-serif;
+      padding-top:80px;
+      color:#EDE8DC;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(193,179,147,0.25), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(193,179,147,0.20), transparent 28%),
+        radial-gradient(circle at 50% 80%, rgba(193,179,147,0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(75,79,62,0.30), transparent 35%),
+        linear-gradient(140deg, #3A2F2B 0%, #3A2F2B 40%, #4B4F3E 100%);
+      background-attachment:fixed;
+    }
+
+    .beige-text{
+      color:#FDE9C7;
+    }
+
+    .white-text{
+      color:#ffffff;
+    }
+
+    main{
+      width:100%;
+      padding-bottom:60px;
+      overflow-x:hidden;
+    }
+
+    .section-box{
+      width:min(1120px, calc(100% - 40px));
+      margin:0 auto 35px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      backdrop-filter:blur(4px);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      padding:0 80px;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:center top;
+      background-repeat:no-repeat;
+      overflow:hidden;
+    }
+
+    .hero-content{
+      max-width:700px;
+      margin-top:0;
+    }
+
+    .main-hero-title{
+      font-size:68px;
+      line-height:1.15;
+      text-align:left;
+      margin-top:0;
+      margin-bottom:0;
+    }
+
+    .our-story{
+      padding:80px 30px;
+      text-align:center;
+    }
+
+    .story-container{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    .our-story h2{
+      font-size:52px;
+      color:#EDE8DC;
+      margin-bottom:25px;
+    }
+
+    .our-story p{
+      font-size:20px;
+      line-height:1.9;
+      color:#EDE8DC;
+      max-width:900px;
+      margin:0 auto 28px;
+    }
+
+    .why-section{
+      padding:80px 40px;
+      text-align:center;
+    }
+
+   .why-section{
+  padding:80px 40px;
+  text-align:center;
+}
+
+.why-heading{
+  font-size:42px;
+  margin-bottom:60px;
+  color:#EDE8DC;
+}
+
+.why-container{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:40px;
+  flex-wrap:nowrap;
+}
+
+.why-card{
+  width:320px;
+  min-height:320px;
+  padding:40px 28px;
+  border-radius:28px;
+  background:#4B4F3E;
+  border:1px solid rgba(255,255,255,0.10);
+  transition:0.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.why-card:hover{
+  transform:translateY(-8px);
+}
+
+.why-card img{
+  width:90px;
+  height:auto;
+  margin-bottom:28px;
+}
+
+.why-card h3{
+  font-size:24px;
+  margin-bottom:16px;
+  color:#EDE8DC;
+}
+
+.why-card p{
+  font-size:16px;
+  line-height:1.8;
+  color:#EDE8DC;
+  max-width:240px;
+}
+
+@media (max-width:1024px){
+  .why-container{
+    flex-wrap:wrap;
+  }
+
+  .why-card{
+    width:280px;
+  }
+}
+
+@media (max-width:768px){
+  .why-card{
+    width:100%;
+    max-width:340px;
+    min-height:auto;
+  }
+}
+
+    .bean-types{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:70px 60px;
+      gap:50px;
+      flex-wrap:wrap;
+    }
+
+    .bean-types-left{
+      display:grid;
+      grid-template-columns:repeat(2, 170px);
+      gap:20px;
+    }
+
+    .bean-card{
+      width:170px;
+      height:180px;
+      background-image:url("beanspic.png");
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      overflow:hidden;
+      color:#3b2a22;
+      border-radius:20px;
+      box-shadow:0 8px 18px rgba(0,0,0,0.15);
+    }
+
+    .bean-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(222, 204, 176, 0.62);
+    }
+
+    .bean-card h3,
+    .bean-card p{
+      position:relative;
+      z-index:2;
+      color:#2f241d;
+    }
+
+    .bean-card h3{
+      font-size:28px;
+      margin-bottom:5px;
+      font-family:'Playfair Display', serif;
+    }
+
+    .bean-card p{
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .bean-types-right{
+      flex:1;
+      text-align:center;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-width:280px;
+    }
+
+    .bean-types-right h2{
+      font-size:58px;
+      font-family:'Playfair Display', serif;
+      color:#EDE8DC;
+      line-height:1.15;
+      margin-bottom:0;
+    }
+
+    .floating-bean{
+      position:relative;
+    }
+
+    .floating-bean img{
+      position:absolute;
+      right:-80px;
+      top:-250px;
+      width:650px;
+      height:500px;
+      z-index:50;
+      animation:beanFloat 5s ease-in-out infinite;
+      pointer-events:none;
+    }
+
+    @keyframes beanFloat{
+      0%{ transform:translateY(0) rotate(0deg); }
+      25%{ transform:translateY(-10px) rotate(-1deg); }
+      50%{ transform:translateY(-18px) rotate(0.8deg); }
+      75%{ transform:translateY(-10px) rotate(-0.6deg); }
+      100%{ transform:translateY(0) rotate(0deg); }
+    }
+
+    .grind-size{
+      background-image:
+        linear-gradient(rgba(35, 24, 18, 0.58), rgba(35, 24, 18, 0.58)),
+        url("Headerpic.png");
+      background-size:cover;
+      background-position:center;
+      padding:70px 30px 90px;
+      overflow:hidden;
+    }
+
+    .grind-overlay h2{
+      color:beige;
+      font-size:68px;
+      font-family:'Playfair Display', serif;
+      line-height:1.05;
+      max-width:760px;
+      margin-bottom:40px;
+    }
+
+    .grind-slider{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      overflow:hidden;
+      touch-action:pan-y;
+    }
+
+    .grind-slider input{
+      display:none;
+    }
+
+    .cards{
+      position:relative;
+      height:380px;
+    }
+
+    .card{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:180px;
+      height:240px;
+      background:#C1B393;
+      text-align:center;
+      padding:35px 20px;
+      transform:translate(-50%, -50%) scale(0.6);
+      opacity:0;
+      transition:0.5s ease;
+      box-shadow:0 10px 25px rgba(0, 0, 0, 0.20);
+      border-radius:20px;
+    }
+
+    .card h3{
+      font-size:24px;
+      font-family:'Playfair Display', serif;
+      color:#2f241d;
+      margin-bottom:18px;
+    }
+
+    .card p{
+      font-size:16px;
+      color:#4a3a2f;
+      margin-bottom:12px;
+    }
+
+    .card img{
+      width:90px;
+      height:120px;
+      object-fit:contain;
+      display:block;
+      margin:18px auto 0;
+    }
+
+    #card1:checked ~ .cards .c1,
+    #card2:checked ~ .cards .c2,
+    #card3:checked ~ .cards .c3,
+    #card4:checked ~ .cards .c4,
+    #card5:checked ~ .cards .c5,
+    #card6:checked ~ .cards .c6{
+      transform:translate(-50%, -50%) scale(1.2);
+      opacity:1;
+      z-index:5;
+      width:240px;
+      height:320px;
+    }
+
+    #card1:checked ~ .cards .c6,
+    #card2:checked ~ .cards .c1,
+    #card3:checked ~ .cards .c2,
+    #card4:checked ~ .cards .c3,
+    #card5:checked ~ .cards .c4,
+    #card6:checked ~ .cards .c5{
+      transform:translate(-185%, -50%) scale(0.85);
+      opacity:0.8;
+      z-index:4;
+    }
+
+    #card1:checked ~ .cards .c2,
+    #card2:checked ~ .cards .c3,
+    #card3:checked ~ .cards .c4,
+    #card4:checked ~ .cards .c5,
+    #card5:checked ~ .cards .c6,
+    #card6:checked ~ .cards .c1{
+      transform:translate(85%, -50%) scale(0.85);
+      opacity:0.8;
+      z-index:4;
+    }
+
+    #card1:checked ~ .cards .c5,
+    #card2:checked ~ .cards .c6,
+    #card3:checked ~ .cards .c1,
+    #card4:checked ~ .cards .c2,
+    #card5:checked ~ .cards .c3,
+    #card6:checked ~ .cards .c4{
+      transform:translate(-290%, -50%) scale(0.65);
+      opacity:0.45;
+      z-index:3;
+    }
+
+    #card1:checked ~ .cards .c3,
+    #card2:checked ~ .cards .c4,
+    #card3:checked ~ .cards .c5,
+    #card4:checked ~ .cards .c6,
+    #card5:checked ~ .cards .c1,
+    #card6:checked ~ .cards .c2{
+      transform:translate(190%, -50%) scale(0.65);
+      opacity:0.45;
+      z-index:3;
+    }
+
+    .arrows{
+      display:none;
+      position:absolute;
+      top:50%;
+      left:0;
+      width:100%;
+      transform:translateY(-50%);
+      justify-content:space-between;
+      align-items:center;
+      pointer-events:none;
+      z-index:20;
+      padding:0 10px;
+    }
+
+    .arrow{
+      pointer-events:auto;
+      width:52px;
+      height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:rgba(38,35,31,0.72);
+      color:#fff;
+      font-size:34px;
+      cursor:pointer;
+      user-select:none;
+      transition:0.3s ease;
+      box-shadow:0 6px 16px rgba(0,0,0,0.22);
+    }
+
+    .arrow:hover{
+      background:rgba(38,35,31,0.9);
+      transform:scale(1.06);
+    }
+
+    #card1:checked ~ .arrows-1,
+    #card2:checked ~ .arrows-2,
+    #card3:checked ~ .arrows-3,
+    #card4:checked ~ .arrows-4,
+    #card5:checked ~ .arrows-5,
+    #card6:checked ~ .arrows-6{
+      display:flex;
+    }
+
+    .dots{
+      margin-top:25px;
+      text-align:center;
+    }
+
+    .dots label{
+      display:inline-block;
+      width:14px;
+      height:14px;
+      margin:0 6px;
+      border-radius:50%;
+      background-color:rgba(255,255,255,0.45);
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    #card1:checked ~ .dots label:nth-child(1),
+    #card2:checked ~ .dots label:nth-child(2),
+    #card3:checked ~ .dots label:nth-child(3),
+    #card4:checked ~ .dots label:nth-child(4),
+    #card5:checked ~ .dots label:nth-child(5),
+    #card6:checked ~ .dots label:nth-child(6){
+      background-color:white;
+      transform:scale(1.2);
+    }
+
+    .lesson-preview{
+      padding:60px 35px;
+      text-align:center;
+    }
+
+    .lesson-preview h2{
+      font-size:42px;
+      color:#EDE8DC;
+      font-family:'Playfair Display', serif;
+      margin-bottom:10px;
+    }
+
+    .lesson-preview-sub{
+      color:#EDE8DC;
+      font-size:16px;
+      margin-bottom:35px;
+    }
+
+    .lesson-preview-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+    }
+
+    .flip-card{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .flip-inner{
+      width:100%;
+      height:170px;
+      position:relative;
+      transform-style:preserve-3d;
+      transition:transform 0.7s ease;
+      cursor:pointer;
+    }
+
+    .flip-card:hover .flip-inner{
+      transform:rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      border-radius:20px;
+      padding:22px 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:#4B4F3E;
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .flip-front h3{
+      font-size:26px;
+      color:#FDE9C7;
+      font-family:'Playfair Display', serif;
+      margin-bottom:10px;
+    }
+
+    .flip-front p,
+    .flip-back p{
+      color:#EDE8DC;
+      font-size:14px;
+      line-height:1.6;
+      margin:0;
+    }
+
+    .flip-back{
+      transform:rotateY(180deg);
+      background:#C1B393;
+    }
+
+    .flip-back p{
+      color:#2f241d;
+      font-weight:600;
+    }
+
+    .learn-more{
+      display:inline-block;
+      text-decoration:none;
+      background:#C1B393;
+      color:#2f241d;
+      padding:9px 20px;
+      border-radius:12px;
+      font-size:14px;
+      font-weight:600;
+      transition:0.3s ease;
+    }
+
+    .learn-more:hover{
+      background:#7A4D2C;
+      color:#EDE8DC;
+      transform:translateY(-3px);
+    }
+
+    .reviews-section{
+      background-color:#4B4F3E;
+      padding:35px 30px;
+    }
+
+    .reviews-section h2{
+      font-size:26px;
+      color:#EDE8DC;
+      margin-bottom:20px;
+    }
+
+    .reviews-slider{
+      position:relative;
+      max-width:700px;
+      margin:0 auto 30px;
+    }
+
+    .reviews-slider input{
+      display:none;
+    }
+
+    .reviews-cards{
+      position:relative;
+      height:180px;
+    }
+
+    .review-card{
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%) scale(0.9);
+      width:260px;
+      background-color:#EDE8DC;
+      padding:14px;
+      opacity:0;
+      transition:0.4s ease;
+      text-align:center;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1);
+      border-radius:18px;
+    }
+
+    .review-header{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
+      justify-content:flex-start;
+    }
+
+    .review-avatar{
+      width:35px;
+      height:35px;
+      border-radius:50%;
+      flex-shrink:0;
+      overflow:hidden;
+    }
+
+    .review-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .review-header h3{
+      margin:0;
+      font-size:16px;
+      font-weight:400;
+      color:#222;
+    }
+
+    .review-card p{
+      background-color:white;
+      border:2px dashed #555;
+      padding:8px;
+      font-size:12px;
+      color:#333;
+      line-height:1.4;
+      margin-bottom:8px;
+      border-radius:10px;
+    }
+
+    .stars{
+      font-size:16px;
+      color:#f2c94c;
+      letter-spacing:2px;
+    }
+
+    #review1:checked ~ .reviews-cards .r1,
+    #review2:checked ~ .reviews-cards .r2,
+    #review3:checked ~ .reviews-cards .r3{
+      opacity:1;
+      transform:translateX(-50%) scale(1);
+      z-index:5;
+    }
+
+    .review-arrows{
+      display:none;
+      position:absolute;
+      top:40%;
+      left:0;
+      width:100%;
+      transform:translateY(-50%);
+      justify-content:space-between;
+      align-items:center;
+      pointer-events:none;
+    }
+
+    .review-arrows .arrow{
+      pointer-events:auto;
+      font-size:26px;
+      color:#EDE8DC;
+      cursor:pointer;
+      user-select:none;
+      padding:0 8px;
+      width:auto;
+      height:auto;
+      background:none;
+      box-shadow:none;
+    }
+
+    #review1:checked ~ .review-arrows.arrows-1,
+    #review2:checked ~ .review-arrows.arrows-2,
+    #review3:checked ~ .review-arrows.arrows-3{
+      display:flex;
+    }
+
+    .review-dots{
+      text-align:center;
+      margin-top:10px;
+    }
+
+    .review-dots label{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#b8b8b8;
+      margin:0 4px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    #review1:checked ~ .review-dots label:nth-child(1),
+    #review2:checked ~ .review-dots label:nth-child(2),
+    #review3:checked ~ .review-dots label:nth-child(3){
+      background:#7a4d2c;
+      transform:scale(1.2);
+    }
+
+    .add-review-box{
+      max-width:320px;
+      margin:20px auto 0;
+      background-color:rgba(255,255,255,0.88);
+      padding:16px;
+      border-radius:18px;
+    }
+
+    .add-review-box h3{
+      font-size:16px;
+      margin-bottom:10px;
+      color:#222;
+    }
+
+    .add-review-box input,
+    .add-review-box textarea{
+      width:100%;
+      margin-bottom:8px;
+      padding:8px;
+      border:1px solid #bbb;
+      font-size:11px;
+      background-color:white;
+      border-radius:10px;
+      outline:none;
+    }
+
+    .add-review-box textarea{
+      resize:none;
+      height:70px;
+    }
+
+    .add-review-box button{
+      background-color:#7a4d2c;
+      color:white;
+      border:none;
+      padding:8px 12px;
+      font-size:11px;
+      cursor:pointer;
+      border-radius:10px;
+    }
+
+    .rating{
+      display:flex;
+      flex-direction:row-reverse;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+
+    .rating input{
+      display:none;
+    }
+
+    .rating label{
+      font-size:20px;
+      color:#ccc;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .rating label:hover,
+    .rating label:hover ~ label,
+    .rating input:checked ~ label{
+      color:#f2c94c;
+    }
+
+    .faq-section{
+      background-color:#4B4F3E;
+      padding:25px 30px 40px;
+    }
+
+    .faq-section h2{
+      font-size:26px;
+      color:#EDE8DC;
+      margin-bottom:20px;
+    }
+
+    .faq-container{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+
+    .faq-item{
+      width:220px;
+      background-color:transparent;
+    }
+
+    .faq-item summary{
+      list-style:none;
+      background-color:#C1B393;
+      border:1px solid #C1B393;
+      padding:10px;
+      font-size:13px;
+      color:#222;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-radius:12px;
+    }
+
+    .faq-item summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .faq-icon{
+      font-size:12px;
+      transition:transform 0.3s ease;
+    }
+
+    .faq-item[open] .faq-icon{
+      transform:rotate(180deg);
+    }
+
+    .faq-answer{
+      background-color:#EDE8DC;
+      margin-top:6px;
+      padding:10px;
+      font-size:12px;
+      line-height:1.5;
+      color:#333;
+      border-radius:12px;
+    }
+
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 992px){
+      .bean-types{
+        justify-content:center;
+      }
+
+      .bean-types-left{
+        grid-template-columns:repeat(2, minmax(150px,170px));
+        justify-content:center;
+      }
+
+      .bean-types-right h2,
+      .grind-overlay h2,
+      .our-story h2{
+        font-size:42px;
+      }
+
+      .floating-bean img{
+        width:320px;
+        height:auto;
+        right:-40px;
+        top:-120px;
+      }
+
+      .lesson-preview-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px){
+      .grind-slider .arrows{
+        display:none !important;
+      }
+    }
+
+    @media (max-width:768px){
+      body{
+        padding-top:0;
+      }
+
+      .navbar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:15px 10px;
+        gap:10px;
+        height:auto;
+      }
+
+      .logo{
+        order:1;
+      }
+
+      .nav-right{
+        order:2;
+        display:flex;
+        justify-content:center;
+        width:100%;
+      }
+
+      .nav-links{
+        order:3;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        width:100%;
+        margin-top:5px;
+      }
+
+      .nav-links li{
+        list-style:none;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .search-box{
+        max-width:200px;
+      }
+
+      .hero{
+        min-height:100vh;
+        padding:0 40px;
+        align-items:center;
+        justify-content:flex-start;
+        text-align:left;
+        background-position:center top;
+      }
+
+      .hero-content{
+        max-width:700px;
+        text-align:left;
+      }
+
+      .main-hero-title{
+        font-size:58px;
+        line-height:1.15;
+        text-align:left;
+      }
+
+      .bean-types{
+        padding:50px 24px;
+        gap:30px;
+      }
+
+      .bean-types-right h2{
+        font-size:42px;
+      }
+
+      .grind-overlay h2{
+        font-size:46px;
+      }
+
+      .grind-slider{
+        max-width:100%;
+      }
+
+      .cards{
+        height:300px;
+      }
+
+      .card{
+        width:140px;
+        height:205px;
+        padding:22px 14px;
+      }
+
+      .card h3{
+        font-size:18px;
+        margin-bottom:10px;
+      }
+
+      .card p{
+        font-size:13px;
+      }
+
+      .card img{
+        width:65px;
+        height:90px;
+        margin-top:10px;
+      }
+
+      #card1:checked ~ .cards .c1,
+      #card2:checked ~ .cards .c2,
+      #card3:checked ~ .cards .c3,
+      #card4:checked ~ .cards .c4,
+      #card5:checked ~ .cards .c5,
+      #card6:checked ~ .cards .c6{
+        width:170px;
+        height:240px;
+      }
+
+      #card1:checked ~ .cards .c6,
+      #card2:checked ~ .cards .c1,
+      #card3:checked ~ .cards .c2,
+      #card4:checked ~ .cards .c3,
+      #card5:checked ~ .cards .c4,
+      #card6:checked ~ .cards .c5{
+        transform:translate(-130%, -50%) scale(0.78);
+        opacity:0.55;
+      }
+
+      #card1:checked ~ .cards .c2,
+      #card2:checked ~ .cards .c3,
+      #card3:checked ~ .cards .c4,
+      #card4:checked ~ .cards .c5,
+      #card5:checked ~ .cards .c6,
+      #card6:checked ~ .cards .c1{
+        transform:translate(30%, -50%) scale(0.78);
+        opacity:0.55;
+      }
+
+      #card1:checked ~ .cards .c5,
+      #card1:checked ~ .cards .c3,
+      #card2:checked ~ .cards .c6,
+      #card2:checked ~ .cards .c4,
+      #card3:checked ~ .cards .c1,
+      #card3:checked ~ .cards .c5,
+      #card4:checked ~ .cards .c2,
+      #card4:checked ~ .cards .c6,
+      #card5:checked ~ .cards .c3,
+      #card5:checked ~ .cards .c1,
+      #card6:checked ~ .cards .c4,
+      #card6:checked ~ .cards .c2{
+        opacity:0;
+        pointer-events:none;
+      }
+
+      .floating-bean{
+        display:none;
+      }
+    }
+
+    @media (max-width:640px){
+      .section-box{
+        width:min(1120px, calc(100% - 20px));
+      }
+
+      .our-story,
+      .why-section,
+      .bean-types,
+      .grind-size,
+      .reviews-section,
+      .faq-section{
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .bean-types-left{
+        grid-template-columns:1fr;
+        width:100%;
+      }
+
+      .bean-card{
+        width:100%;
+        max-width:320px;
+        margin:0 auto;
+      }
+
+      .faq-item{
+        width:100%;
+      }
+
+      .review-card{
+        width:220px;
+      }
+
+      .lesson-preview{
+        padding:45px 18px;
+      }
+
+      .lesson-preview h2{
+        font-size:32px;
+      }
+
+      .lesson-preview-grid{
+        grid-template-columns:1fr;
+      }
+
+      .flip-inner{
+        height:160px;
+      }
+    }
+
+    @media (max-width:560px){
+  .hero{
+    min-height:100vh;
+    padding:0 18px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .hero-content{
+    width:100%;
+    max-width:100%;
+    text-align:center;
+  }
+
+  .main-hero-title{
+    font-size:40px;
+    line-height:1.15;
+    text-align:center;
+  }
+}
+      .our-story h2,
+      .why-heading,
+      .bean-types-right h2,
+      .grind-overlay h2{
+        font-size:32px;
+      }
+
+      .our-story p{
+        font-size:16px;
+        line-height:1.8;
+      }
+
+      .why-card{
+        max-width:100%;
+        width:100%;
+        min-height:auto;
+      }
+
+      .reviews-cards{
+        height:210px;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
+      }
+    }
+
+    @media (max-width:480px){
+      .cards{
+        height:280px;
+      }
+
+      .nav-links{
+        gap:8px;
+      }
+
+      .nav-links a{
+        font-size:13px;
+      }
+
+      .search-box{
+        max-width:160px;
+        font-size:12px;
+      }
+
+      .mode-btn{
+        font-size:18px;
+      }
+
+      #card1:checked ~ .cards .c1,
+      #card2:checked ~ .cards .c2,
+      #card3:checked ~ .cards .c3,
+      #card4:checked ~ .cards .c4,
+      #card5:checked ~ .cards .c5,
+      #card6:checked ~ .cards .c6{
+        width:155px;
+        height:225px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+     <div class="logo">
+    <a href="index.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
+    </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="BrewSchool.html">Brew School</a></li>
+        <li><a href="CoffeLab.html">Coffee Lab</a></li>
+        <li><a href="student-dashboard.html">Student Dashboard</a></li>
+        <li><a href="About-us.html">About Us</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-right">
+<button type="button" id="themeToggle" class="mode-btn">☀️</button>
+  <input type="text" placeholder="Search" class="search-box">
+</div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="main-hero-title">
+          <span class="beige-text">Experience the</span><br>
+          <span class="white-text">Art of coffee.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="our-story section-box">
+      <div class="story-container">
+        <h2>Our Story</h2>
+
+        <p>It all started with a cup of coffee that tasted different.</p>
+
+        <p>
+          One day, we came across coffee beans that were naturally caffeine-free,
+          and that moment sparked our curiosity. We began to wonder how coffee
+          could vary so much while still being coffee. This simple experience
+          encouraged us to learn more about coffee beans, where they come from,
+          and how different factors shape the final cup.
+        </p>
+
+        <p>
+          As we explored further, we discovered how grind size, brewing methods,
+          and bean types can completely change flavor, aroma, and texture.
+          From light to dark roasts, fine to coarse grinds, and countless
+          brewing styles, each cup tells a different story. Bean to Brew was
+          created to share this journey — helping others understand why coffee
+          tastes the way it does, and how small details make a big difference.
+        </p>
+      </div>
+    </section>
+
+    <section class="why-section section-box">
+      <h2 class="why-heading">Why Bean to Brew?</h2>
+
+      <div class="why-container">
+        <div class="why-card">
+          <img src="coffee-basics.png" alt="Coffee Basics">
+          <h3>Coffee Basics</h3>
+          <p>Understand coffee beans, grind sizes, and brewing methods.</p>
+        </div>
+
+        <div class="why-card">
+          <img src="courses.png" alt="Courses and Workshops">
+          <h3>Courses & Workshops</h3>
+          <p>Educational courses and hands-on training experiences.</p>
+        </div>
+
+        <div class="why-card">
+          <img src="difference.png" alt="Know the Difference">
+          <h3>Know the Difference</h3>
+          <p>Discover how small details change the taste of coffee.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bean-types section-box">
+      <div class="bean-types-left">
+        <div class="bean-card">
+          <h3>Arabica</h3>
+          <p>The most popular coffee bean, known for its smooth, aromatic, and slightly sweet flavor.</p>
+        </div>
+
+        <div class="bean-card">
+          <h3>Robusta</h3>
+          <p>Stronger and more bitter, with higher caffeine content and a bold taste.</p>
+        </div>
+
+        <div class="bean-card">
+          <h3>Liberica</h3>
+          <p>Distinctive and smoky, offering a unique flavor that stands out from common coffee types.</p>
+        </div>
+
+        <div class="bean-card">
+          <h3>Excelsa</h3>
+          <p>Fruity and complex, adding depth and brightness, often used in coffee blends.</p>
+        </div>
+      </div>
+
+      <div class="bean-types-right">
+        <h2>Coffee Bean<br>Types</h2>
+      </div>
+    </section>
+
+    <div class="floating-bean">
+      <img src="beanpic.png" alt="Coffee Bean">
+    </div>
+
+    <section class="grind-size section-box">
+      <div class="grind-overlay">
+        <h2>The grind size makes a<br>difference</h2>
+
+        <div class="grind-slider">
+          <input type="radio" name="grind" id="card1" checked>
+          <input type="radio" name="grind" id="card2">
+          <input type="radio" name="grind" id="card3">
+          <input type="radio" name="grind" id="card4">
+          <input type="radio" name="grind" id="card5">
+          <input type="radio" name="grind" id="card6">
+
+          <div class="cards">
+            <div class="card c1">
+              <h3>Extra Fine</h3>
+              <p>Turkish Coffee</p>
+              <img src="Turkish.png" alt="Turkish Coffee">
+            </div>
+
+            <div class="card c2">
+              <h3>Fine</h3>
+              <p>Espresso</p>
+              <img src="Espresso.png" alt="Espresso">
+            </div>
+
+            <div class="card c3">
+              <h3>Medium-Fine</h3>
+              <p>Moka Pot</p>
+              <img src="Moka Pot.png" alt="Moka Pot">
+            </div>
+
+            <div class="card c4">
+              <h3>Medium</h3>
+              <p>V60 / Drip</p>
+              <img src="V60.png" alt="V60">
+            </div>
+
+            <div class="card c5">
+              <h3>Medium-Coarse</h3>
+              <p>Chemex</p>
+              <img src="Chemex.png" alt="Chemex">
+            </div>
+
+            <div class="card c6">
+              <h3>Coarse</h3>
+              <p>French Press</p>
+              <img src="French Press.png" alt="French Press">
+            </div>
+          </div>
+
+          <div class="arrows arrows-1">
+            <label for="card6" class="arrow left">&#10094;</label>
+            <label for="card2" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="arrows arrows-2">
+            <label for="card1" class="arrow left">&#10094;</label>
+            <label for="card3" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="arrows arrows-3">
+            <label for="card2" class="arrow left">&#10094;</label>
+            <label for="card4" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="arrows arrows-4">
+            <label for="card3" class="arrow left">&#10094;</label>
+            <label for="card5" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="arrows arrows-5">
+            <label for="card4" class="arrow left">&#10094;</label>
+            <label for="card6" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="arrows arrows-6">
+            <label for="card5" class="arrow left">&#10094;</label>
+            <label for="card1" class="arrow right">&#10095;</label>
+          </div>
+
+          <div class="dots">
+            <label for="card1"></label>
+            <label for="card2"></label>
+            <label for="card3"></label>
+            <label for="card4"></label>
+            <label for="card5"></label>
+            <label for="card6"></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-preview section-box">
+      <h2>Explore Our Lessons</h2>
+      <p class="lesson-preview-sub">A quick look at what you will learn in Brew School.</p>
+
+      <div class="lesson-preview-grid">
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 1</h3>
+              <p>Coffee origins and where coffee starts.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 2</h3>
+              <p>Coffee beans and flavor characteristics.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 3</h3>
+              <p>Roasting stages and coffee taste.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 4</h3>
+              <p>Grind sizes and their role in extraction.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 5</h3>
+              <p>Brewing methods and preparation styles.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Lesson 6</h3>
+              <p>Choosing coffee that matches your taste.</p>
+            </div>
+            <div class="flip-back">
+              <p>This lesson includes explanation, a learning video, and a quiz at the end.</p>
+            </div>
+          </div>
+          <a href="BrewSchool.html" class="learn-more">Learn More</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="reviews-section section-box">
+      <h2>What Customers Think About Us</h2>
+
+      <div class="reviews-slider">
+        <input type="radio" name="review" id="review1" checked>
+        <input type="radio" name="review" id="review2">
+        <input type="radio" name="review" id="review3">
+
+        <div class="reviews-cards">
+          <div class="review-card r1">
+            <div class="review-header">
+              <div class="review-avatar">
+                <img src="photo.png" alt="Wajd">
+              </div>
+              <h3>Wajd Mohammed</h3>
+            </div>
+            <p>Great platform for beginners and coffee lovers</p>
+            <div class="stars">★★★★★</div>
+          </div>
+
+          <div class="review-card r2">
+            <div class="review-header">
+              <div class="review-avatar">
+                <img src="photo.png" alt="Ellen">
+              </div>
+              <h3>Ellen Ahmed</h3>
+            </div>
+            <p>Perfect for learning coffee basics</p>
+            <div class="stars">★★★★☆</div>
+          </div>
+
+          <div class="review-card r3">
+            <div class="review-header">
+              <div class="review-avatar">
+                <img src="photo.png" alt="Lina">
+              </div>
+              <h3>Lina Omar</h3>
+            </div>
+            <p>Simple, useful, and enjoyable for coffee learners</p>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="review-arrows arrows-1">
+          <label for="review3" class="arrow left">&#10094;</label>
+          <label for="review2" class="arrow right">&#10095;</label>
+        </div>
+
+        <div class="review-arrows arrows-2">
+          <label for="review1" class="arrow left">&#10094;</label>
+          <label for="review3" class="arrow right">&#10095;</label>
+        </div>
+
+        <div class="review-arrows arrows-3">
+          <label for="review2" class="arrow left">&#10094;</label>
+          <label for="review1" class="arrow right">&#10095;</label>
+        </div>
+
+        <div class="review-dots">
+          <label for="review1"></label>
+          <label for="review2"></label>
+          <label for="review3"></label>
+        </div>
+      </div>
+
+      <div class="add-review-box">
+        <h3>Add Your Review</h3>
+        <input type="text" placeholder="Your name">
+        <textarea placeholder="Write your opinion..."></textarea>
+
+        <div class="rating">
+          <input type="radio" name="rating" id="star5">
+          <label for="star5">★</label>
+
+          <input type="radio" name="rating" id="star4">
+          <label for="star4">★</label>
+
+          <input type="radio" name="rating" id="star3">
+          <label for="star3">★</label>
+
+          <input type="radio" name="rating" id="star2">
+          <label for="star2">★</label>
+
+          <input type="radio" name="rating" id="star1">
+          <label for="star1">★</label>
+        </div>
+
+        <button type="button">Submit Review</button>
+      </div>
+    </section>
+
+    <section class="faq-section section-box">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-container">
+        <details class="faq-item">
+          <summary>Why does coffee taste different?<span class="faq-icon">▼</span></summary>
+          <div class="faq-answer">
+            Coffee tastes different because each brewing factor changes the extraction and flavor.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Are the workshops hands-on?<span class="faq-icon">▼</span></summary>
+          <div class="faq-answer">
+            Yes, the workshops include practical and hands-on coffee activities.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Who is this platform for?<span class="faq-icon">▼</span></summary>
+          <div class="faq-answer">
+            It is designed for beginners, coffee lovers, and anyone interested in learning more about coffee.
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Bean to Brew Logo">
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact us</h3>
+        <p>+966504256847</p>
+        <p>BeantoBrew@gmail.com</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow us</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com">
+            <img src="instagramicon.png" alt="Instagram">
+          </a>
+          <span class="social-divider"></span>
+          <a href="https://instagram.com">
+            <img src="Xicon.png" alt="X">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+    <div class="footer-clock">
+      <div class="clock-box">
+        <span class="clock-label">Current Time</span>
+        <span id="live-clock">00:00:00</span>
+      </div>
+    </div>
+
+    <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    const liveClock = document.getElementById("live-clock");
+    const backToTopBtn = document.getElementById("backToTop");
+    const grindSlider = document.querySelector(".grind-slider");
+
+    let currentGrind = 1;
+    const totalGrindCards = 6;
+    let isGrindSliding = false;
+
+    function goToGrindCard(index) {
+      if (index < 1) index = totalGrindCards;
+      if (index > totalGrindCards) index = 1;
+
+      currentGrind = index;
+      const radio = document.getElementById("card" + currentGrind);
+
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+
+    function slideGrindOnce(direction) {
+      if (isGrindSliding) return;
+
+      isGrindSliding = true;
+
+      if (direction === "next") {
+        goToGrindCard(currentGrind + 1);
+      } else {
+        goToGrindCard(currentGrind - 1);
+      }
+
+      setTimeout(function () {
+        isGrindSliding = false;
+      }, 550);
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowRight") {
+        slideGrindOnce("next");
+      }
+
+      if (event.key === "ArrowLeft") {
+        slideGrindOnce("prev");
+      }
+    });
+
+    if (grindSlider) {
+      grindSlider.addEventListener("wheel", function(event) {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY) && Math.abs(event.deltaX) > 25) {
+          event.preventDefault();
+
+          if (event.deltaX > 0) {
+            slideGrindOnce("next");
+          } else {
+            slideGrindOnce("prev");
+          }
+        }
+      }, { passive:false });
+
+      let startX = 0;
+      let startY = 0;
+
+      grindSlider.addEventListener("touchstart", function(event) {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive:true });
+
+      grindSlider.addEventListener("touchend", function(event) {
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
+
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            slideGrindOnce("next");
+          } else {
+            slideGrindOnce("prev");
+          }
+        }
+      }, { passive:true });
+    }
+
+    function updateClock() {
+      const now = new Date();
+
+      const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      if (liveClock) {
+        liveClock.textContent = time;
+      }
+    }
+
+    function toggleBackToTop() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    }
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    }
+
+    window.addEventListener("scroll", toggleBackToTop);
+
+    updateClock();
+    setInterval(updateClock, 1000);
+	
+	
+  const themeStyle = document.getElementById("theme-style");
+  const themeToggle = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    themeStyle.href = "styleLigth.css";
+    if (themeToggle) themeToggle.textContent = "🌙";
+  } else {
+    themeStyle.href = "style.css";
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (themeStyle.getAttribute("href") === "style.css") {
+        themeStyle.href = "styleLigth.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        themeStyle.href = "style.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
+
+  </script>
+
+</body>
+</html>
