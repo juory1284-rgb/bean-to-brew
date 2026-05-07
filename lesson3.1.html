@@ -709,7 +709,7 @@
 
       <ul class="nav-links">
         <li><a href="index.html"</a></li>
-        <li><a href="BrewSchool.html"class="active">Home>Brew School</a></li>
+        <li><a href="BrewSchool.html"class="active">Brew School</a></li>
         <li><a href="CoffeLab.html">Coffee Lab</a></li>
         <li><a href="student-dashboard.html">Student Dashboard</a></li>
         <li><a href="About-us.html">About Us</a></li>
@@ -956,30 +956,43 @@
   updateClock();
   setInterval(updateClock, 10
   00);
-  const themeStyle = document.getElementById("theme-style");
+ const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
   const savedTheme = localStorage.getItem("theme");
 
   if (savedTheme === "light") {
     themeStyle.href = "styleLigth.css";
-    if (themeToggle) themeToggle.textContent = "🌙";
+
+    if (themeToggle) {
+      themeToggle.textContent = "🌙";
+    }
+
   } else {
     themeStyle.href = "style.css";
-    if (themeToggle) themeToggle.textContent = "☀️";
+
+    if (themeToggle) {
+      themeToggle.textContent = "☀️";
+    }
   }
 
   if (themeToggle) {
+
     themeToggle.addEventListener("click", function () {
+
       if (themeStyle.getAttribute("href") === "style.css") {
+
         themeStyle.href = "styleLigth.css";
         themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light");
+
       } else {
+
         themeStyle.href = "style.css";
         themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark");
       }
+
     });
   }
 </script>
