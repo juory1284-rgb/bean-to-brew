@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 6 - Coffee Characteristics Comparison</title>
-<link rel="stylesheet" href="style.css" id="theme-style">
+ <link rel="stylesheet" href="style.css" id="theme-style">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -12,19 +12,21 @@
   <nav class="navbar">
 
     <div class="logo">
-      <img src="logo.png" alt="Bean to Brew Logo">
+    <a href="IndexLigth.html"><img src="logo.png" alt="Bean to Brew Logo"></a>
     </div>
+	
+  
+      <ul class="nav-links">
+        <li><a href="IndexLigth.html" class="active">Home</a></li>
+        <li><a href="BrewSchoolLight.html">Brew School</a></li>
+        <li><a href="CoffeLabLight.html">Coffee Lab</a></li>
+        <li><a href="student-dashboardLight.html">Student Dashboard</a></li>
+        <li><a href="About-usLight.html">About Us</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
 
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="BrewSchool.html">Brew School</a></li>
-      <li><a href="CoffeLab.html">Coffee Lab</a></li>
-      <li><a href="student-dashboard.html">Student Dashboard</a></li>
-      <li><a href="About-us.html">About Us</a></li>
-      <li><a href="Contact.html">Contact Us</a></li>
-    </ul>
 
-    <div class="nav-right">
+     <div class="nav-right">
 <button type="button" id="themeToggle" class="mode-btn">☀️</button>
       <input type="text" placeholder="Search" class="search-box">
     </div>
@@ -34,6 +36,18 @@
 
 <main class="lesson6b-page">
   <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      overflow-x:hidden;
+    }
+
     .lesson6b-page{
       font-family:Arial, sans-serif;
       color:#EDE8DC;
@@ -401,7 +415,11 @@
       width: min(1150px, 92%);
       margin: 30px auto 80px;
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
     }
 
     .lesson-buttons a {
@@ -413,6 +431,12 @@
       align-items: center;
       gap: 10px;
       transition: all 0.3s ease;
+      white-space:nowrap;
+    }
+
+    .lesson-buttons a:hover{
+      color:#FDE9C7;
+      transform:translateY(-3px);
     }
 
     .btn-back,
@@ -427,6 +451,74 @@
       background: #7a4d2c;
       color: #EDE8DC;
       transform: translateY(-3px);
+    }
+
+    .footer-clock{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .clock-box{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border:1px solid rgba(253, 233, 199, 0.28);
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(4px);
+      color:#F5F1E8;
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .clock-label{
+      font-size:14px;
+      font-weight:600;
+      color:#EDE8DC;
+      letter-spacing:0.4px;
+    }
+
+    #live-clock{
+      font-size:15px;
+      font-weight:700;
+      color:#F5F1E8;
+      letter-spacing:1px;
+      min-width:105px;
+      text-align:center;
+    }
+
+    #backToTop{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:50px;
+      height:50px;
+      border:none;
+      border-radius:50%;
+      background-color:#C1B393;
+      color:#26231F;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(12px);
+      transition:all 0.3s ease;
+      z-index:9999;
+    }
+
+    #backToTop:hover{
+      background-color:#FDE9C7;
+      transform:translateY(0) scale(1.06);
+    }
+
+    #backToTop.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
     }
 
     @keyframes fadeUp{
@@ -471,10 +563,111 @@
         transform:translateY(-8px) scale(1.02) !important;
       }
     }
+.cup-nested-list{
+  margin-top:14px;
+  padding-left:18px;
+  text-align:left;
+  list-style-type:disc;
+}
+
+.cup-nested-list > li{
+  color:#3A2F2B;
+  font-size:14px;
+  font-weight:700;
+}
+
+.cup-nested-list ul{
+  margin-top:7px;
+  padding-left:20px;
+  list-style-type:circle;
+}
+
+.cup-nested-list ul li{
+  color:#4A3527;
+  font-size:13px;
+  font-weight:400;
+  margin-bottom:4px;
+}
+    @media (max-width: 768px){
+      .navbar{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:15px 10px;
+        gap:10px;
+        height:auto;
+      }
+
+      .logo{
+        order:1;
+      }
+
+      .nav-right{
+        order:2;
+        display:flex;
+        justify-content:center;
+        width:100%;
+      }
+
+      .nav-links{
+        order:3;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        width:100%;
+        margin-top:5px;
+      }
+
+      .nav-links li{
+        list-style:none;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .search-box{
+        max-width:200px;
+      }
+
+      .path-breadcrumb{
+        display:none;
+      }
+
+      .lesson6b-page{
+        padding-top:240px;
+      }
+
+      .lesson6b-hero{
+        align-items:center;
+        text-align:center;
+        padding:40px 22px;
+      }
+
+      .lesson6b-hero-content{
+        max-width:100%;
+      }
+
+      .lesson-buttons{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .lesson-buttons a{
+        font-size:1.15rem;
+        white-space:nowrap;
+      }
+    }
 
     @media (max-width: 720px){
-      .lesson6b-wrap{
-        padding:24px 0 60px;
+      .path-wrap{
+        display:block;
+        padding:0 0 45px;
       }
 
       .lesson6b-hero{
@@ -484,14 +677,6 @@
 
       .journey-map{
         grid-template-columns:1fr;
-      }
-
-      .lesson6b-actions{
-        flex-direction:column;
-      }
-
-      .lesson6b-btn{
-        width:100%;
       }
 
       .comparison-section,
@@ -504,6 +689,86 @@
       .journey-sub,
       .journey-bottom-text{
         font-size:16px;
+      }
+
+      .lesson-buttons{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .lesson-buttons a{
+        font-size:1.15rem;
+        white-space:nowrap;
+      }
+    }
+
+    @media (max-width:480px){
+      .lesson6b-page{
+        padding-top:260px;
+      }
+
+      .nav-links{
+        gap:8px;
+      }
+
+      .nav-links a{
+        font-size:13px;
+      }
+
+      .search-box{
+        max-width:160px;
+        font-size:12px;
+      }
+
+      .mode-btn{
+        font-size:18px;
+      }
+
+      .lesson6b-hero h1{
+        font-size:34px;
+        line-height:1.1;
+      }
+
+      .lesson6b-hero p{
+        font-size:15px;
+      }
+
+      .lesson-buttons{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:nowrap;
+      }
+
+      .lesson-buttons a{
+        font-size:1rem;
+        white-space:nowrap;
+      }
+
+      .clock-box{
+        padding:9px 14px;
+        gap:8px;
+      }
+
+      .clock-label{
+        font-size:13px;
+      }
+
+      #live-clock{
+        font-size:14px;
+        min-width:95px;
+      }
+
+      #backToTop{
+        right:16px;
+        bottom:16px;
+        width:46px;
+        height:46px;
+        font-size:20px;
       }
     }
   </style>
@@ -682,15 +947,24 @@
           </p>
         </article>
 
-        <article class="journey-card cup">
-          <div class="journey-icon">☕</div>
-          <span class="journey-badge">Final Result</span>
-          <h3>Your Cup</h3>
-          <p>
-            The final cup reflects every choice before it — bean, roast, grind, and brewing method.
-            That is how coffee becomes your perfect match.
-          </p>
-        </article>
+<article class="journey-card cup">
+  <div class="journey-icon">☕</div>
+  <span class="journey-badge">Final Result</span>
+  <h3>Your Cup</h3>
+  <p>
+    The final cup reflects every choice before it — bean, roast, grind, and brewing method.
+    That is how coffee becomes your perfect match.
+  </p>
+
+  <ul class="cup-nested-list">
+    <li>Final cup depends on:
+      <ul>
+        <li>Bean type and roast level</li>
+        <li>Grind size and brewing method</li>
+      </ul>
+    </li>
+  </ul>
+</article>
       </div>
 
       <p class="journey-bottom-text">
@@ -734,12 +1008,60 @@
   </div>
 
   <p class="footer-note">Learn, explore, and enjoy the world of coffee.</p>
+
+  <div class="footer-clock">
+    <div class="clock-box">
+      <span class="clock-label">Current Time</span>
+      <span id="live-clock">00:00:00</span>
+    </div>
+  </div>
+
   <p class="copyright">© 2026 Bean to Brew. All rights reserved.</p>
 </footer>
 
+<button id="backToTop" title="Back to Top">↑</button>
 
- <script>
-  const themeStyle = document.getElementById("theme-style");
+<script>
+  const liveClock = document.getElementById("live-clock");
+  const backToTopBtn = document.getElementById("backToTop");
+
+  function updateClock() {
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    if (liveClock) {
+      liveClock.textContent = time;
+    }
+  }
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTop);
+
+  updateClock();
+  setInterval(updateClock, 1000);
+   const themeStyle = document.getElementById("theme-style");
   const themeToggle = document.getElementById("themeToggle");
 
   const savedTheme = localStorage.getItem("theme");
@@ -766,7 +1088,6 @@
     });
   }
 </script>
-
 
 </body>
 </html>
