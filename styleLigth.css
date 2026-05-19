@@ -1,35 +1,88 @@
+/* =========================================================
+   Bean to Brew - FINAL LIGHT THEME
+   Cleaned, organized, and designed to match your original
+   warm light pages without adding extra boxes.
+   ========================================================= */
+
+
+/* =========================
+   1) GLOBAL RESET + COLORS
+========================= */
+
+:root{
+  --cream:#F7F0E4;
+  --cream-2:#EFE2CF;
+  --cream-3:#FFF8ED;
+  --cream-4:#FFFDF8;
+
+  --sand:#E6D3B3;
+  --sand-2:#D8C7A7;
+  --sand-3:#C1B393;
+
+  --olive-soft:#DCE1C8;
+  --olive:#4B4F3E;
+
+  --brown:#7A4D2C;
+  --brown-hover:#94613D;
+  --dark:#3A2F2B;
+  --text:#4A3527;
+  --muted:#5A4638;
+
+  --border:rgba(107,83,58,0.16);
+  --shadow:0 10px 24px rgba(92,64,42,0.10);
+  --shadow-soft:0 8px 18px rgba(92,64,42,0.08);
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
 
-html, body{
+html{
+  scroll-behavior:smooth;
+}
+
+html,
+body{
   overflow-x:hidden;
 }
 
 body{
   margin:0;
   font-family:Arial, sans-serif;
+  color:var(--text) !important;
   background:
     radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
     radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
     radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.10), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%);
-  color:#4A3527;
+    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.12), transparent 35%),
+    linear-gradient(140deg, var(--cream) 0%, var(--cream-2) 40%, var(--olive-soft) 100%) !important;
+  background-attachment:fixed;
 }
 
-/* ===== Global Typography ===== */
-h1, h2, h3, h4, h5, h6{
+h1,h2,h3,h4,h5,h6{
   font-family:'Playfair Display', serif;
+  color:var(--dark) !important;
 }
 
-p{
-  font-family:Arial, sans-serif;
+p,li,td,span,label{
+  color:inherit;
 }
 
-/* ===== Navbar ===== */
+a{
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+}
+
+
+/* =========================
+   2) NAVBAR
+========================= */
+
 .navbar{
   position:fixed;
   top:0;
@@ -39,12 +92,14 @@ p{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background-color:#EFE2CF;
+  background:rgba(255,248,237,0.96) !important;
   padding:14px 40px;
   z-index:1000;
   gap:18px;
-  box-shadow:0 4px 18px rgba(92,64,42,0.10);
-  border-bottom:1px solid rgba(107,83,58,0.12);
+  flex-wrap:wrap;
+  box-shadow:0 4px 18px rgba(92,64,42,0.10) !important;
+  border-bottom:1px solid var(--border) !important;
+  backdrop-filter:blur(8px);
 }
 
 .logo{
@@ -57,6 +112,17 @@ p{
   width:60px;
   height:auto;
   display:block;
+}
+
+.logo a,
+.logo a:hover,
+.logo a:focus,
+.logo img,
+.logo img:hover,
+.logo img:focus{
+  outline:none !important;
+  box-shadow:none !important;
+  background:transparent !important;
 }
 
 .nav-links{
@@ -76,20 +142,16 @@ p{
 }
 
 .nav-links a{
-  text-decoration:none;
-  color:#4A3527;
+  color:var(--dark) !important;
   font-size:16px;
-  transition:0.3s;
   white-space:nowrap;
+  transition:0.3s ease;
 }
 
-.nav-links a:hover{
-  color:#7A4D2C;
-}
-
+.nav-links a:hover,
 .nav-links a.active{
-  color:#7A4D2C;
-  font-weight:bold;
+  color:var(--brown) !important;
+  font-weight:700;
 }
 
 .nav-right{
@@ -100,31 +162,99 @@ p{
 }
 
 .mode-btn{
-background:transparent;
-  border:none;
-  color:#7A4D2C;
+  background:transparent !important;
+  border:none !important;
+  color:var(--brown) !important;
   font-size:22px;
   cursor:pointer;
   text-decoration:none;
   display:flex;
   align-items:center;
   justify-content:center;
+  outline:none !important;
+  box-shadow:none !important;
 }
 
 .search-box{
   padding:8px 12px;
-  border:1px solid rgba(107,83,58,0.16);
+  border:1px solid var(--border) !important;
   outline:none;
   border-radius:20px;
   font-size:14px;
   min-width:160px;
   max-width:220px;
   width:100%;
-  background:#FFFDF8;
-  color:#4A3527;
+  background:var(--cream-4) !important;
+  color:var(--dark) !important;
 }
 
-/* ===== Hero ===== */
+
+/* =========================
+   3) GLOBAL PAGE BACKGROUNDS
+========================= */
+
+main,
+.brew-school-page,
+.coffee-lab-page,
+.dashboard-page,
+.notes-page,
+.form-page,
+.result-page,
+.about-page,
+.contact-section,
+.lesson-page,
+.lesson2-page,
+.lesson5-page,
+.lesson6-page,
+.lesson6b-page,
+.lesson5-wrap,
+.lesson6-wrap,
+.lesson-section{
+  color:var(--text) !important;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
+    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.26), transparent 28%),
+    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.22), transparent 32%),
+    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.12), transparent 35%),
+    linear-gradient(140deg, var(--cream) 0%, var(--cream-2) 42%, var(--olive-soft) 100%) !important;
+  background-attachment:fixed;
+}
+
+
+/* =========================
+   4) BREADCRUMB
+========================= */
+
+.path-wrap{
+  z-index:5;
+}
+
+.path-breadcrumb,
+.path-breadcrumb a,
+.path-breadcrumb a:visited,
+.path-breadcrumb a:active,
+.path-breadcrumb span,
+.breadcrumbs,
+.breadcrumbs a,
+.lesson5-breadcrumb,
+.lesson5-breadcrumb a,
+.lesson5-breadcrumb span{
+  color:var(--muted) !important;
+  text-decoration:none !important;
+  opacity:1 !important;
+}
+
+.path-breadcrumb a:hover,
+.breadcrumbs a:hover,
+.lesson5-breadcrumb a:hover{
+  color:var(--brown) !important;
+}
+
+
+/* =========================
+   5) HOMEPAGE
+========================= */
+
 .hero{
   width:100%;
   min-height:100vh;
@@ -153,63 +283,1398 @@ background:transparent;
 }
 
 .beige-text{
-  color:#F1D4A5;
+  color:#F1D4A5 !important;
 }
 
 .white-text{
-  color:#FFF8ED;
+  color:#FFF8ED !important;
 }
 
-/* ===== Breadcrumb ===== */
-.path-wrap{
-  position:absolute;
-  top:110px;
-  left:80px;
-  width:auto;
-  margin:0;
-  padding:0;
-  z-index:5;
+.section-box{
+  background:rgba(255,248,237,0.82) !important;
+  border:1px solid var(--border) !important;
+  border-radius:28px;
+  box-shadow:0 10px 30px rgba(92,64,42,0.12) !important;
 }
 
-.path-breadcrumb{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:nowrap;
-  color:#FFF8ED;
-  font-size:14px;
-  margin:0;
-  animation:fadeUp 0.8s ease;
+.our-story h2,
+.why-heading,
+.bean-types-right h2,
+.lesson-preview h2,
+.reviews-section h2,
+.faq-section h2{
+  color:var(--dark) !important;
 }
 
-.path-breadcrumb a,
-.path-breadcrumb a:visited,
-.path-breadcrumb a:active{
-  color:#FFF8ED;
-  text-decoration:none;
+.our-story p,
+.lesson-preview-sub,
+.why-card p,
+.flip-front p,
+.flip-back p,
+.review-card p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.why-card,
+.flip-front,
+.flip-back,
+.card{
+  background:var(--sand-2) !important;
+  color:var(--dark) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.why-card h3,
+.flip-front h3,
+.card h3,
+.review-card h3{
+  color:var(--dark) !important;
+}
+
+.bean-card::before{
+  background:rgba(245,226,196,0.72) !important;
+}
+
+.reviews-section,
+.faq-section{
+  background:var(--sand-2) !important;
+}
+
+.review-card,
+.add-review-box,
+.faq-answer{
+  background:var(--cream-3) !important;
+  color:var(--text) !important;
+}
+
+.faq-item summary{
+  background:var(--sand) !important;
+  color:var(--dark) !important;
+}
+
+
+/* =========================
+   6) GENERAL BUTTONS
+========================= */
+
+.learn-more,
+.add-review-box button,
+.submit-btn,
+.next-btn,
+.quiz-btn,
+.more-btn,
+.card-btn,
+.save-btn,
+.delete-all-btn,
+.details-btn,
+.book-btn,
+#applyBtn,
+.mini-details,
+.btn-retry,
+.contact-form button{
+  background:var(--brown) !important;
+  color:#FFF8ED !important;
+  border:none !important;
+  box-shadow:none !important;
+  outline:none !important;
   transition:0.3s ease;
 }
 
-.path-breadcrumb a:hover{
-  color:#F1D4A5;
-  text-decoration:none;
+.learn-more:hover,
+.add-review-box button:hover,
+.submit-btn:hover,
+.next-btn:hover,
+.quiz-btn:hover,
+.more-btn:hover,
+.card-btn:hover,
+.save-btn:hover,
+.delete-all-btn:hover,
+.details-btn:hover,
+.book-btn:hover,
+#applyBtn:hover,
+.mini-details:hover,
+.btn-retry:hover,
+.contact-form button:hover{
+  background:var(--brown-hover) !important;
+  color:#FFF8ED !important;
 }
 
-.path-breadcrumb span{
-  color:#FFF8ED;
+.lesson-buttons a,
+.quiz-actions a,
+.quiz-actions button{
+  color:var(--brown) !important;
+  background:transparent !important;
 }
 
-/* ===== Footer ===== */
+.lesson-buttons a:hover,
+.quiz-actions a:hover,
+.quiz-actions button:hover{
+  color:var(--brown-hover) !important;
+}
+
+
+/* =========================
+   7) FORMS / CONTACT / EVALUATION
+========================= */
+
+.evaluation-card,
+.contact-container{
+  background:rgba(255,248,237,0.90) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.evaluation-card h1,
+.contact-title h1{
+  color:var(--dark) !important;
+}
+
+.evaluation-subtitle,
+.note,
+.contact-title p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.form-group label,
+.contact-form label{
+  color:var(--text) !important;
+}
+
+.form-group select,
+.form-group textarea,
+.contact-form input,
+.contact-form textarea{
+  background:var(--cream-4) !important;
+  color:var(--dark) !important;
+  border:1px solid var(--border) !important;
+}
+
+.form-group textarea::placeholder,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:#8A7462 !important;
+}
+
+.teacher-photo{
+  background:
+    url("photo.png") center/cover no-repeat !important;
+  background-color:var(--sand) !important;
+}
+
+.stars label{
+  color:#C8B58F !important;
+}
+
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label{
+  color:#C8952F !important;
+}
+
+
+/* =========================
+   8) ABOUT US
+========================= */
+
+.about-page h1,
+.teachers-title{
+  color:var(--dark) !important;
+}
+
+.about-text p,
+.teachers-desc,
+.sort-title,
+.teacher-exp,
+.teacher-note{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.about-image img{
+  box-shadow:var(--shadow) !important;
+}
+
+.sort-select{
+  background:var(--sand) !important;
+  color:var(--dark) !important;
+  border:1px solid var(--border) !important;
+}
+
+.teachers-section .card{
+  background:var(--sand) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.teachers-section .card h3{
+  color:var(--dark) !important;
+}
+
+.teacher-img{
+  background-color:var(--cream-3) !important;
+}
+
+.teachers-slider .arrow{
+  color:var(--brown) !important;
+}
+
+.teachers-slider .arrow:hover{
+  color:var(--brown-hover) !important;
+}
+
+
+/* =========================
+   9) BREW SCHOOL
+   No white square behind cards
+========================= */
+
+.brew-school-page{
+  min-height:100vh;
+}
+
+.page-heading h1{
+  color:var(--dark) !important;
+}
+
+.page-heading p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.lesson-card{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  overflow:hidden;
+}
+
+.lesson-front,
+.lesson-back{
+  border:none !important;
+  box-shadow:none !important;
+}
+
+.lesson-front{
+  background:transparent !important;
+}
+
+.lesson-front img,
+.lesson-card img{
+  display:block;
+  width:100%;
+  background:transparent !important;
+  border-radius:28px 28px 0 0 !important;
+}
+
+.lesson-front h3,
+.lesson-front h3 a,
+.lesson-card h3,
+.lesson-card h3 a{
+  color:var(--dark) !important;
+}
+
+.lesson-front h3{
+  background:var(--cream-3) !important;
+  margin:0 !important;
+  padding:26px 20px !important;
+  border-radius:0 0 28px 28px !important;
+  border:1px solid rgba(107,83,58,0.10) !important;
+  border-top:none !important;
+  box-shadow:0 10px 24px rgba(92,64,42,0.08) !important;
+}
+
+.lesson-back{
+  background:var(--sand-2) !important;
+  color:var(--dark) !important;
+  border-radius:28px !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.lesson-back h3,
+.lesson-back h3 a{
+  color:var(--dark) !important;
+}
+
+.lesson-back p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+
+/* =========================
+   10) COFFEE LAB
+========================= */
+
+.coffee-lab-page .page-title h1,
+.filter-sidebar h2,
+.discover-text h3{
+  color:var(--dark) !important;
+}
+
+.discover-text p,
+.coffee-lab-page p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.filter-box{
+  background:var(--sand) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.filter-group label{
+  color:var(--cream-3) !important;
+  font-weight:700;
+}
+
+.filter-group select,
+.main-search input{
+  background:var(--cream-4) !important;
+  border:1px solid var(--border) !important;
+  color:var(--dark) !important;
+}
+
+#resetBtn{
+  background:#E7E1D5 !important;
+  color:var(--dark) !important;
+}
+
+.lab-card-front,
+.lab-card-back{
+  background:linear-gradient(135deg, #E8D8BC 0%, #DCC7A4 58%, #CBB28B 100%) !important;
+  border:1px solid rgba(107,83,58,0.16) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.lab-card-back{
+  background:var(--sand) !important;
+}
+
+.lab-card-front h3,
+.lab-card-back h3{
+  color:var(--dark) !important;
+}
+
+.lab-card-front p,
+.lab-card-back p,
+.back-details p,
+.back-tag{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.back-arrow{
+  color:var(--dark) !important;
+}
+
+.discover-section{
+  background:var(--sand) !important;
+}
+
+.small-card{
+  background:var(--cream-3) !important;
+  border:1px solid var(--border) !important;
+}
+
+.small-card h3{
+  color:var(--dark) !important;
+}
+
+.card-desc{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+
+/* =========================
+   11) STUDENT DASHBOARD
+========================= */
+
+.dashboard-section h1,
+.scores-title{
+  color:var(--dark) !important;
+}
+
+.dashboard-subtitle,
+.no-scores{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.dashboard-card{
+  background:var(--cream-3) !important;
+  color:var(--dark) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.dashboard-card:hover{
+  box-shadow:0 14px 30px rgba(92,64,42,0.16) !important;
+}
+
+.card-title{
+  color:var(--dark) !important;
+}
+
+.card-text{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.scores-table{
+  background:var(--cream-3) !important;
+  border:1px solid var(--border) !important;
+}
+
+.scores-table th{
+  background:var(--brown) !important;
+  color:#FFF8ED !important;
+}
+
+.scores-table td{
+  background:#F3E7D3 !important;
+  color:var(--dark) !important;
+  border:1px solid rgba(107,83,58,0.12) !important;
+}
+
+.scores-table tr:nth-child(even) td{
+  background:#E8D8C0 !important;
+}
+
+
+/* =========================
+   12) MY NOTES
+========================= */
+
+.notes-header h1,
+.saved-title{
+  color:var(--dark) !important;
+}
+
+.notes-subtitle{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.note-input-box{
+  background:var(--sand) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.note-input,
+.priority-select{
+  background:var(--cream-4) !important;
+  color:var(--dark) !important;
+  border:1px solid var(--border) !important;
+}
+
+.note-input::placeholder{
+  color:#8A7462 !important;
+}
+
+.note-card{
+  background:var(--sand-2) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.note-text{
+  color:var(--dark) !important;
+  opacity:1 !important;
+}
+
+.note-card.priority-1{
+  background:#E8B7B0 !important;
+}
+
+.note-card.priority-2{
+  background:#E8D79A !important;
+}
+
+.note-card.priority-3{
+  background:#BFD7B5 !important;
+}
+
+.note-check{
+  accent-color:var(--brown) !important;
+}
+
+
+/* =========================
+   13) LESSON HEROES
+========================= */
+
+.lesson-hero,
+.hero-lesson,
+.hero-lesson2,
+.lesson5-hero,
+.lesson6-hero,
+.lesson6b-hero{
+  border:1px solid rgba(107,83,58,0.16) !important;
+  box-shadow:0 18px 38px rgba(92,64,42,0.14) !important;
+}
+
+/* only image heroes keep a soft readable overlay */
+.hero-overlay,
+.hero-lesson::before,
+.hero-lesson2::before,
+.lesson5-hero::before,
+.lesson6-hero::before,
+.lesson6b-hero::before{
+  background:linear-gradient(
+    90deg,
+    rgba(34,24,18,0.50) 0%,
+    rgba(34,24,18,0.25) 50%,
+    rgba(34,24,18,0.10) 100%
+  ) !important;
+}
+
+/* lesson 1.2 plain hero */
+.lesson-hero{
+  background:
+    linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)),
+    url("lesson1.jpg") center/cover no-repeat !important;
+}
+
+/* image hero text */
+.hero-lesson h1,
+.hero-lesson p,
+.hero-lesson2 h1,
+.hero-lesson2 p,
+.lesson5-hero h1,
+.lesson5-hero p,
+.lesson6-hero h1,
+.lesson6-hero p,
+.lesson6b-hero h1,
+.lesson6b-hero p,
+.hero-content h1,
+.hero-content p,
+.lesson5-hero-content h1,
+.lesson5-hero-content p,
+.lesson6-hero-content h1,
+.lesson6-hero-content p,
+.lesson6b-hero-content h1,
+.lesson6b-hero-content p{
+  color:#FFF8ED !important;
+  opacity:1 !important;
+  text-shadow:0 8px 22px rgba(0,0,0,0.28) !important;
+}
+
+.lesson-label,
+.lesson-badge,
+.lesson5-tag,
+.lesson5-pill,
+.lesson6-pill,
+.lesson6b-pill{
+  background:rgba(122,77,44,0.84) !important;
+  color:#FFF8ED !important;
+  border:1px solid rgba(255,248,237,0.25) !important;
+}
+
+
+/* =========================
+   14) LESSON COMMON TEXT FIX
+   Main fix for faded text
+========================= */
+
+.lesson-page p,
+.lesson-page li,
+.lesson-page span,
+.lesson2-page p,
+.lesson2-page li,
+.lesson2-page span,
+.lesson5-page p,
+.lesson5-page li,
+.lesson5-page span,
+.lesson6-page p,
+.lesson6-page li,
+.lesson6-page span,
+.lesson6b-page p,
+.lesson6b-page li,
+.lesson6b-page span,
+.lesson-section p,
+.lesson-section li,
+.lesson-section span{
+  opacity:1 !important;
+}
+
+.lesson-intro p,
+.lesson-video p,
+.section-title p,
+.section-heading p,
+.map-title p,
+.lesson-summary p,
+.beans-heading p,
+.beans-intro p,
+.intro-card p,
+.intro-text p,
+.video-note,
+.final-text,
+.final-text p,
+.final-note p,
+.bridge-section p,
+.summary-text p,
+.summary-text li,
+.points-list li,
+.changes-panel li,
+.vietnam-text p,
+.bean-text p,
+.bean-card p,
+.bean-card li,
+.criteria-box,
+.criteria-center,
+.scale-labels,
+.flavor-card p,
+.flavor-title p,
+.lesson5-intro p,
+.lesson5-card p,
+.lesson5-card li,
+.lesson5-map-card p,
+.lesson5-map-card li,
+.lesson5-video-text p,
+.lesson5-summary p,
+.temp-card li,
+.brew-note,
+.lesson6-intro p,
+.lesson6-info-card p,
+.lesson6-style-card p,
+.lesson6-style-card li,
+.lesson6-video-text p,
+.journey-card p,
+.journey-bottom-text,
+.comparison-head p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+
+/* =========================
+   15) LESSON CARDS / SECTIONS
+   Keep original background mood, no extra big boxes
+========================= */
+
+.intro-card,
+.video-box,
+.video-section,
+.points-section,
+.changes-panel,
+.bridge-section,
+.levels-section,
+.summary-text,
+.final-text,
+.vietnam-text,
+.flavor-card,
+.criteria-section,
+.table-section,
+.grind-types-section,
+.comparison-section,
+.grind-table,
+.coffee-fact,
+.lesson5-video-text,
+.lesson5-video-box,
+.lesson6-bag-stage,
+.lesson6-find-style,
+.lesson6-video-text,
+.lesson6-video-box,
+.comparison-table-wrap,
+.journey-map{
+  background:rgba(255,248,237,0.72) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(107,83,58,0.10) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+/* sections that should breathe with page background */
+.bridge-section,
+.final-note,
+.lesson-section,
+.beans-heading,
+.section-heading,
+.section-title,
+.map-title,
+.lesson5-styles,
+.lesson5-map-head,
+.brew-temperature,
+.lesson6-bag-head,
+.lesson6-find-style-head,
+.comparison-head,
+.journey-section{
+  background:transparent !important;
+  box-shadow:none !important;
+  border:none !important;
+}
+
+
+/* =========================
+   16) LESSON 1 + 1.2
+========================= */
+
+.parts-wrap,
+.map-card,
+.lesson-summary{
+  background:rgba(255,248,237,0.78) !important;
+  border:1px solid rgba(107,83,58,0.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.part-card{
+  background:var(--sand) !important;
+  border:1px solid rgba(107,83,58,0.14) !important;
+}
+
+.part-card h3,
+.map-card h4,
+.lesson-summary h3{
+  color:var(--dark) !important;
+}
+
+.part-card p,
+.map-card p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.part-arrow{
+  color:var(--brown) !important;
+}
+
+.farm-info{
+  background:linear-gradient(to bottom right, var(--sand), var(--sand-2)) !important;
+  border:1px solid rgba(107,83,58,0.14) !important;
+}
+
+.farm-info h3{
+  color:var(--dark) !important;
+}
+
+.farm-info p,
+.farm-info li{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.belt-note,
+.map-tag{
+  background:var(--brown) !important;
+  color:#FFF8ED !important;
+}
+
+.map-section{
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 30%),
+    linear-gradient(to bottom, var(--cream-2), #DCC9A8) !important;
+  border:1px solid rgba(107,83,58,0.14) !important;
+}
+
+.route-line{
+  border-top:2px dashed rgba(122,77,44,0.30) !important;
+}
+
+
+/* =========================
+   17) LESSON 2 + 2.2
+========================= */
+
+.bean-card{
+  background:rgba(255,248,237,0.88) !important;
+  border:1px solid rgba(111,76,49,0.10) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.bean-text{
+  background:#FFFAF5 !important;
+}
+
+.bean-text p{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.bean-tag{
+  background:var(--sand-3) !important;
+  color:#FFF8ED !important;
+}
+
+.bean-points div{
+  background:#F4EBE2 !important;
+  color:var(--text) !important;
+}
+
+.culture-section{
+  box-shadow:var(--shadow) !important;
+}
+
+.culture-inner,
+.culture-inner h2,
+.culture-inner p{
+  color:#FFF8ED !important;
+  opacity:1 !important;
+}
+
+.vietnam-card,
+.robusta-card{
+  background:rgba(255,248,237,0.55) !important;
+  border-radius:32px !important;
+  padding:45px 55px !important;
+  max-width:1200px;
+  margin:auto;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+.vietnam-text{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+.vietnam-text h2,
+.vietnam-card h2,
+.robusta-card h2{
+  color:var(--dark) !important;
+}
+
+.vietnam-text p,
+.vietnam-card p,
+.robusta-card p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.flavor-title h3,
+.criteria-center{
+  color:var(--brown) !important;
+}
+
+.criteria-box{
+  background:#FFFAF5 !important;
+  color:var(--text) !important;
+}
+
+.criteria-center{
+  background:#F9F2EB !important;
+}
+
+
+/* =========================
+   18) LESSON 3 + 3.2
+========================= */
+
+.points-section h3,
+.video-section h3,
+.bridge-section h3,
+.level-card h3,
+.summary-text h3,
+.section-heading h2,
+.levels-section h2{
+  color:var(--brown) !important;
+}
+
+.points-list li{
+  background:#F7EFE7 !important;
+  color:var(--text) !important;
+}
+
+.beans-strip{
+  background:rgba(255,248,237,0.78) !important;
+  border:1px solid rgba(111,76,49,0.08) !important;
+}
+
+.diamond-card,
+.roast-diamond,
+.roast-effect-card{
+  background:#EADBCB !important;
+  border:1px solid rgba(122,77,44,0.12) !important;
+  box-shadow:0 8px 20px rgba(92,64,42,0.08) !important;
+}
+
+.diamond-card span,
+.roast-diamond h3,
+.roast-diamond p,
+.roast-effect-card h3,
+.roast-effect-card p{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.diamond-card.center{
+  background:var(--sand-3) !important;
+}
+
+.diamond-card.center span{
+  color:var(--dark) !important;
+}
+
+.level-card{
+  background:#F9F2EB !important;
+}
+
+.level-card ul,
+.level-card li{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.level-card li::before,
+.summary-text li::before{
+  color:var(--brown-hover) !important;
+}
+
+.level-card .dot{
+  background:var(--brown) !important;
+  border:4px solid var(--sand-3) !important;
+}
+
+.levels-line::before{
+  background:linear-gradient(90deg, var(--sand-3), var(--brown-hover), var(--brown)) !important;
+}
+
+.summary-split{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+.summary-split li,
+.summary-split p,
+.summary-split span,
+.roasting-info p,
+.roasting-info li,
+.roast-section p,
+.roast-section li,
+.roast-text,
+.roast-description,
+.roast-note,
+.roast-transition-text,
+.roast-transition-text p,
+.roasting-summary,
+.roasting-summary p{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.summary-split li::marker,
+.roasting-info li::marker,
+.roast-section li::marker{
+  color:#C8952F !important;
+}
+
+
+/* =========================
+   19) LESSON 4
+========================= */
+
+.section-title h2,
+.comparison-section h2,
+.video-section h2,
+.grind-table h2,
+.did-you-know h2,
+.fact-title{
+  color:var(--brown) !important;
+}
+
+.intro-lines p{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.line{
+  background:linear-gradient(90deg, transparent, var(--brown), transparent) !important;
+}
+
+.grind-card{
+  background:var(--sand-2) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.grind-card h3{
+  color:var(--dark) !important;
+}
+
+.grind-card p{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.grind-note{
+  background:linear-gradient(90deg, var(--brown), var(--sand-3)) !important;
+  color:#FFF8ED !important;
+}
+
+.compare-row{
+  background:#F3E7D3 !important;
+}
+
+.compare-label,
+.legend-item{
+  color:var(--dark) !important;
+}
+
+.bar{
+  background:#E8D8C0 !important;
+}
+
+.fill{
+  background:linear-gradient(90deg, var(--brown), var(--sand-3)) !important;
+}
+
+.legend-item{
+  background:#F6F1E7 !important;
+}
+
+.video-link{
+  color:var(--brown) !important;
+}
+
+.video-link:hover{
+  color:var(--dark) !important;
+}
+
+.fact-quote,
+.fact{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.cup{
+  background:var(--sand-3) !important;
+}
+
+.cup::after{
+  border-color:var(--sand-3) !important;
+}
+
+.steam{
+  background:#EDE8DC !important;
+}
+
+
+/* =========================
+   20) LESSON 5
+========================= */
+
+.lesson5-styles h2,
+.lesson5-map-head h2,
+.brew-temperature h2{
+  color:var(--brown) !important;
+}
+
+.lesson5-styles-sub{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.lesson5-intro p,
+.lesson5-summary p{
+  background:rgba(255,248,237,0.78) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(107,83,58,0.12) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.lesson5-card,
+.lesson5-map-card,
+.temp-card{
+  border:1px solid rgba(107,83,58,0.14) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.lesson5-card.one,
+.lesson5-card.two,
+.lesson5-card.three{
+  background:var(--sand-2) !important;
+}
+
+.lesson5-map-card.cold,
+.temp-card.cold{
+  background:#DCE6EC !important;
+}
+
+.lesson5-map-card.press{
+  background:#E8D8C0 !important;
+}
+
+.lesson5-map-card.v60{
+  background:#D7DEC8 !important;
+}
+
+.lesson5-map-card.espresso,
+.temp-card.hot{
+  background:#E5C6A8 !important;
+}
+
+.lesson5-card h3,
+.lesson5-map-card h3,
+.temp-card h3{
+  color:var(--dark) !important;
+}
+
+.lesson5-card p,
+.lesson5-map-card li,
+.temp-card li{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+.lesson5-chip{
+  background:#F6F1E7 !important;
+  color:var(--dark) !important;
+  border:1px solid rgba(107,83,58,0.10) !important;
+}
+
+.lesson5-quote{
+  background:linear-gradient(90deg, var(--sand-2), #E8D8C0, #F6F1E7, #D7DEC8) !important;
+  color:var(--dark) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.lesson5-video-text span{
+  color:var(--brown) !important;
+}
+
+.lesson5-video-text h2{
+  color:var(--dark) !important;
+}
+
+.brew-note{
+  color:var(--text) !important;
+  border-top:1px solid rgba(107,83,58,0.10) !important;
+}
+
+
+/* =========================
+   21) LESSON 6
+========================= */
+
+.lesson6-bag-head h2,
+.lesson6-find-style-head h2,
+.comparison-head h2,
+.journey-section h2{
+  color:var(--brown) !important;
+}
+
+.lesson6-intro p{
+  background:rgba(255,248,237,0.78) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(107,83,58,0.12) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.lesson6-bag-stage{
+  background:#F6F1E7 !important;
+}
+
+.lesson6-info-card{
+  background:var(--sand-2) !important;
+  border:1px solid rgba(107,83,58,0.12) !important;
+}
+
+.lesson6-info-card h3{
+  color:var(--dark) !important;
+}
+
+.lesson6-find-style-head span{
+  background:#E8D8C0 !important;
+  color:var(--brown) !important;
+  border:none !important;
+}
+
+.lesson6-style-card.fruity,
+.lesson6-style-card.nutty,
+.lesson6-style-card.chocolatey,
+.lesson6-style-card.bright,
+.journey-card.bean,
+.journey-card.roast,
+.journey-card.grind,
+.journey-card.brew,
+.journey-card.cup{
+  background:var(--sand) !important;
+}
+
+.lesson6-style-card{
+  border:1px solid rgba(107,83,58,0.12) !important;
+  box-shadow:var(--shadow-soft) !important;
+}
+
+.lesson6-style-card h3,
+.journey-card h3{
+  color:var(--dark) !important;
+}
+
+.lesson6-style-tag,
+.journey-badge{
+  background:var(--cream-3) !important;
+  color:var(--muted) !important;
+  border:1px solid rgba(107,83,58,0.10) !important;
+}
+
+.lesson6-video-text span{
+  color:var(--brown) !important;
+}
+
+.lesson6-video-text h2{
+  color:var(--dark) !important;
+}
+
+.journey-lines path{
+  stroke:#B9997D !important;
+}
+
+.yes{
+  color:#5C8A5C !important;
+}
+
+.no{
+  color:#B35C4D !important;
+}
+
+
+/* =========================
+   22) QUIZZES + RESULT
+========================= */
+
+.quiz-page,
+.quiz-container,
+.quiz-wrapper{
+  background:transparent !important;
+}
+
+.quiz-header,
+.question-card,
+.result-card{
+  background:rgba(255,248,237,0.88) !important;
+  border:1px solid rgba(122,77,44,0.10) !important;
+  box-shadow:0 16px 30px rgba(80,55,30,0.08) !important;
+  backdrop-filter:blur(5px);
+}
+
+.quiz-header h1,
+.result-card h1{
+  color:var(--dark) !important;
+}
+
+.quiz-header p,
+.result-card p,
+.best-score,
+.message{
+  color:var(--muted) !important;
+  opacity:1 !important;
+}
+
+.quiz-badge,
+.quiz-header span,
+.result-badge{
+  background:var(--brown) !important;
+  color:#FFF8ED !important;
+}
+
+.question-card h2,
+.question-card h3,
+.quiz-box h2,
+.quiz-box h3,
+.question-box h2,
+.question-box h3{
+  color:#6A3F22 !important;
+}
+
+.option,
+.answer-option,
+label.option{
+  background:#FFFFFF !important;
+  border:1px solid #E6D8C8 !important;
+  color:var(--dark) !important;
+  transition:0.25s ease;
+}
+
+.option:hover,
+.answer-option:hover,
+label.option:hover{
+  background:#F8EFE5 !important;
+  border-color:#C49A6C !important;
+  transform:translateY(-2px);
+}
+
+.option input,
+.answer-option input{
+  accent-color:var(--brown) !important;
+}
+
+.score-box,
+.result-box,
+.quiz-result{
+  background:#FFF8EF !important;
+  border:1px solid rgba(122,77,44,0.10) !important;
+  color:var(--dark) !important;
+  box-shadow:0 14px 28px rgba(80,55,30,0.08) !important;
+}
+
+.score{
+  color:var(--dark) !important;
+}
+
+
+/* =========================
+   23) TABLES
+========================= */
+
+table{
+  background:#FFFDF9 !important;
+  color:var(--dark) !important;
+}
+
+th,
+.grind-table th,
+.comparison-table th{
+  background:var(--brown) !important;
+  color:#FFF8ED !important;
+}
+
+td,
+.grind-table td,
+.comparison-table td{
+  background:#FFFDF9 !important;
+  color:var(--dark) !important;
+  border-color:#E5D6C8 !important;
+}
+
+tr:nth-child(even) td,
+.grind-table tr:nth-child(even) td,
+.comparison-table tr:nth-child(even) td{
+  background:#F7EFE7 !important;
+}
+
+tr:hover td{
+  background:#EFE4D8 !important;
+}
+
+
+/* =========================
+   24) FOOTER + CLOCK
+========================= */
+
 .site-footer{
   background-image:
     linear-gradient(rgba(122,77,44,0.55), rgba(122,77,44,0.55)),
-    url("Headerpic.png");
+    url("Headerpic.png") !important;
   background-size:cover;
   background-position:top center;
   background-repeat:no-repeat;
   padding:25px 20px 40px;
   text-align:center;
-  color:#FFF8ED;
+  color:#FFF8ED !important;
+}
+
+.site-footer h3,
+.site-footer p,
+.site-footer span,
+.site-footer a{
+  color:#FFF8ED !important;
 }
 
 .footer-top{
@@ -287,7 +1752,6 @@ background:transparent;
   margin-top:10px;
 }
 
-/* ===== Footer Clock ===== */
 .footer-clock{
   margin-top:18px;
   display:flex;
@@ -300,31 +1764,38 @@ background:transparent;
   align-items:center;
   gap:10px;
   padding:10px 18px;
-  border:1px solid rgba(255,248,237,0.28);
+  border:1px solid rgba(255,248,237,0.28) !important;
   border-radius:14px;
-  background:rgba(255,248,237,0.12);
+  background:rgba(255,248,237,0.12) !important;
   backdrop-filter:blur(4px);
-  color:#FFF8ED;
+  color:#FFF8ED !important;
   box-shadow:0 6px 18px rgba(92,64,42,0.18);
+}
+
+.clock-label,
+#live-clock{
+  color:#FFF8ED !important;
 }
 
 .clock-label{
   font-size:14px;
   font-weight:600;
-  color:#FFF8ED;
   letter-spacing:0.4px;
 }
 
 #live-clock{
   font-size:15px;
   font-weight:700;
-  color:#FFF8ED;
   letter-spacing:1px;
   min-width:105px;
   text-align:center;
 }
 
-/* ===== Back To Top Button ===== */
+
+/* =========================
+   25) BACK TO TOP
+========================= */
+
 #backToTop{
   position:fixed;
   right:22px;
@@ -333,8 +1804,8 @@ background:transparent;
   height:50px;
   border:none;
   border-radius:50%;
-  background-color:#C1B393;
-  color:#26231F;
+  background-color:var(--brown) !important;
+  color:#FFF8ED !important;
   font-size:22px;
   font-weight:bold;
   cursor:pointer;
@@ -347,7 +1818,7 @@ background:transparent;
 }
 
 #backToTop:hover{
-  background-color:#FDE9C7;
+  background-color:var(--brown-hover) !important;
   transform:translateY(0) scale(1.06);
 }
 
@@ -357,8 +1828,12 @@ background:transparent;
   transform:translateY(0);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 992px){
+
+/* =========================
+   26) RESPONSIVE
+========================= */
+
+@media (max-width:992px){
   .navbar{
     padding:14px 24px;
   }
@@ -381,7 +1856,7 @@ background:transparent;
   }
 }
 
-@media (max-width: 768px){
+@media (max-width:768px){
   .navbar{
     justify-content:center;
     min-height:auto;
@@ -420,6 +1895,32 @@ background:transparent;
     left:24px;
   }
 
+  .lesson-hero,
+  .hero-lesson,
+  .hero-lesson2,
+  .lesson5-hero,
+  .lesson6-hero,
+  .lesson6b-hero{
+    width:min(94%, 100%) !important;
+    border-radius:28px !important;
+  }
+
+  .hero-content,
+  .lesson5-hero-content,
+  .lesson6-hero-content,
+  .lesson6b-hero-content{
+    left:28px !important;
+    bottom:28px !important;
+    max-width:calc(100% - 56px) !important;
+  }
+
+  .hero-content h1,
+  .lesson5-hero h1,
+  .lesson6-hero h1,
+  .lesson6b-hero h1{
+    font-size:clamp(2rem, 9vw, 3.4rem) !important;
+  }
+
   .footer-logo img{
     width:240px;
   }
@@ -431,7 +1932,7 @@ background:transparent;
   }
 }
 
-@media (max-width: 560px){
+@media (max-width:560px){
   .navbar{
     padding:12px 14px;
     gap:12px;
@@ -504,2477 +2005,4 @@ background:transparent;
   }
 }
 
-/* ===== Force Homepage Light Theme ===== */
-
-body{
-  color:#4A3527 !important;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.22), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%) !important;
-}
-
-.section-box{
-  background:rgba(255,248,237,0.86) !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 30px rgba(92,64,42,0.12) !important;
-}
-
-.our-story h2,
-.why-heading,
-.bean-types-right h2,
-.lesson-preview h2,
-.reviews-section h2,
-.faq-section h2{
-  color:#3A2F2B !important;
-}
-
-.our-story p,
-.lesson-preview-sub{
-  color:#5A4638 !important;
-}
-
-.why-card,
-.flip-front{
-  background:#D8C7A7 !important;
-  color:#3A2F2B !important;
-}
-
-.why-card h3,
-.flip-front h3{
-  color:#3A2F2B !important;
-}
-
-.why-card p,
-.flip-front p{
-  color:#5A4638 !important;
-}
-
-.bean-types{
-  color:#3A2F2B !important;
-}
-
-.bean-card::before{
-  background:rgba(245,226,196,0.72) !important;
-}
-
-.card{
-  background:#D8C7A7 !important;
-}
-
-.card h3{
-  color:#2f241d !important;
-}
-
-.card p{
-  color:#4a3a2f !important;
-}
-
-.flip-back{
-  background:#E6D3B3 !important;
-}
-
-.flip-back p{
-  color:#2f241d !important;
-}
-
-.reviews-section,
-.faq-section{
-  background:#D8C7A7 !important;
-}
-
-.review-card{
-  background:#FFF8ED !important;
-}
-
-.review-card h3,
-.review-card p{
-  color:#3A2F2B !important;
-}
-
-.add-review-box{
-  background:rgba(255,248,237,0.90) !important;
-}
-
-.add-review-box h3{
-  color:#3A2F2B !important;
-}
-
-.faq-item summary{
-  background:#E6D3B3 !important;
-  color:#3A2F2B !important;
-}
-
-.faq-answer{
-  background:#FFF8ED !important;
-  color:#4A3527 !important;
-}
-
-.learn-more,
-.add-review-box button{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.learn-more:hover,
-.add-review-box button:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-/* ===== Evaluation Form Light Fix ===== */
-
-.form-page{
-  color:#4A3527 !important;
-}
-
-.evaluation-card{
-  background-color:rgba(255,248,237,0.92) !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.evaluation-card h1{
-  color:#3A2F2B !important;
-}
-
-.evaluation-subtitle,
-.note{
-  color:#5A4638 !important;
-}
-
-.form-group label{
-  color:#4A3527 !important;
-}
-
-.form-group select,
-.form-group textarea{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-.form-group textarea::placeholder{
-  color:#8A7462 !important;
-}
-
-.teacher-photo{
-  background-color:#E6D3B3 !important;
-}
-
-.stars label{
-  color:#C8B58F !important;
-}
-
-.stars input:checked ~ label,
-.stars label:hover,
-.stars label:hover ~ label{
-  color:#C8952F !important;
-}
-
-.submit-btn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.submit-btn:hover{
-  background:#94613D !important;
-}
-
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-.input-error,
-.stars-error{
-  border-color:#b94a48 !important;
-  background:#fff5f5 !important;
-}
-
-/* breadcrumb */
-.path-breadcrumb,
-.path-breadcrumb a,
-.path-breadcrumb span{
-  color:#5A4638 !important;
-}
-
-/* navbar */
-.navbar{
-  background:#FFF8ED !important;
-}
-
-.nav-links a{
-  color:#4A3527 !important;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:#7A4D2C !important;
-}
-
-.mode-btn{
-  color:#7A4D2C !important;
-}
-
-.search-box{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-/* ===== Contact Page Light Fix ===== */
-
-.contact-section{
-  color:#4A3527 !important;
-}
-
-.contact-title h1{
-  color:#3A2F2B !important;
-}
-
-.contact-title p{
-  color:#5A4638 !important;
-}
-
-.contact-container{
-  background:rgba(255,248,237,0.92) !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.contact-form label{
-  color:#4A3527 !important;
-}
-
-.contact-form input,
-.contact-form textarea{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder{
-  color:#8A7462 !important;
-}
-
-.contact-form button{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.contact-form button:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-/* Breadcrumb */
-.contact-section .path-breadcrumb,
-.contact-section .path-breadcrumb a,
-.contact-section .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.contact-section .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Back link */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* Navbar */
-.navbar{
-  background:#FFF8ED !important;
-  box-shadow:0 4px 18px rgba(92,64,42,0.10) !important;
-  border-bottom:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.nav-links a{
-  color:#4A3527 !important;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:#7A4D2C !important;
-}
-
-.mode-btn{
-  color:#7A4D2C !important;
-}
-
-.search-box{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-/* ===== Contact Page Light Fix ===== */
-
-.contact-section{
-  color:#4A3527 !important;
-}
-
-.contact-title h1{
-  color:#3A2F2B !important;
-}
-
-.contact-title p{
-  color:#5A4638 !important;
-}
-
-.contact-container{
-  background:rgba(255,248,237,0.92) !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.contact-form label{
-  color:#4A3527 !important;
-}
-
-.contact-form input,
-.contact-form textarea{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder{
-  color:#8A7462 !important;
-}
-
-.contact-form button{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.contact-form button:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-/* Breadcrumb */
-.contact-section .path-breadcrumb,
-.contact-section .path-breadcrumb a,
-.contact-section .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.contact-section .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Back link */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* Navbar */
-.navbar{
-  background:#FFF8ED !important;
-  box-shadow:0 4px 18px rgba(92,64,42,0.10) !important;
-  border-bottom:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.nav-links a{
-  color:#4A3527 !important;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:#7A4D2C !important;
-}
-
-.mode-btn{
-  color:#7A4D2C !important;
-}
-
-.search-box{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-/* ===== About Us Page Light Fix ===== */
-
-.about-page{
-  color:#4A3527 !important;
-}
-
-.about-page h1,
-.teachers-title{
-  color:#3A2F2B !important;
-}
-
-.about-text p,
-.teachers-desc,
-.sort-title{
-  color:#5A4638 !important;
-}
-
-.about-image img{
-  box-shadow:0 10px 24px rgba(92,64,42,0.12) !important;
-}
-
-/* Sort */
-.sort-select{
-  background:#E6D3B3 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-/* Teacher cards */
-.teachers-section .card{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.12) !important;
-}
-
-.teachers-section .card h3{
-  color:#3A2F2B !important;
-}
-
-.teacher-exp,
-.teacher-note{
-  color:#4A3527 !important;
-}
-
-.teacher-img{
-  background-color:#FFF8ED !important;
-}
-
-/* Arrows */
-.teachers-slider .arrow{
-  color:#7A4D2C !important;
-}
-
-.teachers-slider .arrow:hover{
-  color:#94613D !important;
-}
-
-/* Scrollbar */
-.teachers-section .card::-webkit-scrollbar-thumb,
-.teacher-note::-webkit-scrollbar-thumb{
-  background:#7A4D2C !important;
-}
-
-.teachers-section .card::-webkit-scrollbar-thumb:hover,
-.teacher-note::-webkit-scrollbar-thumb:hover{
-  background:#3A2F2B !important;
-}
-
-/* Breadcrumb */
-.about-page .path-breadcrumb,
-.about-page .path-breadcrumb a,
-.about-page .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.about-page .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Back link */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== Brew School Flip Cards Light Fix ===== */
-
-.brew-school-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.10), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%) !important;
-}
-
-.page-heading h1{
-  color:#3A2F2B !important;
-}
-
-.page-heading p{
-  color:#5A4638 !important;
-}
-
-/* Front side */
-.lesson-front{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.12) !important;
-}
-
-.lesson-front img{
-  background:#FFF8ED !important;
-}
-
-.lesson-front h3,
-.lesson-front h3 a{
-  color:#3A2F2B !important;
-}
-
-.lesson-front h3 a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Back side */
-.lesson-back{
-  background:#D8C7A7 !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.12) !important;
-}
-
-.lesson-back h3,
-.lesson-back h3 a{
-  color:#3A2F2B !important;
-}
-
-.lesson-back h3 a:hover{
-  color:#7A4D2C !important;
-}
-
-.lesson-back p{
-  color:#5A4638 !important;
-}
-
-/* Buttons */
-.more-btn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.more-btn:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* Breadcrumb */
-.brew-school-page .path-breadcrumb,
-.brew-school-page .path-breadcrumb a,
-.brew-school-page .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.brew-school-page .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-
-/* ===== Coffee Lab Light Mode ===== */
-
-body.light-mode{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.30), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.25), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.20), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.12), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 45%, #DCE1C8 100%) !important;
-}
-
-/* ===== Titles ===== */
-
-.light-mode .page-title h1,
-.light-mode .filter-sidebar h2,
-.light-mode .discover-text h3{
-  color:#3A2F2B !important;
-}
-
-.light-mode .discover-text p,
-.light-mode .path-breadcrumb,
-.light-mode .path-breadcrumb a{
-  color:#5A4638 !important;
-}
-
-/* ===== Filter ===== */
-
-.light-mode .filter-box{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.15) !important;
-}
-
-.light-mode .filter-group label{
-  color:#3A2F2B !important;
-}
-
-.light-mode .filter-group select{
-  background:#FFF8ED !important;
-  border:1px solid #D2B48C !important;
-  color:#3A2F2B !important;
-}
-
-.light-mode #applyBtn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.light-mode #applyBtn:hover{
-  background:#94613D !important;
-}
-
-.light-mode #resetBtn{
-  background:#F4ECE2 !important;
-  color:#3A2F2B !important;
-}
-
-/* ===== Search ===== */
-
-.light-mode .main-search input{
-  background:#FFF8ED !important;
-  border:2px solid #D8C7A7 !important;
-  color:#3A2F2B !important;
-}
-
-/* ===== Cards ===== */
-
-.light-mode .lab-card-front{
-  background:
-    linear-gradient(135deg, #E8D8BC 0%, #DCC7A4 60%, #C9B08A 100%) !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.light-mode .lab-card-back{
-  background:#F3E5CF !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.light-mode .lab-card-front h3,
-.light-mode .lab-card-back h3{
-  color:#3A2F2B !important;
-}
-
-.light-mode .lab-card-front p,
-.light-mode .back-details p,
-.light-mode .back-tag{
-  color:#5A4638 !important;
-}
-
-.light-mode .details-btn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.light-mode .details-btn:hover{
-  background:#94613D !important;
-}
-
-.light-mode .book-btn{
-  background:#3A2F2B !important;
-  color:#FFF8ED !important;
-}
-
-.light-mode .book-btn:hover{
-  background:#7A4D2C !important;
-}
-
-.light-mode .back-arrow{
-  color:#3A2F2B !important;
-}
-
-/* ===== Discover Section ===== */
-
-.light-mode .discover-section{
-  background:#E6D3B3 !important;
-}
-
-.light-mode .small-card{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.light-mode .small-card h3{
-  color:#3A2F2B !important;
-}
-
-.light-mode .card-desc{
-  color:#5A4638 !important;
-}
-
-.light-mode .mini-details{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-/* ===== Buttons ===== */
-
-.light-mode .lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.light-mode .lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== Clock ===== */
-
-.light-mode .clock-box{
-  background:rgba(255,255,255,0.55) !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-}
-
-.light-mode .clock-label,
-.light-mode #live-clock{
-  color:#3A2F2B !important;
-}
-
-/* ===== Back To Top ===== */
-
-.light-mode #backToTop{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.light-mode #backToTop:hover{
-  background:#94613D !important;
-}
-
-/* ===== Student Dashboard Light Fix ===== */
-
-.dashboard-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.10), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%) !important;
-}
-
-.dashboard-section h1,
-.scores-title{
-  color:#3A2F2B !important;
-}
-
-.dashboard-subtitle,
-.no-scores{
-  color:#5A4638 !important;
-}
-
-/* Breadcrumb */
-.dashboard-page .path-breadcrumb,
-.dashboard-page .path-breadcrumb a,
-.dashboard-page .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.dashboard-page .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Dashboard cards */
-.dashboard-card{
-  background:#E6D3B3 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.12) !important;
-}
-
-.dashboard-card:hover{
-  box-shadow:0 14px 30px rgba(92,64,42,0.16) !important;
-}
-
-.card-title{
-  color:#3A2F2B !important;
-}
-
-.card-text{
-  color:#5A4638 !important;
-}
-
-.card-btn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.card-btn:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-/* Scores table */
-.scores-table{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-.scores-table th{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.scores-table td{
-  background:#F3E7D3 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.scores-table tr:nth-child(even) td{
-  background:#E8D8C0 !important;
-}
-
-/* Back link */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== My Notes Light Fix ===== */
-
-.notes-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.10), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%) !important;
-}
-
-/* Titles */
-.notes-header h1,
-.saved-title{
-  color:#3A2F2B !important;
-}
-
-.notes-subtitle{
-  color:#5A4638 !important;
-}
-
-/* Breadcrumb */
-.notes-page .path-breadcrumb,
-.notes-page .path-breadcrumb a,
-.notes-page .path-breadcrumb span{
-  color:#5A4638 !important;
-  text-decoration:none !important;
-}
-
-.notes-page .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Add note box */
-.note-input-box{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.note-input,
-.priority-select{
-  background:#FFFDF8 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-}
-
-.note-input::placeholder{
-  color:#8A7462 !important;
-}
-
-/* Buttons */
-.save-btn,
-.delete-all-btn{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.save-btn:hover,
-.delete-all-btn:hover{
-  background:#94613D !important;
-  color:#FFF8ED !important;
-}
-
-/* Note cards */
-.note-card{
-  background:#D8C7A7 !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 8px 20px rgba(92,64,42,0.10) !important;
-}
-
-.note-text{
-  color:#3A2F2B !important;
-}
-
-/* Priority colors - light version */
-.note-card.priority-1{
-  background:#E8B7B0 !important;
-}
-
-.note-card.priority-2{
-  background:#E8D79A !important;
-}
-
-.note-card.priority-3{
-  background:#BFD7B5 !important;
-}
-
-.note-check{
-  accent-color:#7A4D2C !important;
-}
-
-/* Back link */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== Lesson Pages Light Mode ===== */
-
-.lesson-page,
-body{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.30), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.24), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.20), transparent 32%),
-    radial-gradient(circle at 70% 60%, rgba(118,128,89,0.10), transparent 35%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 40%, #DCE1C8 100%) !important;
-
-  color:#3A2F2B !important;
-}
-
-/* Breadcrumb */
-.path-breadcrumb,
-.path-breadcrumb a,
-.path-breadcrumb span{
-  color:#5A4638 !important;
-}
-
-.path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Hero */
-.lesson-hero{
-  box-shadow:0 14px 32px rgba(92,64,42,0.12);
-}
-
-.hero-overlay{
-  background:rgba(255,255,255,0.12) !important;
-}
-
-.hero-content h1,
-.lesson-hero h1{
-  color:#FFF8ED !important;
-}
-
-.hero-content p,
-.lesson-hero p{
-  color:#F8F2E9 !important;
-}
-
-.lesson-label,
-.lesson-badge{
-  background:rgba(255,255,255,0.22) !important;
-  border:1px solid rgba(255,255,255,0.35) !important;
-  color:#FFF8ED !important;
-}
-
-/* Titles */
-.lesson-intro h2,
-.lesson-video h3,
-.section-title h2,
-.map-title h2,
-.lesson-summary h3{
-  color:#3A2F2B !important;
-}
-
-/* Paragraphs */
-.lesson-intro p,
-.lesson-video p,
-.section-title p,
-.lesson-summary p,
-.map-title p{
-  color:#5A4638 !important;
-}
-
-/* Video */
-.video-box{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.16);
-  box-shadow:0 10px 24px rgba(92,64,42,0.10);
-}
-
-/* Lesson 1.2 cards */
-.parts-wrap,
-.map-card,
-.lesson-summary{
-  background:#F6EBDD !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.08) !important;
-}
-
-.part-card{
-  background:#E6D3B3 !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-.part-card h3,
-.map-card h4{
-  color:#3A2F2B !important;
-}
-
-.part-card p,
-.map-card p{
-  color:#5A4638 !important;
-}
-
-.part-arrow{
-  color:#7A4D2C !important;
-}
-
-/* Farm Section */
-.farm-info{
-  background:linear-gradient(to bottom right, #E6D3B3, #D8C7A7) !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-.farm-info h3{
-  color:#3A2F2B !important;
-}
-
-.farm-info p,
-.farm-info li{
-  color:#5A4638 !important;
-}
-
-.belt-note{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-/* Map section */
-.map-section{
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 30%),
-    linear-gradient(to bottom, #EFE2CF, #DCC9A8) !important;
-
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-.route-line{
-  border-top:2px dashed rgba(122,77,44,0.30) !important;
-}
-
-.map-tag{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-/* Buttons */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ========================= */
-/* LESSON 2 LIGHT MODE */
-/* ========================= */
-
-body{
-  background:
-    radial-gradient(circle at top left, rgba(193,179,147,0.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(111,191,115,0.10), transparent 25%),
-    linear-gradient(to bottom, #f9f5ef, #efe7dc);
-  color:#2f241d;
-}
-
-/* ===== Breadcrumb ===== */
-
-.path-breadcrumb{
-  color:#5f4a3d;
-}
-
-.path-breadcrumb a{
-  color:#5f4a3d;
-}
-
-.path-breadcrumb a:hover{
-  color:#9b6b43;
-}
-
-/* ===== Hero Section ===== */
-
-.hero-lesson2{
-  box-shadow:0 20px 40px rgba(0,0,0,0.10);
-}
-
-.hero-content{
-  color:#fff;
-}
-
-.lesson-badge{
-  background:rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.45);
-  color:#fff;
-}
-
-/* ===== Intro ===== */
-
-.intro-card{
-  background:#ffffff;
-  border:1px solid rgba(111,76,49,0.10);
-  box-shadow:0 18px 45px rgba(74,48,28,0.08);
-}
-
-.intro-card h2{
-  color:#7a4d2c;
-}
-
-.intro-card p{
-  color:#4d3b2f;
-}
-
-/* ===== Video ===== */
-
-.video-box{
-  background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.video-note{
-  color:#7a4d2c;
-}
-
-/* ===== Headings ===== */
-
-.beans-heading h2,
-.lesson-section h2,
-.table-section h2{
-  color:#7a4d2c;
-}
-
-.beans-heading p{
-  color:#5f4a3d;
-}
-
-/* ===== Bean Cards ===== */
-
-.bean-card{
-  background:#fff;
-  border:1px solid rgba(111,76,49,0.08);
-  box-shadow:0 16px 38px rgba(0,0,0,0.08);
-}
-
-.bean-text{
-  background:#fffaf5;
-}
-
-.bean-text p{
-  color:#4d3b2f;
-}
-
-.bean-tag{
-  background:#C1B393 !important;
-  color:#fff !important;
-}
-
-.bean-points div{
-  background:#f4ebe2;
-  color:#4d3b2f;
-}
-
-/* ===== Culture ===== */
-
-.culture-section{
-  box-shadow:0 18px 40px rgba(0,0,0,0.10);
-}
-
-.culture-inner{
-  color:#fff;
-}
-
-/* ===== Vietnam ===== */
-
-.vietnam-text{
-  background:#ffffff;
-  padding:40px;
-  border-radius:28px;
-  box-shadow:0 14px 30px rgba(0,0,0,0.08);
-}
-
-.vietnam-text h2{
-  color:#7a4d2c;
-}
-
-.vietnam-text p{
-  color:#4d3b2f;
-}
-
-/* ===== Flavor Card ===== */
-
-.flavor-card{
-  background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.flavor-title h3{
-  color:#7a4d2c;
-}
-
-.scale-labels{
-  color:#4d3b2f;
-}
-
-/* ===== Criteria ===== */
-
-.criteria-section{
-  background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.criteria-box{
-  background:#fffaf5;
-  color:#4d3b2f;
-}
-
-.criteria-center{
-  background:#f9f2eb;
-  color:#7a4d2c;
-}
-
-/* ===== Table ===== */
-
-.table-section{
-  background:#fff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-th{
-  background:linear-gradient(135deg, #7a4d2c, #9b7653);
-}
-
-td{
-  background:#fffdf9;
-  color:#4d3b2f;
-}
-
-tr:nth-child(even) td{
-  background:#f7efe7;
-}
-
-tr:hover td{
-  background:#eef8ef;
-}
-
-/* ===== Final Text ===== */
-
-.final-text{
-  background:#fff;
-  color:#4d3b2f;
-  box-shadow:0 14px 30px rgba(0,0,0,0.08);
-}
-
-/* ===== Buttons ===== */
-
-.lesson-buttons a{
-  color:#7a4d2c;
-}
-
-.lesson-buttons a:hover{
-  color:#3b2a20;
-}
-
-/* ========================= */
-/* LESSON 3 LIGHT MODE */
-/* ========================= */
-
-body{
-  background:
-    radial-gradient(circle at top left, rgba(193,179,147,0.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(111,191,115,0.10), transparent 25%),
-    linear-gradient(to bottom, #f9f5ef, #efe7dc);
-  color:#2f241d;
-}
-
-/* ===== Breadcrumb ===== */
-
-.path-breadcrumb{
-  color:#5f4a3d;
-}
-
-.path-breadcrumb a{
-  color:#5f4a3d;
-}
-
-.path-breadcrumb a:hover{
-  color:#9b6b43;
-}
-
-/* ===== Hero ===== */
-
-.hero-lesson{
-  box-shadow:0 20px 40px rgba(0,0,0,0.10);
-}
-
-.hero-content h1{
-  color:#fff;
-}
-
-.hero-content p{
-  color:#f7efe5;
-}
-
-.lesson-badge{
-  background:rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.35);
-  color:#fff;
-}
-
-/* ===== Headings ===== */
-
-.section-heading h2,
-.section-title h2,
-.levels-section h2{
-  color:#7a4d2c;
-}
-
-.section-heading p,
-.section-title p{
-  color:#5f4a3d;
-}
-
-/* ===== Intro Card ===== */
-
-.intro-card{
-  background:#ffffff;
-  border:1px solid rgba(111,76,49,0.08);
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.intro-text h3{
-  color:#7a4d2c;
-}
-
-.intro-text p{
-  color:#4d3b2f;
-}
-
-/* ===== Points ===== */
-
-.points-section{
-  background:#ffffff;
-  color:#4d3b2f;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.points-section h3{
-  color:#7a4d2c;
-}
-
-.points-list li{
-  background:#f7efe7;
-  color:#4d3b2f;
-}
-
-/* ===== Beans Strip ===== */
-
-.beans-strip{
-  background:#fff;
-  border:1px solid rgba(111,76,49,0.08);
-}
-
-/* ===== Video ===== */
-
-.video-section{
-  background:#ffffff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.video-section h3{
-  color:#7a4d2c;
-}
-
-.video-section p{
-  color:#5f4a3d;
-}
-
-/* ===== Changes Panel ===== */
-
-.changes-panel{
-  background:#ffffff;
-  border:1px solid rgba(111,76,49,0.08);
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-/* ===== Diamond Cards ===== */
-
-.diamond-card{
-  background:#f9f2eb;
-  border:1px solid #d8c6ae;
-}
-
-.diamond-card span{
-  color:#4d3b2f;
-}
-
-.diamond-card.center{
-  background:#C1B393;
-}
-
-.diamond-card.center span{
-  color:#fff;
-}
-
-/* ===== Wide Image ===== */
-
-.wide-image-card{
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-/* ===== Bridge ===== */
-
-.bridge-section{
-  background:#ffffff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.bridge-section h3{
-  color:#7a4d2c;
-}
-
-.bridge-section p{
-  color:#4d3b2f;
-}
-
-/* ===== Roast Levels ===== */
-
-.levels-section{
-  background:#ffffff;
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.level-card{
-  background:#f9f2eb;
-  border-radius:24px;
-  padding:24px;
-}
-
-.level-card h3{
-  color:#7a4d2c;
-}
-
-.level-card ul{
-  color:#4d3b2f;
-}
-
-.level-card li::before{
-  color:#9b6b43;
-}
-
-.level-card .dot{
-  background:#7a4d2c;
-  border:4px solid #C1B393;
-}
-
-.levels-line::before{
-  background:linear-gradient(90deg, #C1B393, #9b6b43, #7a4d2c);
-}
-
-/* ===== Summary ===== */
-
-.summary-split{
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
-}
-
-.summary-text{
-  background:#ffffff;
-}
-
-.summary-text h3{
-  color:#7a4d2c;
-}
-
-.summary-text li{
-  color:#4d3b2f;
-}
-
-.summary-text li::before{
-  color:#9b6b43;
-}
-
-/* ===== Final Note ===== */
-
-.final-note p{
-  color:#5f4a3d;
-}
-
-/* ===== Buttons ===== */
-
-.lesson-buttons a{
-  color:#7a4d2c;
-}
-
-.lesson-buttons a:hover{
-  color:#3b2a20;
-}
-
-/* ===== Lesson 4 Light Mode ===== */
-
-body,
-.lesson-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 45%, #DCE1C8 100%) !important;
-  color:#3A2F2B !important;
-}
-
-/* Breadcrumb */
-.path-breadcrumb,
-.path-breadcrumb a,
-.path-breadcrumb span{
-  color:#5A4638 !important;
-}
-
-.path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Hero */
-.hero-lesson{
-  box-shadow:0 18px 38px rgba(92,64,42,0.14) !important;
-}
-
-.lesson-badge{
-  background:rgba(255,255,255,0.20) !important;
-  color:#FFF8ED !important;
-}
-
-/* Titles */
-.section-title h2,
-.comparison-section h2,
-.video-section h2,
-.grind-table h2,
-.did-you-know h2,
-.fact-title{
-  color:#7A4D2C !important;
-}
-
-.section-title p{
-  color:#5A4638 !important;
-}
-
-/* Intro */
-.intro-card{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.intro-lines p{
-  color:#4A3527 !important;
-}
-
-.line{
-  background:linear-gradient(90deg, transparent, #7A4D2C, transparent) !important;
-}
-
-/* Grind cards */
-.grind-types-section{
-  background:rgba(255,248,237,0.65) !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-.grind-card{
-  background:#D8C7A7 !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.grind-card h3{
-  color:#3A2F2B !important;
-}
-
-.grind-card p{
-  color:#5A4638 !important;
-}
-
-.grind-note{
-  background:linear-gradient(90deg, #7A4D2C, #C1B393) !important;
-}
-
-/* Comparison */
-.comparison-section{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.compare-row{
-  background:#F3E7D3 !important;
-}
-
-.compare-label,
-.legend-item{
-  color:#3A2F2B !important;
-}
-
-.bar{
-  background:#E8D8C0 !important;
-}
-
-.legend-item{
-  background:#F6F1E7 !important;
-}
-
-/* Video */
-.video-section{
-  background:#FFF8ED !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.video-section p{
-  color:#5A4638 !important;
-}
-
-.video-link{
-  color:#7A4D2C !important;
-}
-
-.video-link:hover{
-  color:#3A2F2B !important;
-}
-
-/* Lesson 4.2 table */
-.grind-table{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.grind-table table{
-  color:#3A2F2B !important;
-}
-
-.grind-table th{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.grind-table td{
-  background:#F3E7D3 !important;
-  color:#3A2F2B !important;
-  border-bottom:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.grind-table tr:nth-child(even) td{
-  background:#E8D8C0 !important;
-}
-
-/* Did you know */
-.coffee-fact{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.16) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.fact-quote,
-.fact{
-  color:#4A3527 !important;
-}
-
-.cup{
-  background:#C1B393 !important;
-}
-
-.cup::after{
-  border-color:#C1B393 !important;
-}
-
-.steam{
-  background:#EDE8DC !important;
-}
-
-/* Buttons */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== Lesson 5 Light Mode ===== */
-
-.lesson5-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.32), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.28), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.24), transparent 32%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 45%, #DCE1C8 100%) !important;
-
-  color:#3A2F2B !important;
-}
-
-/* Breadcrumb */
-.lesson5-breadcrumb,
-.path-breadcrumb,
-.lesson5-breadcrumb a,
-.path-breadcrumb a,
-.lesson5-breadcrumb span,
-.path-breadcrumb span{
-  color:#5A4638 !important;
-}
-
-.lesson5-breadcrumb a:hover,
-.path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* Hero */
-.lesson5-hero{
-  box-shadow:0 16px 36px rgba(92,64,42,0.14) !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-.lesson5-tag,
-.lesson5-pill{
-  background:rgba(255,255,255,0.22) !important;
-  color:#FFF8ED !important;
-}
-
-/* Intro */
-.lesson5-intro p{
-  background:#FFF8ED !important;
-  color:#4A3527 !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-/* Titles */
-.lesson5-styles h2,
-.lesson5-map-head h2,
-.brew-temperature h2{
-  color:#7A4D2C !important;
-}
-
-.lesson5-styles-sub{
-  color:#5A4638 !important;
-}
-
-/* Brewing cards */
-.lesson5-card,
-.lesson5-map-card{
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson5-card.one,
-.lesson5-card.two,
-.lesson5-card.three{
-  background:#D8C7A7 !important;
-}
-
-.lesson5-map-card.cold{
-  background:#DCE6EC !important;
-}
-
-.lesson5-map-card.press{
-  background:#E8D8C0 !important;
-}
-
-.lesson5-map-card.v60{
-  background:#D7DEC8 !important;
-}
-
-.lesson5-map-card.espresso{
-  background:#E5C6A8 !important;
-}
-
-.lesson5-card h3,
-.lesson5-map-card h3{
-  color:#3A2F2B !important;
-}
-
-.lesson5-card p,
-.lesson5-map-card li{
-  color:#5A4638 !important;
-}
-
-.lesson5-chip{
-  background:#F6F1E7 !important;
-  color:#3A2F2B !important;
-  border:1px solid rgba(107,83,58,0.10) !important;
-}
-
-/* Quote */
-.lesson5-quote{
-  background:linear-gradient(90deg, #D8C7A7, #E8D8C0, #F6F1E7, #D7DEC8) !important;
-  color:#3A2F2B !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-/* Video section */
-.lesson5-video-text{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson5-video-text span{
-  color:#7A4D2C !important;
-}
-
-.lesson5-video-text h2{
-  color:#3A2F2B !important;
-}
-
-.lesson5-video-text p{
-  color:#5A4638 !important;
-}
-
-.lesson5-video-box{
-  background:#F6F1E7 !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-}
-
-/* Summary */
-.lesson5-summary p{
-  background:#FFF8ED !important;
-  color:#4A3527 !important;
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-/* Hot vs Cold */
-.temp-card{
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.temp-card.hot{
-  background:#E5C6A8 !important;
-}
-
-.temp-card.cold{
-  background:#DCE6EC !important;
-}
-
-.temp-card h3,
-.temp-card ul,
-.temp-card li{
-  color:#3A2F2B !important;
-}
-
-/* Progress bars */
-.bar{
-  background:#E8D8C0 !important;
-}
-
-.fill{
-  background:linear-gradient(90deg, #7A4D2C, #C1B393) !important;
-}
-
-/* Notes */
-.brew-note{
-  color:#4A3527 !important;
-  border-top:1px solid rgba(107,83,58,0.10) !important;
-}
-
-/* Buttons */
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== Lesson 6 Light Mode ===== */
-
-.lesson6-page,
-.lesson6b-page{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.30), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.24), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(193,179,147,0.20), transparent 32%),
-    linear-gradient(140deg, #F7F0E4 0%, #EFE2CF 45%, #DCE1C8 100%) !important;
-
-  color:#3A2F2B !important;
-}
-
-/* ===== Breadcrumb ===== */
-
-.lesson6-page .path-breadcrumb,
-.lesson6b-page .path-breadcrumb,
-.lesson6-page .path-breadcrumb a,
-.lesson6b-page .path-breadcrumb a,
-.lesson6-page .path-breadcrumb span,
-.lesson6b-page .path-breadcrumb span{
-  color:#5A4638 !important;
-}
-
-.lesson6-page .path-breadcrumb a:hover,
-.lesson6b-page .path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* ===== Hero ===== */
-
-.lesson6-hero,
-.lesson6b-hero{
-  border:1px solid rgba(107,83,58,0.14) !important;
-  box-shadow:0 16px 36px rgba(92,64,42,0.14) !important;
-}
-
-.lesson6-pill,
-.lesson6b-pill{
-  background:rgba(255,255,255,0.22) !important;
-  color:#FFF8ED !important;
-}
-
-/* ===== Intro ===== */
-
-.lesson6-intro p{
-  background:#FFF8ED !important;
-  color:#4A3527 !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-/* ===== Section Titles ===== */
-
-.lesson6-bag-head h2,
-.lesson6-find-style-head h2,
-.comparison-head h2,
-.journey-section h2{
-  color:#7A4D2C !important;
-}
-
-.lesson6-find-style-head p,
-.comparison-head p,
-.journey-sub,
-.journey-bottom-text{
-  color:#5A4638 !important;
-}
-
-/* ===== Bag Section ===== */
-
-.lesson6-bag-stage{
-  background:#F6F1E7 !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson6-info-card{
-  background:#D8C7A7 !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-.lesson6-info-card h3{
-  color:#3A2F2B !important;
-}
-
-.lesson6-info-card p{
-  color:#5A4638 !important;
-}
-
-/* ===== Personality Cards ===== */
-
-.lesson6-find-style{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson6-find-style-head span{
-  background:#E8D8C0 !important;
-  color:#7A4D2C !important;
-  border:none !important;
-}
-
-.lesson6-style-card{
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson6-style-card.fruity{
-  background:#D7A894 !important;
-}
-
-.lesson6-style-card.nutty{
-  background:#E7D7BB !important;
-}
-
-.lesson6-style-card.chocolatey{
-  background:#D0A184 !important;
-}
-
-.lesson6-style-card.bright{
-  background:#C9D4B7 !important;
-}
-
-.lesson6-style-card h3{
-  color:#3A2F2B !important;
-}
-
-.lesson6-style-card p,
-.lesson6-style-card li{
-  color:#4A3527 !important;
-}
-
-.lesson6-style-tag{
-  background:#FFF8ED !important;
-  color:#5A4638 !important;
-  border:1px solid rgba(107,83,58,0.10) !important;
-}
-
-/* ===== Video ===== */
-
-.lesson6-video-text{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.lesson6-video-text span{
-  color:#7A4D2C !important;
-}
-
-.lesson6-video-text h2{
-  color:#3A2F2B !important;
-}
-
-.lesson6-video-text p{
-  color:#5A4638 !important;
-}
-
-.lesson6-video-box{
-  background:#F6F1E7 !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-}
-
-/* ===== Comparison Table ===== */
-
-.comparison-section{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.comparison-table-wrap{
-  background:#F6F1E7 !important;
-  border:1px solid rgba(107,83,58,0.10) !important;
-}
-
-.comparison-table th{
-  background:#7A4D2C !important;
-  color:#FFF8ED !important;
-}
-
-.comparison-table td{
-  background:#FFF8ED !important;
-  color:#4A3527 !important;
-}
-
-.comparison-table tr:nth-child(even) td{
-  background:#F2E6D6 !important;
-}
-
-.comparison-table tr:hover td{
-  background:#E8D8C0 !important;
-}
-
-.yes{
-  color:#5C8A5C !important;
-}
-
-.no{
-  color:#B35C4D !important;
-}
-
-/* ===== Journey Section ===== */
-
-.journey-map{
-  background:#F6F1E7 !important;
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.journey-lines path{
-  stroke:#B9997D !important;
-}
-
-.journey-card{
-  border:1px solid rgba(107,83,58,0.12) !important;
-  box-shadow:0 10px 24px rgba(92,64,42,0.10) !important;
-}
-
-.journey-card.bean{
-  background:#C9D4B7 !important;
-}
-
-.journey-card.roast{
-  background:#D0A184 !important;
-}
-
-.journey-card.grind{
-  background:#D8C7A7 !important;
-}
-
-.journey-card.brew{
-  background:#D7A894 !important;
-}
-
-.journey-card.cup{
-  background:#E8D8C0 !important;
-}
-
-.journey-card h3,
-.journey-card p,
-.journey-card .journey-badge{
-  color:#3A2F2B !important;
-}
-
-.journey-badge{
-  background:#FFF8ED !important;
-  border:1px solid rgba(107,83,58,0.10) !important;
-}
-
-/* ===== Buttons ===== */
-
-.lesson-buttons a{
-  color:#7A4D2C !important;
-}
-
-.lesson-buttons a:hover{
-  color:#94613D !important;
-}
-
-/* ===== QUIZ LIGHT MODE UNIVERSAL ===== */
-
-body{
-  background:
-  radial-gradient(circle at 15% 20%, rgba(193,179,147,0.10), transparent 30%),
-  radial-gradient(circle at 85% 25%, rgba(193,179,147,0.10), transparent 28%),
-  radial-gradient(circle at 50% 80%, rgba(193,179,147,0.08), transparent 32%),
-  linear-gradient(140deg, #FAF6F0 0%, #F4EBDD 50%, #EADBCB 100%) !important;
-
-  color:#3A2F2B !important;
-}
-
-/* ===== MAIN QUIZ CONTAINER ===== */
-
-.quiz-page,
-.quiz-container,
-.quiz-wrapper{
-  background:transparent !important;
-}
-
-/* ===== QUIZ HEADER ===== */
-
-.quiz-header{
-  background:rgba(255,255,255,0.88) !important;
-  border:1px solid rgba(122,77,44,0.10) !important;
-  box-shadow:0 16px 30px rgba(80,55,30,0.08) !important;
-  backdrop-filter:blur(5px);
-}
-
-.quiz-header h1{
-  color:#3A2F2B !important;
-}
-
-.quiz-header p{
-  color:#5B4A42 !important;
-}
-
-.quiz-header span{
-  background:#7A4D2C !important;
-  color:white !important;
-}
-
-/* ===== QUESTION BOXES ===== */
-
-.question-card,
-.quiz-box,
-.question-box{
-  background:linear-gradient(
-    145deg,
-    #FFF9F2 0%,
-    #F5EBDD 100%
-  ) !important;
-
-  border:1px solid rgba(122,77,44,0.10) !important;
-
-  box-shadow:0 14px 28px rgba(80,55,30,0.08) !important;
-
-  color:#3A2F2B !important;
-}
-
-/* ===== QUESTION TITLES ===== */
-
-.question-card h2,
-.question-card h3,
-.quiz-box h2,
-.quiz-box h3,
-.question-box h2,
-.question-box h3{
-  color:#6A3F22 !important;
-}
-
-/* ===== OPTIONS ===== */
-
-.option,
-.answer-option,
-label.option{
-  background:#FFFFFF !important;
-
-  border:1px solid #E6D8C8 !important;
-
-  color:#3A2F2B !important;
-
-  transition:0.25s ease;
-}
-
-.option:hover,
-.answer-option:hover,
-label.option:hover{
-  background:#F8EFE5 !important;
-
-  border-color:#C49A6C !important;
-
-  transform:translateY(-2px);
-}
-
-/* ===== RADIO & CHECKBOX ===== */
-
-.option input,
-.answer-option input{
-  accent-color:#7A4D2C !important;
-}
-
-/* ===== BUTTONS ===== */
-
-.submit-btn,
-.next-btn,
-.quiz-btn{
-  background:#7A4D2C !important;
-  color:white !important;
-  border:none !important;
-}
-
-.submit-btn:hover,
-.next-btn:hover,
-.quiz-btn:hover{
-  background:#3A2F2B !important;
-}
-
-/* ===== SCORE / RESULT BOX ===== */
-
-.score-box,
-.result-box,
-.quiz-result{
-  background:#FFF8EF !important;
-
-  border:1px solid rgba(122,77,44,0.10) !important;
-
-  color:#3A2F2B !important;
-
-  box-shadow:0 14px 28px rgba(80,55,30,0.08) !important;
-}
-
-/* ===== TABLES ===== */
-
-table{
-  background:#FFFDF9 !important;
-  color:#3A2F2B !important;
-}
-
-th{
-  background:#C49A6C !important;
-  color:white !important;
-}
-
-td{
-  border-color:#E5D6C8 !important;
-}
-
-/* ===== BREADCRUMB ===== */
-
-.path-breadcrumb,
-.path-breadcrumb span,
-.path-breadcrumb a{
-  color:#5C4B44 !important;
-}
-
-.path-breadcrumb a:hover{
-  color:#7A4D2C !important;
-}
-
-/* ===== CLOCK ===== */
-
-.clock-box{
-  background:rgba(255,255,255,0.55) !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-}
-
-
-.clock-label,
-#live-clock{
-  color:#3A2F2B !important;
-}
-
-/* ===== BACK TO TOP ===== */
-
-#backToTop{
-  background:#7A4D2C !important;
-  color:white !important;
-}
-
-#backToTop:hover{
-  background:#3A2F2B !important;
-}
-
-/* ===== Result Page Light Mode ===== */
-
-body{
-  background:
-    radial-gradient(circle at 15% 20%, rgba(193,179,147,0.12), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(193,179,147,0.10), transparent 28%),
-    linear-gradient(140deg, #FAF6F0 0%, #F4EBDD 50%, #EADBCB 100%) !important;
-  color:#3A2F2B !important;
-}
-
-.result-card{
-  background:#FFF9F2 !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-  box-shadow:0 18px 35px rgba(80,55,30,0.10) !important;
-}
-
-.result-badge{
-  background:#7A4D2C !important;
-  color:white !important;
-}
-
-.result-card h1{
-  color:#3A2F2B !important;
-}
-
-.result-card p{
-  color:#5B4A42 !important;
-}
-
-.score-box{
-  background:#F5EBDD !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-}
-
-.score-box h2,
-.best-score{
-  color:#6A3F22 !important;
-}
-
-.score{
-  color:#3A2F2B !important;
-}
-
-.btn-retry{
-  background:#7A4D2C !important;
-  color:white !important;
-}
-
-.btn-retry:hover{
-  background:#3A2F2B !important;
-}
-
-.btn-home{
-  background:#FFFFFF !important;
-  color:#3A2F2B !important;
-  border:1px solid #E6D8C8 !important;
-}
-
-.btn-home:hover{
-  background:#F8EFE5 !important;
-}
-
-.clock-box{
-  background:rgba(255,255,255,0.55) !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-}
-
-.clock-label,
-#live-clock{
-  color:#3A2F2B !important;
-}
-
-#backToTop{
-  background:#7A4D2C !important;
-  color:white !important;
-}
-
-#backToTop:hover{
-  background:#3A2F2B !important;
-}
-
-/* ===== Universal Light Clock ===== */
-
-.clock-box{
-  background:#F5EBDD !important;
-  border:1px solid rgba(122,77,44,0.12) !important;
-  box-shadow:0 6px 18px rgba(80,55,30,0.08) !important;
-}
-
-.clock-label,
-#live-clock{
-  color:#3A2F2B !important;
-}
-
-/* ===== Remove Moon Button Box ===== */
-
-.mode-btn{
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  padding:0 !important;
-}
-
-.mode-btn:hover,
-.mode-btn:focus,
-.mode-btn:active{
-  background:transparent !important;
-  box-shadow:none !important;
-  outline:none !important;
-}
 
